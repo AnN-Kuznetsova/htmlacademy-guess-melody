@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const WelcomeScreen = (props) => {
+export const WelcomeScreen = (props) => {
   // eslint-disable-next-line react/prop-types
   const {errorCount} = props;
 
@@ -23,6 +23,3 @@ const WelcomeScreen = (props) => {
     </section>
   );
 };
-
-
-export default WelcomeScreen;
