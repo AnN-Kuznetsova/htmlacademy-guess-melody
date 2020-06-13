@@ -24,6 +24,7 @@ export const WelcomeScreen = (props) => {
   );
 };
 
+
 WelcomeScreen.propTypes = {
   errorCount: PropTypes.number.isRequired,
 };

@@ -11,6 +11,7 @@ export const App = (props) => {
   );
 };
 
+
 App.propTypes = {
   errorCount: PropTypes.number.isRequired,
 };
