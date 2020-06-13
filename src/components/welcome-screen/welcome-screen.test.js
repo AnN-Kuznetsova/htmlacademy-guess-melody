@@ -7,6 +7,7 @@ describe(`Render WelcomeScreen`, () => {
   it(`Render correctly WelcomeScreen component`, () => {
     const props = {
       errorCount: 3,
+      welcomeButtonClickHandler: () => {},
     };
 
     const welcomeScreenComponent = renderer.create(<WelcomeScreen {...props} />).toJSON();
