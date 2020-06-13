@@ -4,7 +4,7 @@ import {App} from "./app.jsx";
 
 
 describe(`Render App`, () => {
-  it(`Render correcrty App component`, () => {
+  it(`Render correctly App component`, () => {
     const props = {
       errorCount: 3,
     };

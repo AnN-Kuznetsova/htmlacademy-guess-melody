@@ -4,7 +4,7 @@ import {WelcomeScreen} from "./welcome-screen.jsx";
 
 
 describe(`Render WelcomeScreen`, () => {
-  it(`Render correcrty WelcomeScreen component`, () => {
+  it(`Render correctly WelcomeScreen component`, () => {
     const props = {
       errorCount: 3,
     };
