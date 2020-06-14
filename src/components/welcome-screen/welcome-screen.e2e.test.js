@@ -10,11 +10,11 @@ Enzyme.configure({
 
 
 describe(`WelcomeScreen e2e-tests`, () => {
-  const welcomeButtonClickHandler = jest.fn();
+  const onWelcomeButtonClick = jest.fn();
 
   const props = {
     errorCount: 3,
-    welcomeButtonClickHandler,
+    onWelcomeButtonClick,
   };
 
   const welcomeScreenElement = shallow(<WelcomeScreen {...props} />);
@@ -22,6 +22,6 @@ describe(`WelcomeScreen e2e-tests`, () => {
   it(`Should welcomeButton be pressed`, () => {
     const welcomeButton = welcomeScreenElement.find(`button.welcome__button`);
     welcomeButton.simulate(`click`);
-    expect(welcomeButtonClickHandler).toHaveBeenCalled();
+    expect(onWelcomeButtonClick).toHaveBeenCalled();
   });
 });

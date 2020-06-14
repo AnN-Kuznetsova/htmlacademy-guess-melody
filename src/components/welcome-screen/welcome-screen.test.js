@@ -13,7 +13,7 @@ Enzyme.configure({
 describe(`Render WelcomeScreen`, () => {
   const props = {
     errorCount: 3,
-    welcomeButtonClickHandler: () => {},
+    onWelcomeButtonClick: () => {},
   };
 
   it(`Render correctly WelcomeScreen component`, () => {

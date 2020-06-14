@@ -3,7 +3,7 @@ import React from "react";
 import {WelcomeScreen} from "../welcome-screen/welcome-screen.jsx";
 
 
-const welcomeButtonClickHandler = () => {};
+const handleWelcomeButtonClick = () => {};
 
 
 export const App = (props) => {
@@ -12,7 +12,7 @@ export const App = (props) => {
   return (
     <WelcomeScreen
       errorCount={errorCount}
-      welcomeButtonClickHandler={welcomeButtonClickHandler}
+      onWelcomeButtonClick={handleWelcomeButtonClick}
     />
   );
 };

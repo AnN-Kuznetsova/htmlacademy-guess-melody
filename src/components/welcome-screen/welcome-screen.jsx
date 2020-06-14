@@ -3,7 +3,7 @@ import React from "react";
 
 
 export const WelcomeScreen = (props) => {
-  const {errorCount, welcomeButtonClickHandler} = props;
+  const {errorCount, onWelcomeButtonClick} = props;
 
   return (
     <section className="welcome">
@@ -12,7 +12,7 @@ export const WelcomeScreen = (props) => {
       </div>
       <button
         className="welcome__button"
-        onClick={welcomeButtonClickHandler}
+        onClick={onWelcomeButtonClick}
       >
         <span className="visually-hidden">Начать игру</span>
       </button>
@@ -30,5 +30,5 @@ export const WelcomeScreen = (props) => {
 
 WelcomeScreen.propTypes = {
   errorCount: PropTypes.number.isRequired,
-  welcomeButtonClickHandler: PropTypes.func.isRequired,
+  onWelcomeButtonClick: PropTypes.func.isRequired,
 };
