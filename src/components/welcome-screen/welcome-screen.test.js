@@ -16,12 +16,12 @@ describe(`Render WelcomeScreen`, () => {
     onWelcomeButtonClick: () => {},
   };
 
-  it(`Render correctly WelcomeScreen component`, () => {
+  it(`Should match with snapshot`, () => {
     const welcomeScreenSnapshot = renderer.create(<WelcomeScreen {...props} />).toJSON();
     expect(welcomeScreenSnapshot).toMatchSnapshot();
   });
 
-  it(`Render correctly errors count`, () => {
+  it(`Should render correct errors count`, () => {
     const welcomeScreenElement = shallow(<WelcomeScreen {...props} />);
     expect(welcomeScreenElement.find(`ul.welcome__rules-list li`).last().text())
       .toEqual(`Можно допустить ${props.errorCount} ошибки.`);

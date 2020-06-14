@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render WelcomeScreen Render correctly WelcomeScreen component 1`] = `
+exports[`Render WelcomeScreen Should match with snapshot 1`] = `
 <section
   className="welcome"
 >

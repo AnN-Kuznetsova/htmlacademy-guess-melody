@@ -8,7 +8,7 @@ describe(`Render App`, () => {
     errorCount: 3,
   };
 
-  it(`Render correctly App component`, () => {
+  it(`Should match with snapshot`, () => {
     const welcomeScreenSnapshot = renderer.create(<App {...props} />).toJSON();
     expect(welcomeScreenSnapshot).toMatchSnapshot();
   });
