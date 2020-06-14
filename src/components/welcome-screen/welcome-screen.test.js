@@ -1,5 +1,5 @@
-import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
+import Enzyme, {shallow} from "enzyme";
 import React from "react";
 import renderer from "react-test-renderer";
 import {WelcomeScreen} from "./welcome-screen.jsx";
@@ -10,21 +10,20 @@ Enzyme.configure({
 });
 
 
-const props = {
-  errorCount: 3,
-  welcomeButtonClickHandler: () => {},
-};
-
-
 describe(`Render WelcomeScreen`, () => {
+  const props = {
+    errorCount: 3,
+    welcomeButtonClickHandler: () => {},
+  };
+
   it(`Render correctly WelcomeScreen component`, () => {
-    const welcomeScreenComponent = renderer.create(<WelcomeScreen {...props} />).toJSON();
-    expect(welcomeScreenComponent).toMatchSnapshot();
+    const welcomeScreenSnapshot = renderer.create(<WelcomeScreen {...props} />).toJSON();
+    expect(welcomeScreenSnapshot).toMatchSnapshot();
   });
 
   it(`Render correctly errors count`, () => {
-    const welcomeScreenComponent = shallow(<WelcomeScreen {...props} />);
-    expect(welcomeScreenComponent.find(`ul.welcome__rules-list li`).last().text())
+    const welcomeScreenElement = shallow(<WelcomeScreen {...props} />);
+    expect(welcomeScreenElement.find(`ul.welcome__rules-list li`).last().text())
       .toEqual(`Можно допустить ${props.errorCount} ошибки.`);
   });
 });

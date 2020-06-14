@@ -4,13 +4,12 @@ import {App} from "./app.jsx";
 
 
 describe(`Render App`, () => {
+  const props = {
+    errorCount: 3,
+  };
+
   it(`Render correctly App component`, () => {
-    const props = {
-      errorCount: 3,
-    };
-
-    const welcomeScreenComponent = renderer.create(<App {...props} />).toJSON();
-
-    expect(welcomeScreenComponent).toMatchSnapshot();
+    const welcomeScreenSnapshot = renderer.create(<App {...props} />).toJSON();
+    expect(welcomeScreenSnapshot).toMatchSnapshot();
   });
 });
