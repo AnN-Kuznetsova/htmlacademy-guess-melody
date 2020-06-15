@@ -2,7 +2,7 @@ import Adapter from "enzyme-adapter-react-16";
 import Enzyme, {shallow} from "enzyme";
 import React from "react";
 import renderer from "react-test-renderer";
-import {WelcomeScreen} from "./welcome-screen.jsx";
+import {Welcome} from "./welcome.jsx";
 
 
 Enzyme.configure({
@@ -17,12 +17,12 @@ describe(`Render WelcomeScreen`, () => {
   };
 
   it(`Should match with snapshot`, () => {
-    const welcomeScreenSnapshot = renderer.create(<WelcomeScreen {...props} />).toJSON();
+    const welcomeScreenSnapshot = renderer.create(<Welcome {...props} />).toJSON();
     expect(welcomeScreenSnapshot).toMatchSnapshot();
   });
 
   it(`Should render correct errors count`, () => {
-    const welcomeScreenElement = shallow(<WelcomeScreen {...props} />);
+    const welcomeScreenElement = shallow(<Welcome {...props} />);
     expect(welcomeScreenElement.find(`ul.welcome__rules-list li`).last().text())
       .toEqual(`Можно допустить ${props.errorCount} ошибки.`);
   });

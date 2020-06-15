@@ -1,7 +1,7 @@
 import Adapter from "enzyme-adapter-react-16";
 import Enzyme, {shallow} from "enzyme";
 import React from "react";
-import {WelcomeScreen} from "./welcome-screen.jsx";
+import {Welcome} from "./welcome.jsx";
 
 
 Enzyme.configure({
@@ -17,7 +17,7 @@ describe(`WelcomeScreen e2e-tests`, () => {
     onWelcomeButtonClick,
   };
 
-  const welcomeScreenElement = shallow(<WelcomeScreen {...props} />);
+  const welcomeScreenElement = shallow(<Welcome {...props} />);
 
   it(`Should welcomeButton be pressed`, () => {
     const welcomeButton = welcomeScreenElement.find(`button.welcome__button`);

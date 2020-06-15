@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {WelcomeScreen} from "../welcome-screen/welcome-screen.jsx";
+import {Welcome} from "../welcome/welcome.jsx";
 
 
 const handleWelcomeButtonClick = () => {};
@@ -10,7 +10,7 @@ export const App = (props) => {
   const {errorCount} = props;
 
   return (
-    <WelcomeScreen
+    <Welcome
       errorCount={errorCount}
       onWelcomeButtonClick={handleWelcomeButtonClick}
     />
