@@ -10,12 +10,13 @@ Enzyme.configure({
 });
 
 
-describe(`Render Welcome`, () => {
-  const props = {
-    errorCount: 3,
-    onWelcomeButtonClick: () => {},
-  };
+const props = {
+  errorCount: 3,
+  onWelcomeButtonClick: () => {},
+};
 
+
+describe(`Render Welcome`, () => {
   it(`Should match with snapshot`, () => {
     const welcomeSnapshot = renderer.create(<Welcome {...props} />).toJSON();
     expect(welcomeSnapshot).toMatchSnapshot();
