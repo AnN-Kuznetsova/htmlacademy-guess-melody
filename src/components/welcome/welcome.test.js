@@ -10,20 +10,20 @@ Enzyme.configure({
 });
 
 
-describe(`Render WelcomeScreen`, () => {
+describe(`Render Welcome`, () => {
   const props = {
     errorCount: 3,
     onWelcomeButtonClick: () => {},
   };
 
   it(`Should match with snapshot`, () => {
-    const welcomeScreenSnapshot = renderer.create(<Welcome {...props} />).toJSON();
-    expect(welcomeScreenSnapshot).toMatchSnapshot();
+    const welcomeSnapshot = renderer.create(<Welcome {...props} />).toJSON();
+    expect(welcomeSnapshot).toMatchSnapshot();
   });
 
   it(`Should render correct errors count`, () => {
-    const welcomeScreenElement = shallow(<Welcome {...props} />);
-    expect(welcomeScreenElement.find(`ul.welcome__rules-list li`).last().text())
+    const welcomeElement = shallow(<Welcome {...props} />);
+    expect(welcomeElement.find(`ul.welcome__rules-list li`).last().text())
       .toEqual(`Можно допустить ${props.errorCount} ошибки.`);
   });
 });
