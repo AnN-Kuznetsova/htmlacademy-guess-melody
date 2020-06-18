@@ -30,7 +30,7 @@ export class App extends PureComponent {
           <Route exact path="/genre">
             <GenreQuestionScreen
               question={questions[0]}
-              onAnswer={this._handleAnswer}
+              onAnswer={() => {}} // {this._handleAnswer}
             />
           </Route>
         </Switch>
@@ -38,18 +38,24 @@ export class App extends PureComponent {
     );
   }
 
+  _renderWelcomeScreen() {
+    const {errorsCount} = this.props;
+
+    return (
+      <Welcome
+        errorsCount={errorsCount}
+        onWelcomeButtonClick={this._handleWelcomeButtonClick}
+      />
+    );
+  }
+
   _renderGameScreen() {
-    const {errorsCount, questions} = this.props;
+    const {questions} = this.props;
     const {step} = this.state;
     const question = questions[step];
 
-    if (step === -1 || step > questions.length) {
-      return (
-        <Welcome
-          errorsCount={errorsCount}
-          onWelcomeButtonClick={this._handleWelcomeButtonClick}
-        />
-      );
+    if (step === -1 || step >= questions.length) {
+      return this._renderWelcomeScreen();
     }
 
     if (question) {
@@ -64,7 +70,7 @@ export class App extends PureComponent {
         case GameType.ARTIST:
           break;
         default:
-
+          this._renderWelcomeScreen();
       }
     }
 
