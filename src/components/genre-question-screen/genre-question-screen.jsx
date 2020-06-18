@@ -10,10 +10,13 @@ export class GenreQuestionScreen extends PureComponent {
     this.state = {
       userAnswers: [false, false, false, false],
     };
+
+    this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleUserAnswerChange = this._handleUserAnswerChange.bind(this);
   }
 
   render() {
-    const {onAnswer, question} = this.props;
+    const {question} = this.props;
     const {userAnswers} = this.state;
     const {answers, genre} = question;
 
@@ -42,10 +45,7 @@ export class GenreQuestionScreen extends PureComponent {
           <h2 className="game__title">Выберите {genre} треки</h2>
           <form
             className="game__tracks"
-            onSubmit={(event) => {
-              event.preventDefault();
-              onAnswer(question, this.state.userAnswers);
-            }}
+            onSubmit={this._handleSubmit}
           >
             {
               answers.map((answer, index) => (
@@ -61,14 +61,9 @@ export class GenreQuestionScreen extends PureComponent {
                       name="answer"
                       value={`answer-${index}`}
                       id={`answer-${index}`}
+                      data-answer-index={index}
                       checked={userAnswers[index]}
-                      onChange={(event) => {
-                        const value = event.target.checked;
-
-                        this.setState({
-                          userAnswers: [...userAnswers.slice(0, index), value, ...userAnswers.slice(index + 1)],
-                        });
-                      }}
+                      onChange={this._handleUserAnswerChange}
                     />
                     <label className="game__check" htmlFor={`answer-${index}`}>Отметить</label>
                   </div>
@@ -81,6 +76,24 @@ export class GenreQuestionScreen extends PureComponent {
         </section>
       </section>
     );
+  }
+
+  _handleSubmit(event) {
+    const {onAnswer, question} = this.props;
+
+    event.preventDefault();
+    onAnswer(question, this.state.userAnswers);
+  }
+
+  _handleUserAnswerChange(event) {
+    const value = event.target.checked;
+    const index = event.target.dataset.answerIndex;
+
+    this.setState((prevState) => {
+      const userAnswers = prevState.userAnswers.slice();
+      userAnswers[index] = value;
+      return {userAnswers};
+    });
   }
 }
 

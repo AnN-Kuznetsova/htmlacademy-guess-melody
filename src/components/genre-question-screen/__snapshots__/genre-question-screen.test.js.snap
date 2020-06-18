@@ -32,7 +32,13 @@ exports[`Render GenreQuestionScreen Should match with snapshot 1`] = `
         cx="390"
         cy="390"
         r="370"
-        style="filter: url(#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center"
+        style={
+          Object {
+            "filter": "url(#blur)",
+            "transform": "rotate(-90deg) scaleY(-1)",
+            "transformOrigin": "center",
+          }
+        }
       />
     </svg>
     <div
@@ -83,6 +89,7 @@ exports[`Render GenreQuestionScreen Should match with snapshot 1`] = `
           <input
             checked={false}
             className="game__input visually-hidden"
+            data-answer-index={0}
             id="answer-0"
             name="answer"
             onChange={[Function]}
@@ -117,6 +124,7 @@ exports[`Render GenreQuestionScreen Should match with snapshot 1`] = `
           <input
             checked={false}
             className="game__input visually-hidden"
+            data-answer-index={1}
             id="answer-1"
             name="answer"
             onChange={[Function]}
@@ -151,6 +159,7 @@ exports[`Render GenreQuestionScreen Should match with snapshot 1`] = `
           <input
             checked={false}
             className="game__input visually-hidden"
+            data-answer-index={2}
             id="answer-2"
             name="answer"
             onChange={[Function]}
@@ -185,6 +194,7 @@ exports[`Render GenreQuestionScreen Should match with snapshot 1`] = `
           <input
             checked={false}
             className="game__input visually-hidden"
+            data-answer-index={3}
             id="answer-3"
             name="answer"
             onChange={[Function]}

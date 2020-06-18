@@ -38,7 +38,10 @@ describe(`GenreQuestionScreen e2e-tests`, () => {
 
     const formElement = genreQuestionScreenElement.find(`form.game__tracks`);
     const inputTwo = formElement.find(`input.game__input`).at(1);
-    inputTwo.simulate(`change`, {target: {checked: true}});
+    inputTwo.simulate(`change`, {target: {
+      checked: true,
+      dataset: {answerIndex: 1},
+    }});
     formElement.simulate(`submit`, {preventDefault() {}});
 
     expect(onAnswer).toHaveBeenCalledTimes(1);
