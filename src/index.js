@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDom from "react-dom";
 import {App} from "./components/app/app.jsx";
+import {ERRORS_COUNT} from "./const.js";
 import {questions} from "./mocks/questions.js";
 
 
 const settings = {
-  ERRORS_COUNT: 3,
+  ERRORS_COUNT,
 };
 
 ReactDom.render(
