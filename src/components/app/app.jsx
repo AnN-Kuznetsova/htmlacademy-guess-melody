@@ -67,6 +67,8 @@ export class App extends PureComponent {
 
       }
     }
+
+    return null;
   }
 
   _handleWelcomeButtonClick() {
