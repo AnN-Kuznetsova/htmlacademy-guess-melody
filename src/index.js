@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDom from "react-dom";
 import {App} from "./components/app/app.jsx";
+import {questions} from "./mocks/questions.js";
 
 
 const settings = {
@@ -8,6 +9,9 @@ const settings = {
 };
 
 ReactDom.render(
-    <App errorCount={settings.ERRORS_COUNT} />,
+    <App
+      errorsCount={settings.ERRORS_COUNT}
+      questions={questions}
+    />,
     document.querySelector(`#root`)
 );

@@ -7,7 +7,7 @@ import {ERRORS_COUNT} from "../../__test-data__/test-mocks.js";
 const onWelcomeButtonClick = jest.fn();
 
 const props = {
-  errorCount: ERRORS_COUNT,
+  errorsCount: ERRORS_COUNT,
   onWelcomeButtonClick,
 };
 

@@ -7,11 +7,11 @@ const handleWelcomeButtonClick = () => {};
 
 
 export const App = (props) => {
-  const {errorCount} = props;
+  const {errorsCount} = props;
 
   return (
     <Welcome
-      errorCount={errorCount}
+      errorsCount={errorsCount}
       onWelcomeButtonClick={handleWelcomeButtonClick}
     />
   );
@@ -19,5 +19,6 @@ export const App = (props) => {
 
 
 App.propTypes = {
-  errorCount: PropTypes.number.isRequired,
+  errorsCount: PropTypes.number.isRequired,
+  questions: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
