@@ -13,6 +13,8 @@ export class App extends PureComponent {
     this.state = {
       step: -1,
     };
+
+    this._handleWelcomeButtonClick = this._handleWelcomeButtonClick.bind(this);
   }
 
   render() {
@@ -35,9 +37,26 @@ export class App extends PureComponent {
     );
   }
 
-  _renderGameScreen() {}
+  _renderGameScreen() {
+    const {errorsCount, questions} = this.props;
+    const {step} = this.state;
+    const question = questions[step];
 
-  _handleWelcomeButtonClick() {}
+    if (step === -1 || step > questions.length) {
+      return (
+        <Welcome
+          errorsCount={errorsCount}
+          onWelcomeButtonClick={this._handleWelcomeButtonClick}
+        />
+      );
+    }
+  }
+
+  _handleWelcomeButtonClick() {
+    this.setState({
+      step: 0,
+    });
+  }
 
   _handleAnswer() {}
 }
