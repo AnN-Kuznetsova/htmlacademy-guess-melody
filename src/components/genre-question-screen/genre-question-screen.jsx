@@ -8,13 +8,13 @@ export class GenreQuestionScreen extends PureComponent {
     super(props);
 
     this.state = {
-      answers: [false, false, false, false],
+      userAnswers: [false, false, false, false],
     };
   }
 
   render() {
     const {onAnswer, question} = this.props;
-    const {answers: userAnswers} = this.state;
+    const {userAnswers} = this.state;
     const {answers, genre} = question;
 
     return (
@@ -39,7 +39,13 @@ export class GenreQuestionScreen extends PureComponent {
 
         <section className="game__screen">
           <h2 className="game__title">Выберите {genre} треки</h2>
-          <form className="game__tracks">
+          <form
+            className="game__tracks"
+            onSubmit={(event) => {
+              event.preventDefault();
+              onAnswer(question, this.state.userAnswers);
+            }}
+          >
             {
               answers.map((answer, index) => (
                 <div className="track" key={`${index}-${answer.src}`}>
@@ -59,7 +65,7 @@ export class GenreQuestionScreen extends PureComponent {
                         const value = event.target.checked;
 
                         this.setState({
-                          answers: [...userAnswers.slice(0, index), value, ...userAnswers.slice(index + 1)],
+                          userAnswers: [...userAnswers.slice(0, index), value, ...userAnswers.slice(index + 1)],
                         });
                       }}
                     />
@@ -86,6 +92,6 @@ GenreQuestionScreen.propTypes = {
       genre: PropTypes.string.isRequired,
     })).isRequired,
     genre: PropTypes.string.isRequired,
-    type: PropTypes.oneOf([...GameType]).isRequired,
+    type: PropTypes.oneOf(Object.values(GameType)).isRequired,
   }).isRequired,
 };
