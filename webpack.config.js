@@ -11,7 +11,6 @@ module.exports = {
     open: true,
     inline: true,
     port: 1337,
-    hisrotyApiFallback: true,
   },
   module: {
     rules: [

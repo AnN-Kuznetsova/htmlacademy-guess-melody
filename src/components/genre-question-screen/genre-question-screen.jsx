@@ -40,49 +40,34 @@ export class GenreQuestionScreen extends PureComponent {
         <section className="game__screen">
           <h2 className="game__title">Выберите {genre} треки</h2>
           <form className="game__tracks">
-            <div className="track">
-              <button className="track__button track__button--play" type="button"></button>
-              <div className="track__status">
-                <audio></audio>
-              </div>
-              <div className="game__answer">
-                <input className="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-1" />
-                <label className="game__check" htmlFor="answer-1">Отметить</label>
-              </div>
-            </div>
+            {
+              answers.map((answer, index) => (
+                <div className="track" key={`${index}-${answer.src}`}>
+                  <button className="track__button track__button--play" type="button"></button>
+                  <div className="track__status">
+                    <audio src={answer.src}></audio>
+                  </div>
+                  <div className="game__answer">
+                    <input
+                      className="game__input visually-hidden"
+                      type="checkbox"
+                      name="answer"
+                      value={`answer-${index}`}
+                      id={`answer-${index}`}
+                      checked={userAnswers[index]}
+                      onChange={(event) => {
+                        const value = event.target.checked;
 
-            <div className="track">
-              <button className="track__button track__button--play" type="button"></button>
-              <div className="track__status">
-                <audio></audio>
-              </div>
-              <div className="game__answer">
-                <input className="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-2" />
-                <label className="game__check" htmlFor="answer-2">Отметить</label>
-              </div>
-            </div>
-
-            <div className="track">
-              <button className="track__button track__button--pause" type="button"></button>
-              <div className="track__status">
-                <audio></audio>
-              </div>
-              <div className="game__answer">
-                <input className="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-3" />
-                <label className="game__check" htmlFor="answer-3">Отметить</label>
-              </div>
-            </div>
-
-            <div className="track">
-              <button className="track__button track__button--play" type="button"></button>
-              <div className="track__status">
-                <audio></audio>
-              </div>
-              <div className="game__answer">
-                <input className="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-4" />
-                <label className="game__check" htmlFor="answer-4">Отметить</label>
-              </div>
-            </div>
+                        this.setState({
+                          answers: [...userAnswers.slice(0, index), value, ...userAnswers.slice(index + 1)],
+                        });
+                      }}
+                    />
+                    <label className="game__check" htmlFor={`answer-${index}`}>Отметить</label>
+                  </div>
+                </div>
+              ))
+            }
 
             <button className="game__submit button" type="submit">Ответить</button>
           </form>
