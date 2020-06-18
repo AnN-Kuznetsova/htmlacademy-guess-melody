@@ -1,12 +1,13 @@
 import React from "react";
 import {shallow} from "enzyme";
 import {Welcome} from "./welcome.jsx";
+import {ERRORS_COUNT} from "../../__test-data__/test-mocks.js";
 
 
 const onWelcomeButtonClick = jest.fn();
 
 const props = {
-  errorCount: 3,
+  errorCount: ERRORS_COUNT,
   onWelcomeButtonClick,
 };
 
