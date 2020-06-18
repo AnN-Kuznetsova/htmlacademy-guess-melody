@@ -9,8 +9,6 @@ const props = {
   onAnswer: () => {},
 };
 
-// const genreQuestionScreenElement = shallow(<GenreQuestionScreen {...props} />);
-
 
 describe(`GenreQuestionScreen e2e-tests`, () => {
   it(`When user answers genre question form is not sent`, () => {
@@ -30,16 +28,16 @@ describe(`GenreQuestionScreen e2e-tests`, () => {
     expect(formSendPrevention).toHaveBeenCalledTimes(1);
   });
 
+
   it(`User answer passed to callback is consistent with "userAnswer" prop`, () => {
+    const userAnswer = [false, true, false, false];
     const onAnswer = jest.fn((...args) => [...args]);
     props.onAnswer = onAnswer;
 
     const genreQuestionScreenElement = shallow(<GenreQuestionScreen {...props} />);
 
-    const userAnswer = [false, true, false, false];
     const formElement = genreQuestionScreenElement.find(`form.game__tracks`);
     const inputTwo = formElement.find(`input.game__input`).at(1);
-
     inputTwo.simulate(`change`, {target: {checked: true}});
     formElement.simulate(`submit`, {preventDefault() {}});
 
