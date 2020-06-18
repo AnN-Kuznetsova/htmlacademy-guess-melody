@@ -15,6 +15,7 @@ export class App extends PureComponent {
     };
 
     this._handleWelcomeButtonClick = this._handleWelcomeButtonClick.bind(this);
+    this._handleAnswer = this._handleAnswer.bind(this);
   }
 
   render() {
@@ -50,6 +51,22 @@ export class App extends PureComponent {
         />
       );
     }
+
+    if (question) {
+      switch (question.type) {
+        case GameType.GENRE:
+          return (
+            <GenreQuestionScreen
+              question={question}
+              onAnswer={this._handleAnswer}
+            />
+          );
+        case GameType.ARTIST:
+          break;
+        default:
+
+      }
+    }
   }
 
   _handleWelcomeButtonClick() {
@@ -58,7 +75,11 @@ export class App extends PureComponent {
     });
   }
 
-  _handleAnswer() {}
+  _handleAnswer() {
+    this.setState((prevState) => ({
+      step: prevState.step + 1,
+    }));
+  }
 }
 
 
