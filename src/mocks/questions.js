@@ -19,7 +19,7 @@ export const questions = [
       genre: `rock`,
     }],
   },
-  /* {
+  {
     type: `artist`,
     song: {
       artist: `Jim Beam`,
@@ -35,5 +35,5 @@ export const questions = [
       picture: `${AVATAR_URL}/${Math.random()}`,
       artist: `Jim Beam`,
     }],
-  }, */
+  },
 ];
