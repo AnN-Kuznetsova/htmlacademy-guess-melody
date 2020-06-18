@@ -1,21 +1,26 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { PureComponent } from "react";
 import {Welcome} from "../welcome/welcome.jsx";
 
 
-const handleWelcomeButtonClick = () => {};
+export class App extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
+  render() {
+    const {errorsCount} = this.props;
 
-export const App = (props) => {
-  const {errorsCount} = props;
+    return (
+      <Welcome
+        errorsCount={errorsCount}
+        onWelcomeButtonClick={this._handleWelcomeButtonClick}
+      />
+    );
+  }
 
-  return (
-    <Welcome
-      errorsCount={errorsCount}
-      onWelcomeButtonClick={handleWelcomeButtonClick}
-    />
-  );
-};
+  _handleWelcomeButtonClick() {}
+}
 
 
 App.propTypes = {
