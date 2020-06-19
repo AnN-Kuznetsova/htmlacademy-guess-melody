@@ -1,7 +1,5 @@
 const ERRORS_COUNT = 3;
 
-const AVATAR_URL = `https://api.adorable.io/avatars/128`;
-
 const questionGenre = {
   type: `genre`,
   genre: `rock`,
