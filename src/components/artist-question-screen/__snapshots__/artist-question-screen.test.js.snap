@@ -26,20 +26,21 @@ exports[`Render ArtistQuestionScreen Should match with snapshot 1`] = `
       className="timer"
       viewBox="0 0 780 780"
       xmlns="http://www.w3.org/2000/svg"
-    />
-    <circle
-      className="timer__line"
-      cx="390"
-      cy="390"
-      r="370"
-      style={
-        Object {
-          "filter": "url(#blur)",
-          "transform": "rotate(-90deg) scaleY(-1)",
-          "transformOrigin": "center",
+    >
+      <circle
+        className="timer__line"
+        cx="390"
+        cy="390"
+        r="370"
+        style={
+          Object {
+            "filter": "url(#blur)",
+            "transform": "rotate(-90deg) scaleY(-1)",
+            "transformOrigin": "center",
+          }
         }
-      }
-    />
+      />
+    </svg>
     <div
       className="game__mistakes"
     >
