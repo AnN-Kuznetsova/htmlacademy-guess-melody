@@ -1,6 +1,5 @@
-import PropTypes from "prop-types";
 import React from "react";
-import {GameType} from "../../const.js";
+import {questionArtistType, callbackType} from "../../types.js";
 
 
 export const ArtistQuestionScreen = (props) => {
@@ -70,16 +69,6 @@ export const ArtistQuestionScreen = (props) => {
 
 
 ArtistQuestionScreen.propTypes = {
-  question: PropTypes.shape({
-    answers: PropTypes.arrayOf(PropTypes.shape({
-      picture: PropTypes.string.isRequired,
-      artist: PropTypes.string.isRequired,
-    })).isRequired,
-    song: PropTypes.shape({
-      artist: PropTypes.string.isRequired,
-      src: PropTypes.string.isRequired,
-    }).isRequired,
-    type: PropTypes.oneOf(Object.values(GameType)).isRequired,
-  }).isRequired,
-  onAnswer: PropTypes.func.isRequired,
+  question: questionArtistType.isRequired,
+  onAnswer: callbackType.isRequired,
 };

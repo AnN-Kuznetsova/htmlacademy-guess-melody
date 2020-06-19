@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
+import {errorsCountType, questionsType} from "../../types.js";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {ArtistQuestionScreen} from "../artist-question-screen/artist-question-screen.jsx";
 import {GenreQuestionScreen} from "../genre-question-screen/genre-question-screen.jsx";
@@ -104,6 +104,6 @@ export class App extends PureComponent {
 
 
 App.propTypes = {
-  errorsCount: PropTypes.number.isRequired,
-  questions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  errorsCount: errorsCountType.isRequired,
+  questions: questionsType.isRequired,
 };

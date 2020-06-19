@@ -1,6 +1,5 @@
-import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
-import {GameType} from "../../const.js";
+import {callbackType, questionGenreType} from "../../types.js";
 
 
 export class GenreQuestionScreen extends PureComponent {
@@ -99,13 +98,6 @@ export class GenreQuestionScreen extends PureComponent {
 
 
 GenreQuestionScreen.propTypes = {
-  question: PropTypes.shape({
-    answers: PropTypes.arrayOf(PropTypes.shape({
-      src: PropTypes.string.isRequired,
-      genre: PropTypes.string.isRequired,
-    })).isRequired,
-    genre: PropTypes.string.isRequired,
-    type: PropTypes.oneOf(Object.values(GameType)).isRequired,
-  }).isRequired,
-  onAnswer: PropTypes.func.isRequired,
+  question: questionGenreType.isRequired,
+  onAnswer: callbackType.isRequired,
 };
