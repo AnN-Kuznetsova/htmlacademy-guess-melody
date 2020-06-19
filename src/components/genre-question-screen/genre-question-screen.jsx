@@ -15,6 +15,24 @@ export class GenreQuestionScreen extends PureComponent {
     this._handleUserAnswerChange = this._handleUserAnswerChange.bind(this);
   }
 
+  _handleSubmit(event) {
+    const {onAnswer, question} = this.props;
+
+    event.preventDefault();
+    onAnswer(question, this.state.userAnswers);
+  }
+
+  _handleUserAnswerChange(event) {
+    const value = event.target.checked;
+    const index = event.target.dataset.answerIndex;
+
+    this.setState((prevState) => {
+      const userAnswers = prevState.userAnswers.slice();
+      userAnswers[index] = value;
+      return {userAnswers};
+    });
+  }
+
   render() {
     const {question} = this.props;
     const {userAnswers} = this.state;
@@ -76,24 +94,6 @@ export class GenreQuestionScreen extends PureComponent {
         </section>
       </section>
     );
-  }
-
-  _handleSubmit(event) {
-    const {onAnswer, question} = this.props;
-
-    event.preventDefault();
-    onAnswer(question, this.state.userAnswers);
-  }
-
-  _handleUserAnswerChange(event) {
-    const value = event.target.checked;
-    const index = event.target.dataset.answerIndex;
-
-    this.setState((prevState) => {
-      const userAnswers = prevState.userAnswers.slice();
-      userAnswers[index] = value;
-      return {userAnswers};
-    });
   }
 }
 

@@ -19,30 +19,16 @@ export class App extends PureComponent {
     this._handleAnswer = this._handleAnswer.bind(this);
   }
 
-  render() {
-    const {questions} = this.props;
+  _handleWelcomeButtonClick() {
+    this.setState({
+      step: 0,
+    });
+  }
 
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {this._renderGameScreen()}
-          </Route>
-          <Route exact path="/genre">
-            <GenreQuestionScreen
-              question={questions[0]}
-              onAnswer={() => {}} // {this._handleAnswer}
-            />
-          </Route>
-          <Route exact path="/artist">
-            <ArtistQuestionScreen
-              question={questions[1]}
-              onAnswer={() => {}}
-            />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    );
+  _handleAnswer() {
+    this.setState((prevState) => ({
+      step: prevState.step + 1,
+    }));
   }
 
   _renderWelcomeScreen() {
@@ -89,16 +75,30 @@ export class App extends PureComponent {
     return null;
   }
 
-  _handleWelcomeButtonClick() {
-    this.setState({
-      step: 0,
-    });
-  }
+  render() {
+    const {questions} = this.props;
 
-  _handleAnswer() {
-    this.setState((prevState) => ({
-      step: prevState.step + 1,
-    }));
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {this._renderGameScreen()}
+          </Route>
+          <Route exact path="/genre">
+            <GenreQuestionScreen
+              question={questions[0]}
+              onAnswer={this._handleAnswer}
+            />
+          </Route>
+          <Route exact path="/artist">
+            <ArtistQuestionScreen
+              question={questions[1]}
+              onAnswer={this._handleAnswer}
+            />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
   }
 }
 
