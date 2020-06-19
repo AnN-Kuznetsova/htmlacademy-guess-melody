@@ -23,18 +23,18 @@ const questionGenre = {
 const questionArtist = {
   type: `artist`,
   song: {
-    artist: `Jim Beam`,
+    artist: `Third`,
     src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
   },
   answers: [{
-    picture: `${AVATAR_URL}}`,
-    artist: `John Snow`,
+    picture: `pic-one`,
+    artist: `First`,
   }, {
-    picture: `${AVATAR_URL}}`,
-    artist: `Jack Daniels`,
+    picture: `pic-two`,
+    artist: `Second`,
   }, {
-    picture: `${AVATAR_URL}}`,
-    artist: `Jim Beam`,
+    picture: `pic-three`,
+    artist: `Third`,
   }],
 };
 

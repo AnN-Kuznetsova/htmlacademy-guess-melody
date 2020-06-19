@@ -101,11 +101,11 @@ exports[`Render ArtistQuestionScreen Should match with snapshot 1`] = `
           htmlFor="answer-0"
         >
           <img
-            alt="John Snow"
+            alt="First"
             className="artist__picture"
-            src="https://api.adorable.io/avatars/128}"
+            src="pic-one"
           />
-          John Snow
+          First
         </label>
       </div>
       <div
@@ -124,11 +124,11 @@ exports[`Render ArtistQuestionScreen Should match with snapshot 1`] = `
           htmlFor="answer-1"
         >
           <img
-            alt="Jack Daniels"
+            alt="Second"
             className="artist__picture"
-            src="https://api.adorable.io/avatars/128}"
+            src="pic-two"
           />
-          Jack Daniels
+          Second
         </label>
       </div>
       <div
@@ -147,11 +147,11 @@ exports[`Render ArtistQuestionScreen Should match with snapshot 1`] = `
           htmlFor="answer-2"
         >
           <img
-            alt="Jim Beam"
+            alt="Third"
             className="artist__picture"
-            src="https://api.adorable.io/avatars/128}"
+            src="pic-three"
           />
-          Jim Beam
+          Third
         </label>
       </div>
     </form>
