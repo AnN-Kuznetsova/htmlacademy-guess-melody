@@ -1,7 +1,7 @@
 import React from "react";
 import {shallow} from "enzyme";
 import {ArtistQuestionScreen} from "./artist-question-screen.jsx";
-import {questionArtist} from "../../__test-data__/test-mocks.js";
+import {artistQuestion} from "../../__test-data__/test-mocks.js";
 
 
 const mockEvent = {
@@ -11,7 +11,7 @@ const mockEvent = {
 const onAnswer = jest.fn();
 
 const props = {
-  question: questionArtist,
+  question: artistQuestion,
   onAnswer,
 };
 

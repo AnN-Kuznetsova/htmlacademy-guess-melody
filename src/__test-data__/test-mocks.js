@@ -1,6 +1,6 @@
 const ERRORS_COUNT = 3;
 
-const questionGenre = {
+const genreQuestion = {
   type: `genre`,
   genre: `rock`,
   answers: [{
@@ -18,7 +18,7 @@ const questionGenre = {
   }],
 };
 
-const questionArtist = {
+const artistQuestion = {
   type: `artist`,
   song: {
     artist: `Third`,
@@ -36,15 +36,9 @@ const questionArtist = {
   }],
 };
 
-const questions = [
-  questionGenre,
-  questionArtist,
-];
-
 
 export {
   ERRORS_COUNT,
-  questionArtist,
-  questionGenre,
-  questions,
+  artistQuestion,
+  genreQuestion,
 };

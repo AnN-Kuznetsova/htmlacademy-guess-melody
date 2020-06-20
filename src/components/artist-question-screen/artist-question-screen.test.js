@@ -2,11 +2,11 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {shallow} from "enzyme";
 import {ArtistQuestionScreen} from "./artist-question-screen.jsx";
-import {questionArtist} from "../../__test-data__/test-mocks.js";
+import {artistQuestion} from "../../__test-data__/test-mocks.js";
 
 
 const props = {
-  question: questionArtist,
+  question: artistQuestion,
   onAnswer: () => {},
 };
 

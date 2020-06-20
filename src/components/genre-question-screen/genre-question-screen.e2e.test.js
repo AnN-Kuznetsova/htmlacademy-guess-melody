@@ -1,11 +1,11 @@
 import React from "react";
 import {shallow} from "enzyme";
 import {GenreQuestionScreen} from "./genre-question-screen.jsx";
-import {questionGenre} from "../../__test-data__/test-mocks.js";
+import {genreQuestion} from "../../__test-data__/test-mocks.js";
 
 
 const props = {
-  question: questionGenre,
+  question: genreQuestion,
   onAnswer: () => {},
 };
 
