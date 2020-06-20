@@ -1,5 +1,6 @@
+import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
-import {callbackType, questionGenreType} from "../../types.js";
+import {GenreQuestionsPropType} from "../../types.js";
 
 
 export class GenreQuestionScreen extends PureComponent {
@@ -98,6 +99,6 @@ export class GenreQuestionScreen extends PureComponent {
 
 
 GenreQuestionScreen.propTypes = {
-  question: questionGenreType.isRequired,
-  onAnswer: callbackType.isRequired,
+  question: GenreQuestionsPropType.isRequired,
+  onAnswer: PropTypes.func.isRequired,
 };

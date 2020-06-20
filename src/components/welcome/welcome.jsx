@@ -1,5 +1,5 @@
+import PropTypes from "prop-types";
 import React from "react";
-import {errorsCountType, callbackType} from "../../types";
 
 
 export const Welcome = (props) => {
@@ -29,6 +29,6 @@ export const Welcome = (props) => {
 
 
 Welcome.propTypes = {
-  errorsCount: errorsCountType.isRequired,
-  onWelcomeButtonClick: callbackType.isRequired,
+  errorsCount: PropTypes.number.isRequired,
+  onWelcomeButtonClick: PropTypes.func.isRequired,
 };

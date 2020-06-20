@@ -1,39 +1,30 @@
-import {arrayOf, func, number, object, oneOf, string, shape} from "prop-types";
+import PropTypes from "prop-types";
 import {GameType} from "./const.js";
 
 
-const errorsCountType = number;
-
-const questionsType = arrayOf(object);
-
-const questionGenreType = shape({
-  answers: arrayOf(shape({
-    src: string,
-    genre: string,
+const GenreQuestionsPropType = PropTypes.shape({
+  answers: PropTypes.arrayOf(PropTypes.shape({
+    src: PropTypes.string,
+    genre: PropTypes.string,
   })),
-  genre: string,
-  type: oneOf(Object.values(GameType)),
+  genre: PropTypes.string,
+  type: PropTypes.oneOf(Object.values(GameType)),
 });
 
-const questionArtistType = shape({
-  answers: arrayOf(shape({
-    picture: string,
-    artist: string,
+const ArtistQuestionsPropType = PropTypes.shape({
+  answers: PropTypes.arrayOf(PropTypes.shape({
+    picture: PropTypes.string,
+    artist: PropTypes.string,
   })),
-  song: shape({
-    artist: string,
-    src: string,
+  song: PropTypes.shape({
+    artist: PropTypes.string,
+    src: PropTypes.string,
   }),
-  type: oneOf(Object.values(GameType)),
+  type: PropTypes.oneOf(Object.values(GameType)),
 });
-
-const callbackType = func;
 
 
 export {
-  errorsCountType,
-  questionArtistType,
-  questionGenreType,
-  questionsType,
-  callbackType,
+  ArtistQuestionsPropType,
+  GenreQuestionsPropType,
 };

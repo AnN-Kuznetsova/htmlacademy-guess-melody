@@ -1,5 +1,6 @@
+import PropTypes from "prop-types";
 import React from "react";
-import {questionArtistType, callbackType} from "../../types.js";
+import {ArtistQuestionsPropType} from "../../types.js";
 
 
 export const ArtistQuestionScreen = (props) => {
@@ -69,6 +70,6 @@ export const ArtistQuestionScreen = (props) => {
 
 
 ArtistQuestionScreen.propTypes = {
-  question: questionArtistType.isRequired,
-  onAnswer: callbackType.isRequired,
+  question: ArtistQuestionsPropType.isRequired,
+  onAnswer: PropTypes.func.isRequired,
 };
