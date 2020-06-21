@@ -15,40 +15,40 @@ export class App extends PureComponent {
       step: -1,
     };
 
-    this._handleWelcomeButtonClick = this._handleWelcomeButtonClick.bind(this);
-    this._handleAnswer = this._handleAnswer.bind(this);
+    this.handleWelcomeButtonClick = this.handleWelcomeButtonClick.bind(this);
+    this.handleAnswer = this.handleAnswer.bind(this);
   }
 
-  _handleWelcomeButtonClick() {
+  handleWelcomeButtonClick() {
     this.setState({
       step: 0,
     });
   }
 
-  _handleAnswer() {
+  handleAnswer() {
     this.setState((prevState) => ({
       step: prevState.step + 1,
     }));
   }
 
-  _renderWelcomeScreen() {
+  renderWelcomeScreen() {
     const {errorsCount} = this.props;
 
     return (
       <Welcome
         errorsCount={errorsCount}
-        onWelcomeButtonClick={this._handleWelcomeButtonClick}
+        onWelcomeButtonClick={this.handleWelcomeButtonClick}
       />
     );
   }
 
-  _renderGameScreen() {
+  renderGameScreen() {
     const {questions} = this.props;
     const {step} = this.state;
     const question = questions[step];
 
     if (step === -1 || step >= questions.length) {
-      return this._renderWelcomeScreen();
+      return this.renderWelcomeScreen();
     }
 
     if (question) {
@@ -57,18 +57,18 @@ export class App extends PureComponent {
           return (
             <GenreQuestionScreen
               question={question}
-              onAnswer={this._handleAnswer}
+              onAnswer={this.handleAnswer}
             />
           );
         case GameType.ARTIST:
           return (
             <ArtistQuestionScreen
               question={question}
-              onAnswer={this._handleAnswer}
+              onAnswer={this.handleAnswer}
             />
           );
         default:
-          return this._renderWelcomeScreen();
+          return this.renderWelcomeScreen();
       }
     }
 
@@ -82,18 +82,18 @@ export class App extends PureComponent {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            {this._renderGameScreen()}
+            {this.renderGameScreen()}
           </Route>
           <Route exact path="/genre">
             <GenreQuestionScreen
               question={questions[0]}
-              onAnswer={this._handleAnswer}
+              onAnswer={this.handleAnswer}
             />
           </Route>
           <Route exact path="/artist">
             <ArtistQuestionScreen
               question={questions[1]}
-              onAnswer={this._handleAnswer}
+              onAnswer={this.handleAnswer}
             />
           </Route>
         </Switch>
