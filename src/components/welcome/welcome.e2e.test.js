@@ -11,12 +11,12 @@ const props = {
   onWelcomeButtonClick,
 };
 
-const welcomeScreenElement = shallow(<Welcome {...props} />);
+const welcomeElement = shallow(<Welcome {...props} />);
 
 
-describe(`WelcomeScreen e2e-tests`, () => {
+describe(`Welcome e2e-tests`, () => {
   it(`Should welcomeButton be pressed`, () => {
-    const welcomeButton = welcomeScreenElement.find(`button.welcome__button`);
+    const welcomeButton = welcomeElement.find(`button.welcome__button`);
     welcomeButton.simulate(`click`);
     expect(onWelcomeButtonClick).toHaveBeenCalled();
   });

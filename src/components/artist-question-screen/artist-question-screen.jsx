@@ -22,9 +22,9 @@ export const ArtistQuestionScreen = (props) => {
         </svg>
 
         <div className="game__mistakes">
-          <div className="wrong"></div>
-          <div className="wrong"></div>
-          <div className="wrong"></div>
+          <div className="wrong" />
+          <div className="wrong" />
+          <div className="wrong" />
         </div>
       </header>
 
@@ -32,9 +32,9 @@ export const ArtistQuestionScreen = (props) => {
         <h2 className="game__title">Кто исполняет эту песню?</h2>
         <div className="game__track">
           <div className="track">
-            <button className="track__button track__button--play" type="button"></button>
+            <button className="track__button track__button--play" type="button" />
             <div className="track__status">
-              <audio src={song.src}></audio>
+              <audio src={song.src} />
             </div>
           </div>
         </div>

@@ -5,13 +5,9 @@ import {ERRORS_COUNT} from "./const.js";
 import {questions} from "./mocks/questions.js";
 
 
-const settings = {
-  ERRORS_COUNT,
-};
-
 ReactDom.render(
     <App
-      errorsCount={settings.ERRORS_COUNT}
+      errorsCount={ERRORS_COUNT}
       questions={questions}
     />,
     document.querySelector(`#root`)

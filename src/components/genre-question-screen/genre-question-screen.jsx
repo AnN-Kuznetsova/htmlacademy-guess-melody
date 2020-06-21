@@ -16,9 +16,9 @@ export class GenreQuestionScreen extends PureComponent {
   }
 
   _handleSubmit(event) {
-    const {onAnswer, question} = this.props;
-
     event.preventDefault();
+
+    const {onAnswer, question} = this.props;
     onAnswer(question, this.state.userAnswers);
   }
 
@@ -53,9 +53,9 @@ export class GenreQuestionScreen extends PureComponent {
           </svg>
 
           <div className="game__mistakes">
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-            <div className="wrong"></div>
+            <div className="wrong" />
+            <div className="wrong" />
+            <div className="wrong" />
           </div>
         </header>
 
@@ -68,9 +68,9 @@ export class GenreQuestionScreen extends PureComponent {
             {
               answers.map((answer, index) => (
                 <div className="track" key={`${index}-${answer.src}`}>
-                  <button className="track__button track__button--play" type="button"></button>
+                  <button className="track__button track__button--play" type="button" />
                   <div className="track__status">
-                    <audio src={answer.src}></audio>
+                    <audio src={answer.src} />
                   </div>
                   <div className="game__answer">
                     <input

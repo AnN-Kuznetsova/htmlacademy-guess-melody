@@ -11,7 +11,7 @@ const props = {
 
 
 describe(`GenreQuestionScreen e2e-tests`, () => {
-  it(`When user answers genre question form is not sent`, () => {
+  it(`User answer form sent`, () => {
     const onAnswer = jest.fn();
     props.onAnswer = onAnswer;
 
@@ -24,8 +24,8 @@ describe(`GenreQuestionScreen e2e-tests`, () => {
       preventDefault: formSendPrevention,
     });
 
-    expect(onAnswer).toHaveBeenCalledTimes(1);
     expect(formSendPrevention).toHaveBeenCalledTimes(1);
+    expect(onAnswer).toHaveBeenCalledTimes(1);
   });
 
 
