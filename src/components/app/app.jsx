@@ -31,24 +31,18 @@ export class App extends PureComponent {
     }));
   }
 
-  renderWelcomeScreen() {
-    const {errorsCount} = this.props;
-
-    return (
-      <Welcome
-        errorsCount={errorsCount}
-        onWelcomeButtonClick={this.handleWelcomeButtonClick}
-      />
-    );
-  }
-
   renderGameScreen() {
-    const {questions} = this.props;
+    const {questions, errorsCount} = this.props;
     const {step} = this.state;
     const question = questions[step];
 
     if (step === -1 || step >= questions.length) {
-      return this.renderWelcomeScreen();
+      return (
+        <Welcome
+          errorsCount={errorsCount}
+          onWelcomeButtonClick={this.handleWelcomeButtonClick}
+        />
+      );
     }
 
     if (question) {
@@ -68,7 +62,7 @@ export class App extends PureComponent {
             />
           );
         default:
-          return this.renderWelcomeScreen();
+          return null;
       }
     }
 
