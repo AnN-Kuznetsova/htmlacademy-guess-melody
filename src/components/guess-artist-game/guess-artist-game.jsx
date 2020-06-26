@@ -3,7 +3,7 @@ import React from "react";
 import {ArtistQuestionsPropType} from "../../types.js";
 
 
-export const ArtistQuestionScreen = (props) => {
+export const GuessArtistGame = (props) => {
   const {question, onAnswer} = props;
   const {answers, song} = question;
 
@@ -69,7 +69,7 @@ export const ArtistQuestionScreen = (props) => {
 };
 
 
-ArtistQuestionScreen.propTypes = {
+GuessArtistGame.propTypes = {
   question: ArtistQuestionsPropType.isRequired,
   onAnswer: PropTypes.func.isRequired,
 };

@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
-import {ArtistQuestionScreen} from "../artist-question-screen/artist-question-screen.jsx";
 import {GameType} from "../../const.js";
+import {GuessArtistGame} from "../guess-artist-game/guess-artist-game.jsx";
 import {GuessGenreGame} from "../guess-genre-game/guess-genre-game.jsx";
+import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {Welcome} from "../welcome/welcome.jsx";
 
 
@@ -56,7 +56,7 @@ export class App extends PureComponent {
           );
         case GameType.ARTIST:
           return (
-            <ArtistQuestionScreen
+            <GuessArtistGame
               question={question}
               onAnswer={this.handleAnswer}
             />
@@ -78,14 +78,14 @@ export class App extends PureComponent {
           <Route exact path="/">
             {this.renderGame()}
           </Route>
-          <Route exact path="/genre">
+          <Route exact path="/genre-game">
             <GuessGenreGame
               question={questions[0]}
               onAnswer={this.handleAnswer}
             />
           </Route>
-          <Route exact path="/artist">
-            <ArtistQuestionScreen
+          <Route exact path="/artist-game">
+            <GuessArtistGame
               question={questions[1]}
               onAnswer={this.handleAnswer}
             />

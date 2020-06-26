@@ -1,7 +1,7 @@
 import React from "react";
-import {shallow} from "enzyme";
-import {ArtistQuestionScreen} from "./artist-question-screen.jsx";
+import {GuessArtistGame} from "./guess-artist-game.jsx";
 import {artistQuestion} from "../../__test-data__/test-mocks.js";
+import {shallow} from "enzyme";
 
 
 const mockEvent = {
@@ -15,7 +15,7 @@ const props = {
   onAnswer,
 };
 
-const artistQuestionScreenElement = shallow(<ArtistQuestionScreen {...props} />);
+const artistQuestionScreenElement = shallow(<GuessArtistGame {...props} />);
 
 
 describe(`ArtistQuestionScreen e2e-tests`, () => {

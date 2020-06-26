@@ -1,8 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {shallow} from "enzyme";
-import {ArtistQuestionScreen} from "./artist-question-screen.jsx";
+import {GuessArtistGame} from "./guess-artist-game.jsx";
 import {artistQuestion} from "../../__test-data__/test-mocks.js";
+import {shallow} from "enzyme";
 
 
 const props = {
@@ -12,13 +12,13 @@ const props = {
 
 const {answers, song} = props.question;
 
-const artistQuestionScreenElement = shallow(<ArtistQuestionScreen {...props} />);
+const artistQuestionScreenElement = shallow(<GuessArtistGame {...props} />);
 
 
 describe(`Render ArtistQuestionScreen`, () => {
   it(`Should match with snapshot`, () => {
     const artistQuestionScreenSnapshot = renderer.create(
-        <ArtistQuestionScreen {...props} />
+        <GuessArtistGame {...props} />
     ).toJSON();
     expect(artistQuestionScreenSnapshot).toMatchSnapshot();
   });
