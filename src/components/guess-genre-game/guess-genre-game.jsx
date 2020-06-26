@@ -11,18 +11,17 @@ export class GuessGenreGame extends PureComponent {
       userAnswers: [false, false, false, false],
     };
 
-    this._handleSubmit = this._handleSubmit.bind(this);
-    this._handleUserAnswerChange = this._handleUserAnswerChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleUserAnswerChange = this.handleUserAnswerChange.bind(this);
   }
 
-  _handleSubmit(event) {
+  handleSubmit(event) {
     event.preventDefault();
-
     const {onAnswer, question} = this.props;
     onAnswer(question, this.state.userAnswers);
   }
 
-  _handleUserAnswerChange(event) {
+  handleUserAnswerChange(event) {
     const value = event.target.checked;
     const index = event.target.dataset.answerIndex;
 
@@ -63,7 +62,7 @@ export class GuessGenreGame extends PureComponent {
           <h2 className="game__title">Выберите {genre} треки</h2>
           <form
             className="game__tracks"
-            onSubmit={this._handleSubmit}
+            onSubmit={this.handleSubmit}
           >
             {
               answers.map((answer, index) => (
@@ -81,7 +80,7 @@ export class GuessGenreGame extends PureComponent {
                       id={`answer-${index}`}
                       data-answer-index={index}
                       checked={userAnswers[index]}
-                      onChange={this._handleUserAnswerChange}
+                      onChange={this.handleUserAnswerChange}
                     />
                     <label className="game__check" htmlFor={`answer-${index}`}>Отметить</label>
                   </div>

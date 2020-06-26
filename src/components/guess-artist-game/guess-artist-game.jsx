@@ -42,7 +42,7 @@ export const GuessArtistGame = (props) => {
         <form className="game__artist">
           {
             answers.map((answer, index) => (
-              <div className="artist" key={answer.artist}>
+              <div className="artist" key={answer.artist + index}>
                 <input
                   className="artist__input visually-hidden"
                   type="radio"
