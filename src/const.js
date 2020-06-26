@@ -1,4 +1,4 @@
-const ERRORS_COUNT = 3;
+const MAX_ERRORS_COUNT = 3;
 
 const GameType = {
   ARTIST: `artist`,
@@ -7,6 +7,6 @@ const GameType = {
 
 
 export {
-  ERRORS_COUNT,
+  MAX_ERRORS_COUNT,
   GameType,
 };

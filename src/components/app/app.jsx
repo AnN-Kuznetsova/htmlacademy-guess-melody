@@ -32,14 +32,14 @@ export class App extends PureComponent {
   }
 
   renderGameScreen() {
-    const {questions, errorsCount} = this.props;
+    const {questions, maxErrorsCount} = this.props;
     const {step} = this.state;
     const question = questions[step];
 
     if (step === -1 || step >= questions.length) {
       return (
         <Welcome
-          errorsCount={errorsCount}
+          maxErrorsCount={maxErrorsCount}
           onWelcomeButtonClick={this.handleWelcomeButtonClick}
         />
       );
@@ -98,6 +98,6 @@ export class App extends PureComponent {
 
 
 App.propTypes = {
-  errorsCount: PropTypes.number.isRequired,
+  maxErrorsCount: PropTypes.number.isRequired,
   questions: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

@@ -2,11 +2,11 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {shallow} from "enzyme";
 import {Welcome} from "./welcome.jsx";
-import {ERRORS_COUNT} from "../../__test-data__/test-mocks.js";
+import {MAX_ERRORS_COUNT} from "../../__test-data__/test-mocks.js";
 
 
 const props = {
-  errorsCount: ERRORS_COUNT,
+  maxErrorsCount: MAX_ERRORS_COUNT,
   onWelcomeButtonClick: () => {},
 };
 
@@ -20,6 +20,6 @@ describe(`Render Welcome`, () => {
   it(`Should render correct errors count`, () => {
     const welcomeElement = shallow(<Welcome {...props} />);
     expect(welcomeElement.find(`ul.welcome__rules-list li`).last().text())
-      .toEqual(`Можно допустить ${props.errorsCount} ошибки.`);
+      .toEqual(`Можно допустить ${props.maxErrorsCount} ошибки.`);
   });
 });
