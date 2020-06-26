@@ -7,6 +7,10 @@ export const GuessArtistGame = (props) => {
   const {question, onAnswer} = props;
   const {answers, song} = question;
 
+  const handleUserAnswerChange = (answer) => {
+    onAnswer(question, answer);
+  };
+
   return (
     <section className="game game--artist">
       <header className="game__header">
@@ -49,10 +53,7 @@ export const GuessArtistGame = (props) => {
                   name="answer"
                   value={`answer-${index}`}
                   id={`answer-${index}`}
-                  onChange={(event) => {
-                    event.preventDefault();
-                    onAnswer(question, answer);
-                  }}
+                  onChange={handleUserAnswerChange.bind(null, answer)}
                 />
                 <label className="artist__name" htmlFor={`answer-${index}`}>
                   <img className="artist__picture" src={answer.picture} alt={answer.artist} />

@@ -5,6 +5,11 @@ import React from "react";
 export const Welcome = (props) => {
   const {maxErrorsCount, onWelcomeButtonClick} = props;
 
+  const handleWelcomeButtonClick = (event) => {
+    event.preventDefault();
+    onWelcomeButtonClick.call(event.target);
+  };
+
   return (
     <section className="welcome">
       <div className="welcome__logo">
@@ -12,7 +17,7 @@ export const Welcome = (props) => {
       </div>
       <button
         className="welcome__button"
-        onClick={onWelcomeButtonClick}
+        onClick={handleWelcomeButtonClick}
       >
         <span className="visually-hidden">Начать игру</span>
       </button>

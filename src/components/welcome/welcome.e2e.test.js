@@ -4,6 +4,11 @@ import {Welcome} from "./welcome.jsx";
 import {MAX_ERRORS_COUNT} from "../../__test-data__/test-mocks.js";
 
 
+const mockEvent = {
+  preventDefault() {},
+  target: {},
+};
+
 const onWelcomeButtonClick = jest.fn();
 
 const props = {
@@ -17,7 +22,7 @@ const welcomeElement = shallow(<Welcome {...props} />);
 describe(`Welcome e2e-tests`, () => {
   it(`Should welcomeButton be pressed`, () => {
     const welcomeButton = welcomeElement.find(`button.welcome__button`);
-    welcomeButton.simulate(`click`);
+    welcomeButton.simulate(`click`, mockEvent);
     expect(onWelcomeButtonClick).toHaveBeenCalled();
   });
 });
