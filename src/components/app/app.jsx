@@ -2,9 +2,9 @@ import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {ArtistQuestionScreen} from "../artist-question-screen/artist-question-screen.jsx";
-import {GenreQuestionScreen} from "../genre-question-screen/genre-question-screen.jsx";
-import {Welcome} from "../welcome/welcome.jsx";
 import {GameType} from "../../const.js";
+import {GuessGenreGame} from "../guess-genre-game/guess-genre-game.jsx";
+import {Welcome} from "../welcome/welcome.jsx";
 
 
 export class App extends PureComponent {
@@ -31,7 +31,7 @@ export class App extends PureComponent {
     }));
   }
 
-  renderGameScreen() {
+  renderGame() {
     const {questions, maxErrorsCount} = this.props;
     const {step} = this.state;
     const question = questions[step];
@@ -49,7 +49,7 @@ export class App extends PureComponent {
       switch (question.type) {
         case GameType.GENRE:
           return (
-            <GenreQuestionScreen
+            <GuessGenreGame
               question={question}
               onAnswer={this.handleAnswer}
             />
@@ -76,10 +76,10 @@ export class App extends PureComponent {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            {this.renderGameScreen()}
+            {this.renderGame()}
           </Route>
           <Route exact path="/genre">
-            <GenreQuestionScreen
+            <GuessGenreGame
               question={questions[0]}
               onAnswer={this.handleAnswer}
             />

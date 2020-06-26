@@ -1,6 +1,6 @@
 import React from "react";
 import {shallow} from "enzyme";
-import {GenreQuestionScreen} from "./genre-question-screen.jsx";
+import {GuessGenreGame} from "./guess-genre-game.jsx";
 import {genreQuestion} from "../../__test-data__/test-mocks.js";
 
 
@@ -15,7 +15,7 @@ describe(`GenreQuestionScreen e2e-tests`, () => {
     const onAnswer = jest.fn();
     props.onAnswer = onAnswer;
 
-    const genreQuestionScreenElement = shallow(<GenreQuestionScreen {...props} />);
+    const genreQuestionScreenElement = shallow(<GuessGenreGame {...props} />);
 
     const formElement = genreQuestionScreenElement.find(`form.game__tracks`);
     const formSendPrevention = jest.fn();
@@ -34,7 +34,7 @@ describe(`GenreQuestionScreen e2e-tests`, () => {
     const onAnswer = jest.fn((...args) => [...args]);
     props.onAnswer = onAnswer;
 
-    const genreQuestionScreenElement = shallow(<GenreQuestionScreen {...props} />);
+    const genreQuestionScreenElement = shallow(<GuessGenreGame {...props} />);
 
     const formElement = genreQuestionScreenElement.find(`form.game__tracks`);
     const inputTwo = formElement.find(`input.game__input`).at(1);

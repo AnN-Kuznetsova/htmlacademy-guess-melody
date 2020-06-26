@@ -3,7 +3,7 @@ import React, {PureComponent} from "react";
 import {GenreQuestionsPropType} from "../../types.js";
 
 
-export class GenreQuestionScreen extends PureComponent {
+export class GuessGenreGame extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -98,7 +98,7 @@ export class GenreQuestionScreen extends PureComponent {
 }
 
 
-GenreQuestionScreen.propTypes = {
+GuessGenreGame.propTypes = {
   question: GenreQuestionsPropType.isRequired,
   onAnswer: PropTypes.func.isRequired,
 };
