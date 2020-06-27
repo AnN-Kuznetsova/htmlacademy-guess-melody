@@ -11,6 +11,7 @@ const song = {
 const props = {
   src: song.src,
   isPlaying: false,
+  onPlayButtonClick: () => {},
 };
 
 const nodeMock = {

@@ -9,20 +9,22 @@ export class GuessGenreGame extends PureComponent {
     super(props);
 
     this.state = {
+      activePlayer: 0,
       userAnswers: [false, false, false, false],
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleUserAnswerChange = this.handleUserAnswerChange.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleUserAnswerChange = this._handleUserAnswerChange.bind(this);
+    this._handlePlayButtonClick = this._handlePlayButtonClick.bind(this);
   }
 
-  handleSubmit(event) {
+  _handleSubmit(event) {
     event.preventDefault();
     const {onAnswer, question} = this.props;
     onAnswer(question, this.state.userAnswers);
   }
 
-  handleUserAnswerChange(event) {
+  _handleUserAnswerChange(event) {
     const value = event.target.checked;
     const index = event.target.dataset.answerIndex;
 
@@ -33,9 +35,15 @@ export class GuessGenreGame extends PureComponent {
     });
   }
 
+  _handlePlayButtonClick(playerIndex) {
+    this.setState((prevState) => ({
+      activePlayer: prevState.activePlayer === playerIndex ? -1 : playerIndex,
+    }));
+  }
+
   render() {
     const {question} = this.props;
-    const {userAnswers} = this.state;
+    const {userAnswers, activePlayer} = this.state;
     const {answers, genre} = question;
 
     return (
@@ -43,14 +51,15 @@ export class GuessGenreGame extends PureComponent {
         <h2 className="game__title">Выберите {genre} треки</h2>
         <form
           className="game__tracks"
-          onSubmit={this.handleSubmit}
+          onSubmit={this._handleSubmit}
         >
           {
             answers.map((answer, index) => (
               <div className="track" key={`${index}-${answer.src}`}>
                 <AudioPlayer
                   src={answer.src}
-                  isPlaying={index === 0}
+                  isPlaying={index === activePlayer}
+                  onPlayButtonClick={this._handlePlayButtonClick.bind(this, index)}
                 />
                 <div className="game__answer">
                   <input
@@ -61,7 +70,7 @@ export class GuessGenreGame extends PureComponent {
                     id={`answer-${index}`}
                     data-answer-index={index}
                     checked={userAnswers[index]}
-                    onChange={this.handleUserAnswerChange}
+                    onChange={this._handleUserAnswerChange}
                   />
                   <label className="game__check" htmlFor={`answer-${index}`}>Отметить</label>
                 </div>
