@@ -12,13 +12,19 @@ const props = {
 
 const {answers, genre} = props.question;
 
+const nodeMock = {
+  createNodeMock: () => {
+    return {};
+  }
+};
+
 const genreQuestionScreenElement = shallow(<GuessGenreGame {...props} />);
 
 
 describe(`Render GenreQuestionScreen`, () => {
   it(`Should match with snapshot`, () => {
     const genreQuestionScreenSnapshot = renderer.create(
-        <GuessGenreGame {...props} />
+        <GuessGenreGame {...props} />, nodeMock
     ).toJSON();
     expect(genreQuestionScreenSnapshot).toMatchSnapshot();
   });

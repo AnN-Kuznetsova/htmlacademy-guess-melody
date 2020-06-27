@@ -12,13 +12,19 @@ const props = {
 
 const {answers, song} = props.question;
 
+const nodeMock = {
+  createNodeMock: () => {
+    return {};
+  }
+};
+
 const artistQuestionScreenElement = shallow(<GuessArtistGame {...props} />);
 
 
 describe(`Render ArtistQuestionScreen`, () => {
   it(`Should match with snapshot`, () => {
     const artistQuestionScreenSnapshot = renderer.create(
-        <GuessArtistGame {...props} />
+        <GuessArtistGame {...props} />, nodeMock
     ).toJSON();
     expect(artistQuestionScreenSnapshot).toMatchSnapshot();
   });
