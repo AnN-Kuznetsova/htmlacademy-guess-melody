@@ -24,8 +24,8 @@ describe(`Render ArtistQuestionScreen`, () => {
   });
 
   it(`Should render correct song src`, () => {
-    const audioTrack = artistQuestionScreenElement.find(`audio`);
-    expect(audioTrack.prop(`src`)).toEqual(song.src);
+    const audioPlayerELement = artistQuestionScreenElement.find(`AudioPlayer`);
+    expect(audioPlayerELement.prop(`src`)).toEqual(song.src);
   });
 
   it(`Should render correct answers`, () => {

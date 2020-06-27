@@ -1,0 +1,86 @@
+import PropTypes from "prop-types";
+import React, {PureComponent} from "react";
+
+
+export class AudioPlayer extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      progress: 0,
+      isLoading: true,
+      isPlaying: props.isPlaying,
+    };
+
+    this._handleTrackButtonClick = this._handleTrackButtonClick.bind(this);
+  }
+
+  componentDidMount() {
+    const {src} = this.props;
+
+    this._audio = new Audio(src);
+
+    this._audio.oncanplaythrough = () => this.setState({
+      isLoading: false,
+    });
+
+    this._audio.onplay = () => this.setState({
+      isPlaying: true,
+    });
+
+    this._audio.onpause = () => this.setState({
+      isPlaying: false,
+    });
+
+    this._audio.ontimeupdate = () => this.setState({
+      progress: this._audio.currentTime,
+    });
+  }
+
+  componentDidUpdate() {
+    if (this.state.isPlaying) {
+      this._audio.play();
+    } else {
+      this._audio.pause();
+    }
+  }
+
+  componentWillUnmount() {
+    this._audio.oncanplaythrough = null;
+    this._audio.onplay = null;
+    this._audio.onpause = null;
+    this._audio.ontimeupdate = null;
+    this._audio.src = ``;
+    this._audio = null;
+  }
+
+  _handleTrackButtonClick() {
+    this.setState((prevState) => ({
+      isPlaying: !prevState.isPlaying,
+    }));
+  }
+
+  render() {
+    const {isLoading, isPlaying} = this.state;
+
+    return (
+      <React.Fragment>
+        <button
+          className={`track__button track__button--${isPlaying ? `pause` : `play`}`}
+          type="button"
+          disabled={isLoading}
+          onClick={this._handleTrackButtonClick}
+        />
+        <div className="track__status">
+          <audio />
+        </div>
+      </React.Fragment>
+    );
+  }
+}
+
+
+AudioPlayer.propTypes = {
+  src: PropTypes.string.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+};

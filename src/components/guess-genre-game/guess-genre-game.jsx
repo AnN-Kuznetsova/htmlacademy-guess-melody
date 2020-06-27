@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
+import {AudioPlayer} from "../audio-player/audio-player.jsx";
 import {GenreQuestionsPropType} from "../../types.js";
 
 
@@ -47,10 +48,10 @@ export class GuessGenreGame extends PureComponent {
           {
             answers.map((answer, index) => (
               <div className="track" key={`${index}-${answer.src}`}>
-                <button className="track__button track__button--play" type="button" />
-                <div className="track__status">
-                  <audio src={answer.src} />
-                </div>
+                <AudioPlayer
+                  src={answer.src}
+                  isPlaying={index === 0}
+                />
                 <div className="game__answer">
                   <input
                     className="game__input visually-hidden"

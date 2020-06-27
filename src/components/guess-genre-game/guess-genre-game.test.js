@@ -32,10 +32,10 @@ describe(`Render GenreQuestionScreen`, () => {
 
   it(`Should render correct answers`, () => {
     const defaultUserAnswers = [false, false, false, false];
-    const audioTracks = genreQuestionScreenElement.find(`audio`);
+    const audioPlayers = genreQuestionScreenElement.find(`AudioPlayer`);
     const answersInputs = genreQuestionScreenElement.find(`input.game__input`);
 
-    expect(audioTracks.map((track) => track.prop(`src`)))
+    expect(audioPlayers.map((player) => player.prop(`src`)))
       .toEqual(answers.map((answer) => answer.src));
     expect(answersInputs.map((input) => input.prop(`checked`)))
       .toEqual(defaultUserAnswers);
