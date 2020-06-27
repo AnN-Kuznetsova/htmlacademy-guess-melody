@@ -5,6 +5,7 @@ import {GuessArtistGame} from "../guess-artist-game/guess-artist-game.jsx";
 import {GuessGenreGame} from "../guess-genre-game/guess-genre-game.jsx";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {Welcome} from "../welcome/welcome.jsx";
+import { GameScreen } from "../game-screen/game-screen.jsx";
 
 
 export class App extends PureComponent {
@@ -47,19 +48,23 @@ export class App extends PureComponent {
 
     if (question) {
       switch (question.type) {
-        case GameType.GENRE:
-          return (
-            <GuessGenreGame
-              question={question}
-              onAnswer={this.handleAnswer}
-            />
-          );
         case GameType.ARTIST:
           return (
-            <GuessArtistGame
-              question={question}
-              onAnswer={this.handleAnswer}
-            />
+            <GameScreen type={question.type}>
+              <GuessArtistGame
+                question={question}
+                onAnswer={this.handleAnswer}
+              />
+            </GameScreen>
+          );
+        case GameType.GENRE:
+          return (
+            <GameScreen type={question.type}>
+              <GuessGenreGame
+                question={question}
+                onAnswer={this.handleAnswer}
+              />
+            </GameScreen>
           );
         default:
           return null;
