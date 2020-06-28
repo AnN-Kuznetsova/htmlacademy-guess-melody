@@ -13,7 +13,6 @@ export class GuessGenreGame extends PureComponent {
 
     this._handleSubmit = this._handleSubmit.bind(this);
     this._handleUserAnswerChange = this._handleUserAnswerChange.bind(this);
-    this._handlePlayButtonClick = this._handlePlayButtonClick.bind(this);
   }
 
   _handleSubmit(event) {
@@ -31,12 +30,6 @@ export class GuessGenreGame extends PureComponent {
       userAnswers[index] = value;
       return {userAnswers};
     });
-  }
-
-  _handlePlayButtonClick(playerIndex) {
-    this.setState((prevState) => ({
-      activePlayer: prevState.activePlayer === playerIndex ? -1 : playerIndex,
-    }));
   }
 
   render() {
