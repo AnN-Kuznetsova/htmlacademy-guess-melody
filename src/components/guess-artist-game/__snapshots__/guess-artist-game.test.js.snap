@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render ArtistQuestionScreen Should match with snapshot 1`] = `
+exports[`Render GuessArtistGame Should match with snapshot 1`] = `
 <section
   className="game__screen"
 >

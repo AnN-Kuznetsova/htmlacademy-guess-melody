@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {shallow, mount} from "enzyme";
+import {shallow} from "enzyme";
 import {GuessGenreGame} from "./guess-genre-game.jsx";
 import {genreQuestion} from "../../__test-data__/test-mocks.js";
 
@@ -11,7 +11,7 @@ const props = {
   renderPlayer: () => {},
 };
 
-const {answers, genre} = props.question;
+const {genre} = props.question;
 
 const nodeMock = {
   createNodeMock: () => {
@@ -24,10 +24,10 @@ const guessGenreGameElement = shallow(<GuessGenreGame {...props} />);
 
 describe(`Render GuessGenreGame`, () => {
   it(`Should match with snapshot`, () => {
-    const genreQuestionScreenSnapshot = renderer.create(
+    const guessGenreGameSnapshot = renderer.create(
         <GuessGenreGame {...props} />, nodeMock
     ).toJSON();
-    expect(genreQuestionScreenSnapshot).toMatchSnapshot();
+    expect(guessGenreGameSnapshot).toMatchSnapshot();
   });
 
 

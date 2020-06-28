@@ -21,23 +21,23 @@ export class App extends PureComponent {
       step: -1,
     };
 
-    this.handleWelcomeButtonClick = this.handleWelcomeButtonClick.bind(this);
-    this.handleAnswer = this.handleAnswer.bind(this);
+    this._handleWelcomeButtonClick = this._handleWelcomeButtonClick.bind(this);
+    this._handleAnswer = this._handleAnswer.bind(this);
   }
 
-  handleWelcomeButtonClick() {
+  _handleWelcomeButtonClick() {
     this.setState({
       step: 0,
     });
   }
 
-  handleAnswer() {
+  _handleAnswer() {
     this.setState((prevState) => ({
       step: prevState.step + 1,
     }));
   }
 
-  renderGame() {
+  _renderGame() {
     const {questions, maxErrorsCount} = this.props;
     const {step} = this.state;
     const question = questions[step];
@@ -46,7 +46,7 @@ export class App extends PureComponent {
       return (
         <Welcome
           maxErrorsCount={maxErrorsCount}
-          onWelcomeButtonClick={this.handleWelcomeButtonClick}
+          onWelcomeButtonClick={this._handleWelcomeButtonClick}
         />
       );
     }
@@ -58,7 +58,7 @@ export class App extends PureComponent {
             <GameScreen type={question.type}>
               <GuessArtistGameWithPlayer
                 question={question}
-                onAnswer={this.handleAnswer}
+                onAnswer={this._handleAnswer}
               />
             </GameScreen>
           );
@@ -67,7 +67,7 @@ export class App extends PureComponent {
             <GameScreen type={question.type}>
               <GuessGenreGameWithPlayer
                 question={question}
-                onAnswer={this.handleAnswer}
+                onAnswer={this._handleAnswer}
               />
             </GameScreen>
           );
@@ -86,18 +86,18 @@ export class App extends PureComponent {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            {this.renderGame()}
+            {this._renderGame()}
           </Route>
           <Route exact path="/genre-game">
             <GuessGenreGameWithPlayer
               question={questions[0]}
-              onAnswer={this.handleAnswer}
+              onAnswer={this._handleAnswer}
             />
           </Route>
           <Route exact path="/artist-game">
             <GuessArtistGameWithPlayer
               question={questions[1]}
-              onAnswer={this.handleAnswer}
+              onAnswer={this._handleAnswer}
             />
           </Route>
         </Switch>

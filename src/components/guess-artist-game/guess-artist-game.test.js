@@ -11,7 +11,7 @@ const props = {
   renderPlayer: () => {},
 };
 
-const {answers, song} = props.question;
+const {answers} = props.question;
 
 const nodeMock = {
   createNodeMock: () => {
@@ -22,12 +22,12 @@ const nodeMock = {
 const artistQuestionScreenElement = shallow(<GuessArtistGame {...props} />);
 
 
-describe(`Render ArtistQuestionScreen`, () => {
+describe(`Render GuessArtistGame`, () => {
   it(`Should match with snapshot`, () => {
-    const artistQuestionScreenSnapshot = renderer.create(
+    const guessArtistGameSnapshot = renderer.create(
         <GuessArtistGame {...props} />, nodeMock
     ).toJSON();
-    expect(artistQuestionScreenSnapshot).toMatchSnapshot();
+    expect(guessArtistGameSnapshot).toMatchSnapshot();
   });
 
 
