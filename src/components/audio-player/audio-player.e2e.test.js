@@ -34,6 +34,7 @@ describe(`AudioPlayer e2e-tests`, () => {
     });
   });
 
+
   describe(`when isPlaying is true`, () => {
     it(`Should playButton be pressed and state be change and the callback be called`, () => {
       audioPlayerElement.setState({

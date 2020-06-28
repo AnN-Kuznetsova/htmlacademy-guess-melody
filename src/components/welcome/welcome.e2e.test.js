@@ -1,7 +1,7 @@
 import React from "react";
-import {shallow} from "enzyme";
-import {Welcome} from "./welcome.jsx";
 import {MAX_ERRORS_COUNT} from "../../__test-data__/test-mocks.js";
+import {Welcome} from "./welcome.jsx";
+import {shallow} from "enzyme";
 
 
 const mockEvent = {
@@ -23,6 +23,7 @@ describe(`Welcome e2e-tests`, () => {
   it(`Should welcomeButton be pressed`, () => {
     const welcomeButton = welcomeElement.find(`button.welcome__button`);
     welcomeButton.simulate(`click`, mockEvent);
+
     expect(onWelcomeButtonClick).toHaveBeenCalled();
   });
 });

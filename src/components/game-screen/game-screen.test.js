@@ -17,7 +17,6 @@ describe(`Render GameScreen`, () => {
 
 
     it(`Should match with snapshot`, () => {
-
       const gameScreenSnapshot = renderer.create(
           <GameScreen {...props} />
       ).toJSON();
@@ -28,6 +27,7 @@ describe(`Render GameScreen`, () => {
 
     it(`Should render correct game-type`, () => {
       const gameScreenElement = shallow(<GameScreen {...props} />);
+
       expect(gameScreenElement.prop(`className`))
         .toEqual(expect.stringContaining(`game--${GameType.ARTIST}`));
     });
@@ -42,7 +42,6 @@ describe(`Render GameScreen`, () => {
 
 
     it(`Should match with snapshot`, () => {
-
       const gameScreenSnapshot = renderer.create(
           <GameScreen {...props} />
       ).toJSON();
@@ -53,6 +52,7 @@ describe(`Render GameScreen`, () => {
 
     it(`Should render correct game-type`, () => {
       const gameScreenElement = shallow(<GameScreen {...props} />);
+
       expect(gameScreenElement.prop(`className`))
         .toEqual(expect.stringContaining(`game--${GameType.GENRE}`));
     });

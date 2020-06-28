@@ -27,12 +27,14 @@ describe(`Render GuessGenreGame`, () => {
     const guessGenreGameSnapshot = renderer.create(
         <GuessGenreGame {...props} />, nodeMock
     ).toJSON();
+
     expect(guessGenreGameSnapshot).toMatchSnapshot();
   });
 
 
   it(`Should render correct genre`, () => {
     const gameTitleElement = guessGenreGameElement.find(`h2.game__title`);
+
     expect(gameTitleElement.text()).toEqual(`Выберите ${genre} треки`);
   });
 

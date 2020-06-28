@@ -27,6 +27,7 @@ describe(`Render GuessArtistGame`, () => {
     const guessArtistGameSnapshot = renderer.create(
         <GuessArtistGame {...props} />, nodeMock
     ).toJSON();
+
     expect(guessArtistGameSnapshot).toMatchSnapshot();
   });
 
