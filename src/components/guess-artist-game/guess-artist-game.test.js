@@ -8,6 +8,7 @@ import {shallow} from "enzyme";
 const props = {
   question: artistQuestion,
   onAnswer: () => {},
+  renderPlayer: () => {},
 };
 
 const {answers, song} = props.question;
@@ -29,10 +30,6 @@ describe(`Render ArtistQuestionScreen`, () => {
     expect(artistQuestionScreenSnapshot).toMatchSnapshot();
   });
 
-  it(`Should render correct song src`, () => {
-    const audioPlayerELement = artistQuestionScreenElement.find(`AudioPlayer`);
-    expect(audioPlayerELement.prop(`src`)).toEqual(song.src);
-  });
 
   it(`Should render correct answers`, () => {
     const answersArtists = answers.map((answer) => answer.artist);

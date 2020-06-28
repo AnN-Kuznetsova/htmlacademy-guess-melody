@@ -13,6 +13,7 @@ const onAnswer = jest.fn();
 const props = {
   question: artistQuestion,
   onAnswer,
+  renderPlayer: () => {},
 };
 
 const artistQuestionScreenElement = shallow(<GuessArtistGame {...props} />);

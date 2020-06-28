@@ -1,11 +1,10 @@
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 import {ArtistQuestionsPropType} from "../../types.js";
-import {AudioPlayer} from "../audio-player/audio-player.jsx";
 
 
 export class GuessArtistGame extends PureComponent {
-  constructor(props) {
+  /* constructor(props) {
     super(props);
 
     this.state = {
@@ -14,7 +13,7 @@ export class GuessArtistGame extends PureComponent {
 
     this._handleUserAnswerChange = this._handleUserAnswerChange.bind(this);
     this._handlePlayButtonClick = this._handlePlayButtonClick.bind(this);
-  }
+  } */
 
   _handlePlayButtonClick() {
     this.setState((prevState) => ({
@@ -29,8 +28,7 @@ export class GuessArtistGame extends PureComponent {
   }
 
   render() {
-    const {isPlaying} = this.state;
-    const {question} = this.props;
+    const {question, renderPlayer} = this.props;
     const {answers, song} = question;
 
     return (
@@ -38,11 +36,7 @@ export class GuessArtistGame extends PureComponent {
         <h2 className="game__title">Кто исполняет эту песню?</h2>
         <div className="game__track">
           <div className="track">
-            <AudioPlayer
-              src={song.src}
-              isPlaying={isPlaying}
-              onPlayButtonClick={this._handlePlayButtonClick}
-            />
+            {renderPlayer(song.src, 0)}
           </div>
         </div>
 
@@ -76,4 +70,5 @@ export class GuessArtistGame extends PureComponent {
 GuessArtistGame.propTypes = {
   question: ArtistQuestionsPropType.isRequired,
   onAnswer: PropTypes.func.isRequired,
+  renderPlayer: PropTypes.func.isRequired,
 };

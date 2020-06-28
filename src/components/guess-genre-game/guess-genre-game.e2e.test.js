@@ -7,6 +7,7 @@ import {genreQuestion} from "../../__test-data__/test-mocks.js";
 const props = {
   question: genreQuestion,
   onAnswer: () => {},
+  renderPlayer: () => {},
 };
 
 

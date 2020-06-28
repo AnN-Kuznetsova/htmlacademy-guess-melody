@@ -1,11 +1,16 @@
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
+import {GameScreen} from "../game-screen/game-screen.jsx";
 import {GameType} from "../../const.js";
 import {GuessArtistGame} from "../guess-artist-game/guess-artist-game.jsx";
 import {GuessGenreGame} from "../guess-genre-game/guess-genre-game.jsx";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {Welcome} from "../welcome/welcome.jsx";
-import { GameScreen } from "../game-screen/game-screen.jsx";
+import {withAudioPlayer} from "../../hocs/with-audio-player/with-audio-player.jsx";
+
+
+const GuessArtistGameWithPlayer = withAudioPlayer(GuessArtistGame);
+const GuessGenreGameWithPlayer = withAudioPlayer(GuessGenreGame);
 
 
 export class App extends PureComponent {
@@ -51,7 +56,7 @@ export class App extends PureComponent {
         case GameType.ARTIST:
           return (
             <GameScreen type={question.type}>
-              <GuessArtistGame
+              <GuessArtistGameWithPlayer
                 question={question}
                 onAnswer={this.handleAnswer}
               />
@@ -60,7 +65,7 @@ export class App extends PureComponent {
         case GameType.GENRE:
           return (
             <GameScreen type={question.type}>
-              <GuessGenreGame
+              <GuessGenreGameWithPlayer
                 question={question}
                 onAnswer={this.handleAnswer}
               />
@@ -84,13 +89,13 @@ export class App extends PureComponent {
             {this.renderGame()}
           </Route>
           <Route exact path="/genre-game">
-            <GuessGenreGame
+            <GuessGenreGameWithPlayer
               question={questions[0]}
               onAnswer={this.handleAnswer}
             />
           </Route>
           <Route exact path="/artist-game">
-            <GuessArtistGame
+            <GuessArtistGameWithPlayer
               question={questions[1]}
               onAnswer={this.handleAnswer}
             />
