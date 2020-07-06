@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 import {ActionCreator} from "../../reducers/reducer.js";
-import {GameScreen} from "../game-screen/game-screen.jsx";
+import {ConnectedGameScreen} from "../game-screen/game-screen.jsx";
 import {GameType} from "../../const.js";
 import {GuessArtistGame} from "../guess-artist-game/guess-artist-game.jsx";
 import {GuessGenreGame} from "../guess-genre-game/guess-genre-game.jsx";
@@ -39,21 +39,21 @@ class App extends PureComponent {
       switch (question.type) {
         case GameType.ARTIST:
           return (
-            <GameScreen type={question.type}>
+            <ConnectedGameScreen type={question.type}>
               <GuessArtistGameWithPlayer
                 question={question}
                 onAnswer={onUserAnswer}
               />
-            </GameScreen>
+            </ConnectedGameScreen>
           );
         case GameType.GENRE:
           return (
-            <GameScreen type={question.type}>
+            <ConnectedGameScreen type={question.type}>
               <GuessGenreGameWithPlayer
                 question={question}
                 onAnswer={onUserAnswer}
               />
-            </GameScreen>
+            </ConnectedGameScreen>
           );
         default:
           return null;

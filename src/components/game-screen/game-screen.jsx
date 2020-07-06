@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {GameType, MAX_ERRORS_COUNT} from "../../const";
+import {GameType} from "../../const";
 import {Mistakes} from "../mistakes/mistakes.jsx";
+import {connect} from "react-redux";
 
 
-export const GameScreen = (props) => {
-  const {type, children} = props;
+const GameScreen = (props) => {
+  const {type, children, mistakes} = props;
 
   return (
     <section className={`game game--${type}`}>
@@ -21,7 +22,7 @@ export const GameScreen = (props) => {
           />
         </svg>
 
-        <Mistakes count={MAX_ERRORS_COUNT} />
+        <Mistakes count={mistakes} />
       </header>
 
       {children}
@@ -36,4 +37,18 @@ GameScreen.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  mistakes: PropTypes.number.isRequired,
+};
+
+
+const mapStateToProps = (state) => ({
+  mistakes: state.mistakes,
+});
+
+const ConnectedGameScreen = connect(mapStateToProps)(GameScreen);
+
+
+export {
+  GameScreen,
+  ConnectedGameScreen,
 };
