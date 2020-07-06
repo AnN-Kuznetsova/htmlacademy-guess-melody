@@ -2,13 +2,21 @@ import React from "react";
 import ReactDom from "react-dom";
 import {App} from "./components/app/app.jsx";
 import {MAX_ERRORS_COUNT} from "./const.js";
+import {Provider} from "react-redux";
+import {createStore} from "redux";
+import {reducer} from "./reducers/reducer.js";
 import {questions} from "./mocks/questions.js";
 
 
+const store = createStore(reducer);
+
+
 ReactDom.render(
-    <App
-      maxErrorsCount={MAX_ERRORS_COUNT}
-      questions={questions}
-    />,
+    <Provider store={store}>
+      <App
+        maxErrorsCount={MAX_ERRORS_COUNT}
+        questions={questions}
+      />
+    </Provider>,
     document.querySelector(`#root`)
 );
