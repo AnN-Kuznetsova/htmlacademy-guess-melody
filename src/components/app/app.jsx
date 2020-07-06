@@ -16,19 +16,13 @@ const GuessGenreGameWithPlayer = withAudioPlayer(GuessGenreGame);
 
 
 class App extends PureComponent {
-  _handleWelcomeButtonClick() {
-    this.props.onWelcomeButtonClick();
-  }
-
-  _handleAnswer() {
-    this.props.onUserAnswer();
-  }
-
   _renderGame() {
     const {
       maxErrorsCount,
       questions,
       step,
+      onWelcomeButtonClick,
+      onUserAnswer,
     } = this.props;
     const question = questions[step];
 
@@ -36,7 +30,7 @@ class App extends PureComponent {
       return (
         <Welcome
           maxErrorsCount={maxErrorsCount}
-          onWelcomeButtonClick={this._handleWelcomeButtonClick.bind(this)}
+          onWelcomeButtonClick={onWelcomeButtonClick}
         />
       );
     }
@@ -48,7 +42,7 @@ class App extends PureComponent {
             <GameScreen type={question.type}>
               <GuessArtistGameWithPlayer
                 question={question}
-                onAnswer={this._handleAnswer.bind(this)}
+                onAnswer={onUserAnswer}
               />
             </GameScreen>
           );
@@ -57,7 +51,7 @@ class App extends PureComponent {
             <GameScreen type={question.type}>
               <GuessGenreGameWithPlayer
                 question={question}
-                onAnswer={this._handleAnswer.bind(this)}
+                onAnswer={onUserAnswer}
               />
             </GameScreen>
           );
@@ -114,8 +108,9 @@ const mapDispatchToProps = (dispatch) => ({
   onWelcomeButtonClick() {
     dispatch(ActionCreator.incrementStep());
   },
-  onUserAnswer() {
+  onUserAnswer(question, answer) {
     dispatch(ActionCreator.incrementStep());
+    dispatch(ActionCreator.incrementMistake(question, answer));
   },
 });
 
