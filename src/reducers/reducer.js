@@ -11,6 +11,19 @@ const ActionType = {
   INCREMENT_STEP: `INCREMENT_STEP`,
 };
 
+
+const ActionCreator = {
+  incrementStep: () => ({
+    type: ActionType.INCREMENT_STEP,
+    payload: 1,
+  }),
+  incrementMistakes: () => ({
+    type: ActionType.INCREMENT_MISTAKES,
+    payload: 1,
+  }),
+};
+
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.INCREMENT_STEP:
@@ -30,6 +43,7 @@ const reducer = (state = initialState, action) => {
 
 
 export {
+  ActionCreator,
   ActionType,
   reducer,
 };

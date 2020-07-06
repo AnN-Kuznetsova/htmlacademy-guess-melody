@@ -1,4 +1,4 @@
-import {reducer, ActionType} from "./reducer.js";
+import {reducer, ActionType, ActionCreator} from "./reducer.js";
 
 
 describe(`Reduser should work correctly`, () => {
@@ -56,6 +56,24 @@ describe(`Reduser should work correctly`, () => {
     })).toEqual({
       step: -1,
       mistakes: 0,
+    });
+  });
+});
+
+
+describe(`Action creators should work correctly`, () => {
+  it(`Action creator for incrementing step returns correct action`, () => {
+    expect(ActionCreator.incrementStep()).toEqual({
+      type: ActionType.INCREMENT_STEP,
+      payload: 1,
+    });
+  });
+
+
+  it(`Action creator for incrementing mistakes returns correct action`, () => {
+    expect(ActionCreator.incrementMistakes()).toEqual({
+      type: ActionType.INCREMENT_MISTAKES,
+      payload: 1,
     });
   });
 });
