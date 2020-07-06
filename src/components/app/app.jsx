@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
+import {ActionCreator} from "../../reducers/reducer.js";
 import {GameScreen} from "../game-screen/game-screen.jsx";
 import {GameType} from "../../const.js";
 import {GuessArtistGame} from "../guess-artist-game/guess-artist-game.jsx";
 import {GuessGenreGame} from "../guess-genre-game/guess-genre-game.jsx";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {Welcome} from "../welcome/welcome.jsx";
+import {connect} from "react-redux";
 import {withAudioPlayer} from "../../hocs/with-audio-player/with-audio-player.jsx";
 
 
@@ -13,40 +15,28 @@ const GuessArtistGameWithPlayer = withAudioPlayer(GuessArtistGame);
 const GuessGenreGameWithPlayer = withAudioPlayer(GuessGenreGame);
 
 
-export class App extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      step: -1,
-    };
-
-    this._handleWelcomeButtonClick = this._handleWelcomeButtonClick.bind(this);
-    this._handleAnswer = this._handleAnswer.bind(this);
-  }
-
+class App extends PureComponent {
   _handleWelcomeButtonClick() {
-    this.setState({
-      step: 0,
-    });
+    this.props.onWelcomeButtonClick();
   }
 
   _handleAnswer() {
-    this.setState((prevState) => ({
-      step: prevState.step + 1,
-    }));
+    this.props.onUserAnswer();
   }
 
   _renderGame() {
-    const {questions, maxErrorsCount} = this.props;
-    const {step} = this.state;
+    const {
+      maxErrorsCount,
+      questions,
+      step,
+    } = this.props;
     const question = questions[step];
 
     if (step === -1 || step >= questions.length) {
       return (
         <Welcome
           maxErrorsCount={maxErrorsCount}
-          onWelcomeButtonClick={this._handleWelcomeButtonClick}
+          onWelcomeButtonClick={this._handleWelcomeButtonClick.bind(this)}
         />
       );
     }
@@ -58,7 +48,7 @@ export class App extends PureComponent {
             <GameScreen type={question.type}>
               <GuessArtistGameWithPlayer
                 question={question}
-                onAnswer={this._handleAnswer}
+                onAnswer={this._handleAnswer.bind(this)}
               />
             </GameScreen>
           );
@@ -67,7 +57,7 @@ export class App extends PureComponent {
             <GameScreen type={question.type}>
               <GuessGenreGameWithPlayer
                 question={question}
-                onAnswer={this._handleAnswer}
+                onAnswer={this._handleAnswer.bind(this)}
               />
             </GameScreen>
           );
@@ -110,4 +100,29 @@ export class App extends PureComponent {
 App.propTypes = {
   maxErrorsCount: PropTypes.number.isRequired,
   questions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  step: PropTypes.number.isRequired,
+  onWelcomeButtonClick: PropTypes.func.isRequired,
+  onUserAnswer: PropTypes.func.isRequired,
+};
+
+
+const mapStateToProps = (state) => ({
+  step: state.step,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onWelcomeButtonClick() {
+    dispatch(ActionCreator.incrementStep());
+  },
+  onUserAnswer() {
+    dispatch(ActionCreator.incrementStep());
+  },
+});
+
+const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
+
+
+export {
+  App,
+  ConnectedApp,
 };

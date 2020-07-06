@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDom from "react-dom";
-import {App} from "./components/app/app.jsx";
+import {ConnectedApp} from "./components/app/app.jsx";
 import {MAX_ERRORS_COUNT} from "./const.js";
 import {Provider} from "react-redux";
 import {createStore} from "redux";
@@ -16,7 +16,7 @@ const store = createStore(
 
 ReactDom.render(
     <Provider store={store}>
-      <App
+      <ConnectedApp
         maxErrorsCount={MAX_ERRORS_COUNT}
         questions={questions}
       />
