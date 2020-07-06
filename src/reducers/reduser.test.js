@@ -1,4 +1,5 @@
 import {reducer, ActionType, ActionCreator} from "./reducer.js";
+import {artistQuestion, genreQuestion} from "../__test-data__/test-mocks.js";
 
 
 describe(`Reduser should work correctly`, () => {
@@ -70,10 +71,42 @@ describe(`Action creators should work correctly`, () => {
   });
 
 
-  it(`Action creator for incrementing mistakes returns correct action`, () => {
-    expect(ActionCreator.incrementMistakes()).toEqual({
+  it(`Action creator for incrementing mistake returns action with 0 payload if answer for artist is correct`, () => {
+    expect(ActionCreator.incrementMistake(artistQuestion, {
+      picture: `pic-three`,
+      artist: `Third`,
+    })).toEqual({
+      type: ActionType.INCREMENT_MISTAKES,
+      payload: 0,
+    });
+  });
+
+
+  it(`Action creator for incrementing mistake returns action with 1 payload if answer for artist is incorrect`, () => {
+    expect(ActionCreator.incrementMistake(artistQuestion, {
+      picture: `pic-one`,
+      artist: `First`,
+    })).toEqual({
       type: ActionType.INCREMENT_MISTAKES,
       payload: 1,
     });
+  });
+
+
+  it(`Action creator for incrementing mistake returns action with 0 payload if answer for genre is correct`, () => {
+    expect(ActionCreator.incrementMistake(genreQuestion, [true, false, false, true]))
+      .toEqual({
+        type: ActionType.INCREMENT_MISTAKES,
+        payload: 0,
+      });
+  });
+
+
+  it(`Action creator for incrementing mistake returns action with 1 payload if answer for genre is incorrect`, () => {
+    expect(ActionCreator.incrementMistake(genreQuestion, [true, true, true, true]))
+      .toEqual({
+        type: ActionType.INCREMENT_MISTAKES,
+        payload: 1,
+      });
   });
 });

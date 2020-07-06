@@ -1,3 +1,4 @@
+import {GameType} from "../const.js";
 import {extend} from "../utils/utils.js";
 
 
@@ -12,15 +13,40 @@ const ActionType = {
 };
 
 
+const isArtistAnswerCorrect = (question, userAnswer) => {
+  return userAnswer.artist === question.song.artist;
+};
+
+const isGenreAnswerCorrect = (question, userAnswer) => {
+  return userAnswer.every((answer, i) => {
+    return answer === (question.genre === question.answers[i].genre);
+  });
+};
+
+
 const ActionCreator = {
   incrementStep: () => ({
     type: ActionType.INCREMENT_STEP,
     payload: 1,
   }),
-  incrementMistakes: () => ({
-    type: ActionType.INCREMENT_MISTAKES,
-    payload: 1,
-  }),
+
+  incrementMistake: (question, userAnswer) => {
+    let answerIsCorrect = false;
+
+    switch (question.type) {
+      case GameType.ARTIST:
+        answerIsCorrect = isArtistAnswerCorrect(question, userAnswer);
+        break;
+      case GameType.GENRE:
+        answerIsCorrect = isGenreAnswerCorrect(question, userAnswer);
+        break;
+    }
+
+    return {
+      type: ActionType.INCREMENT_MISTAKES,
+      payload: answerIsCorrect ? 0 : 1,
+    };
+  },
 };
 
 
