@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {GameType} from "../../const";
+import {GameType, MAX_ERRORS_COUNT} from "../../const";
+import {Mistakes} from "../mistakes/mistakes.jsx";
 
 
 export const GameScreen = (props) => {
@@ -20,11 +21,7 @@ export const GameScreen = (props) => {
           />
         </svg>
 
-        <div className="game__mistakes">
-          <div className="wrong" />
-          <div className="wrong" />
-          <div className="wrong" />
-        </div>
+        <Mistakes count={MAX_ERRORS_COUNT} />
       </header>
 
       {children}
