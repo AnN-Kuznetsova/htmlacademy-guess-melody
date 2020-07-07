@@ -1,10 +1,13 @@
-import {GameType} from "../const.js";
+import {MAX_ERRORS_COUNT, GameType} from "../const.js";
 import {extend} from "../utils/utils.js";
+import {questions} from "../mocks/questions.js";
 
 
 const initialState = {
   mistakes: 0,
   step: -1,
+  questions,
+  maxErrorsCount: MAX_ERRORS_COUNT,
 };
 
 const ActionType = {
