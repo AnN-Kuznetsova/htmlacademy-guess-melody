@@ -39,15 +39,17 @@ const questions = [
   },
 ];
 
+const initialState = {
+  step: -1,
+  mistakes: 0,
+  questions,
+  maxErrorsCount: 3,
+};
+
 
 describe(`Reduser should work correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
-    expect(reducer(void 0, {})).toEqual({
-      step: -1,
-      mistakes: 0,
-      questions,
-      maxErrorsCount: 3,
-    });
+    expect(reducer(void 0, {})).toEqual(initialState);
   });
 
 
@@ -115,6 +117,54 @@ describe(`Reduser should work correctly`, () => {
       maxErrorsCount: 3,
     });
   });
+
+
+  it(`Reducer should correctly switch to the initial state`, () => {
+    expect(reducer({
+      step: 5,
+      mistakes: 3,
+      questions,
+      maxErrorsCount: 3,
+    }, {
+      type: ActionType.INCREMENT_MISTAKES,
+      payload: 1,
+    })).toEqual({
+      step: 5,
+      mistakes: 4,
+      questions,
+      maxErrorsCount: 3,
+    });
+
+    expect(reducer({
+      step: questions.length - 1,
+      mistakes: 1,
+      questions,
+      maxErrorsCount: 3,
+    }, {
+      type: ActionType.INCREMENT_STEP,
+      payload: 1,
+    })).toEqual(initialState);
+
+    expect(reducer({
+      step: questions.length - 1,
+      mistakes: 3,
+      questions,
+      maxErrorsCount: 3,
+    }, {
+      type: ActionType.INCREMENT_STEP,
+      payload: 1,
+    })).toEqual(initialState);
+  });
+
+  expect(reducer({
+    step: 1,
+    mistakes: 4,
+    questions,
+    maxErrorsCount: 3,
+  }, {
+    type: ActionType.INCREMENT_STEP,
+    payload: 1,
+  })).toEqual(initialState);
 });
 
 
