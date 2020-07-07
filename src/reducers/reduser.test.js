@@ -55,23 +55,31 @@ describe(`Reduser should work correctly`, () => {
     expect(reducer({
       step: -1,
       mistakes: 0,
+      questions,
+      maxErrorsCount: 3,
     }, {
       type: ActionType.INCREMENT_STEP,
       payload: 1,
     })).toEqual({
       step: 0,
       mistakes: 0,
+      questions,
+      maxErrorsCount: 3,
     });
 
     expect(reducer({
       step: -1,
       mistakes: 0,
+      questions,
+      maxErrorsCount: 3,
     }, {
       type: ActionType.INCREMENT_STEP,
       payload: 0,
     })).toEqual({
       step: -1,
       mistakes: 0,
+      questions,
+      maxErrorsCount: 3,
     });
   });
 
@@ -80,23 +88,31 @@ describe(`Reduser should work correctly`, () => {
     expect(reducer({
       step: -1,
       mistakes: 0,
+      questions,
+      maxErrorsCount: 3,
     }, {
       type: ActionType.INCREMENT_MISTAKES,
       payload: 1,
     })).toEqual({
       step: -1,
       mistakes: 1,
+      questions,
+      maxErrorsCount: 3,
     });
 
     expect(reducer({
       step: -1,
       mistakes: 0,
+      questions,
+      maxErrorsCount: 3,
     }, {
       type: ActionType.INCREMENT_MISTAKES,
       payload: 0,
     })).toEqual({
       step: -1,
       mistakes: 0,
+      questions,
+      maxErrorsCount: 3,
     });
   });
 });
