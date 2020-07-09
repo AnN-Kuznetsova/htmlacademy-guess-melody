@@ -3,7 +3,12 @@ import React from "react";
 
 
 export const Welcome = (props) => {
-  const {errorsCount, onWelcomeButtonClick} = props;
+  const {maxErrorsCount, onWelcomeButtonClick} = props;
+
+  const _handleWelcomeButtonClick = (event) => {
+    event.preventDefault();
+    onWelcomeButtonClick.call(event.target);
+  };
 
   return (
     <section className="welcome">
@@ -12,7 +17,7 @@ export const Welcome = (props) => {
       </div>
       <button
         className="welcome__button"
-        onClick={onWelcomeButtonClick}
+        onClick={_handleWelcomeButtonClick}
       >
         <span className="visually-hidden">Начать игру</span>
       </button>
@@ -20,7 +25,7 @@ export const Welcome = (props) => {
       <p className="welcome__text">Правила просты:</p>
       <ul className="welcome__rules-list">
         <li>Нужно ответить на все вопросы.</li>
-        <li>Можно допустить {errorsCount} ошибки.</li>
+        <li>Можно допустить {maxErrorsCount} ошибки.</li>
       </ul>
       <p className="welcome__text">Удачи!</p>
     </section>
@@ -29,6 +34,6 @@ export const Welcome = (props) => {
 
 
 Welcome.propTypes = {
-  errorsCount: PropTypes.number.isRequired,
+  maxErrorsCount: PropTypes.number.isRequired,
   onWelcomeButtonClick: PropTypes.func.isRequired,
 };

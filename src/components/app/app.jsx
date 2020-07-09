@@ -1,10 +1,16 @@
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
-import {ArtistQuestionScreen} from "../artist-question-screen/artist-question-screen.jsx";
-import {GenreQuestionScreen} from "../genre-question-screen/genre-question-screen.jsx";
-import {Welcome} from "../welcome/welcome.jsx";
+import {GameScreen} from "../game-screen/game-screen.jsx";
 import {GameType} from "../../const.js";
+import {GuessArtistGame} from "../guess-artist-game/guess-artist-game.jsx";
+import {GuessGenreGame} from "../guess-genre-game/guess-genre-game.jsx";
+import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Welcome} from "../welcome/welcome.jsx";
+import {withAudioPlayer} from "../../hocs/with-audio-player/with-audio-player.jsx";
+
+
+const GuessArtistGameWithPlayer = withAudioPlayer(GuessArtistGame);
+const GuessGenreGameWithPlayer = withAudioPlayer(GuessGenreGame);
 
 
 export class App extends PureComponent {
@@ -15,51 +21,55 @@ export class App extends PureComponent {
       step: -1,
     };
 
-    this.handleWelcomeButtonClick = this.handleWelcomeButtonClick.bind(this);
-    this.handleAnswer = this.handleAnswer.bind(this);
+    this._handleWelcomeButtonClick = this._handleWelcomeButtonClick.bind(this);
+    this._handleAnswer = this._handleAnswer.bind(this);
   }
 
-  handleWelcomeButtonClick() {
+  _handleWelcomeButtonClick() {
     this.setState({
       step: 0,
     });
   }
 
-  handleAnswer() {
+  _handleAnswer() {
     this.setState((prevState) => ({
       step: prevState.step + 1,
     }));
   }
 
-  renderGameScreen() {
-    const {questions, errorsCount} = this.props;
+  _renderGame() {
+    const {questions, maxErrorsCount} = this.props;
     const {step} = this.state;
     const question = questions[step];
 
     if (step === -1 || step >= questions.length) {
       return (
         <Welcome
-          errorsCount={errorsCount}
-          onWelcomeButtonClick={this.handleWelcomeButtonClick}
+          maxErrorsCount={maxErrorsCount}
+          onWelcomeButtonClick={this._handleWelcomeButtonClick}
         />
       );
     }
 
     if (question) {
       switch (question.type) {
-        case GameType.GENRE:
-          return (
-            <GenreQuestionScreen
-              question={question}
-              onAnswer={this.handleAnswer}
-            />
-          );
         case GameType.ARTIST:
           return (
-            <ArtistQuestionScreen
-              question={question}
-              onAnswer={this.handleAnswer}
-            />
+            <GameScreen type={question.type}>
+              <GuessArtistGameWithPlayer
+                question={question}
+                onAnswer={this._handleAnswer}
+              />
+            </GameScreen>
+          );
+        case GameType.GENRE:
+          return (
+            <GameScreen type={question.type}>
+              <GuessGenreGameWithPlayer
+                question={question}
+                onAnswer={this._handleAnswer}
+              />
+            </GameScreen>
           );
         default:
           return null;
@@ -76,18 +86,18 @@ export class App extends PureComponent {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            {this.renderGameScreen()}
+            {this._renderGame()}
           </Route>
-          <Route exact path="/genre">
-            <GenreQuestionScreen
+          <Route exact path="/genre-game">
+            <GuessGenreGameWithPlayer
               question={questions[0]}
-              onAnswer={this.handleAnswer}
+              onAnswer={this._handleAnswer}
             />
           </Route>
-          <Route exact path="/artist">
-            <ArtistQuestionScreen
+          <Route exact path="/artist-game">
+            <GuessArtistGameWithPlayer
               question={questions[1]}
-              onAnswer={this.handleAnswer}
+              onAnswer={this._handleAnswer}
             />
           </Route>
         </Switch>
@@ -98,6 +108,6 @@ export class App extends PureComponent {
 
 
 App.propTypes = {
-  errorsCount: PropTypes.number.isRequired,
+  maxErrorsCount: PropTypes.number.isRequired,
   questions: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

@@ -1,32 +1,36 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {shallow} from "enzyme";
-import {ArtistQuestionScreen} from "./artist-question-screen.jsx";
+import {GuessArtistGame} from "./guess-artist-game.jsx";
 import {artistQuestion} from "../../__test-data__/test-mocks.js";
+import {shallow} from "enzyme";
 
 
 const props = {
   question: artistQuestion,
   onAnswer: () => {},
+  renderPlayer: () => {},
 };
 
-const {answers, song} = props.question;
+const {answers} = props.question;
 
-const artistQuestionScreenElement = shallow(<ArtistQuestionScreen {...props} />);
+const nodeMock = {
+  createNodeMock: () => {
+    return {};
+  }
+};
+
+const artistQuestionScreenElement = shallow(<GuessArtistGame {...props} />);
 
 
-describe(`Render ArtistQuestionScreen`, () => {
+describe(`Render GuessArtistGame`, () => {
   it(`Should match with snapshot`, () => {
-    const artistQuestionScreenSnapshot = renderer.create(
-        <ArtistQuestionScreen {...props} />
+    const guessArtistGameSnapshot = renderer.create(
+        <GuessArtistGame {...props} />, nodeMock
     ).toJSON();
-    expect(artistQuestionScreenSnapshot).toMatchSnapshot();
+
+    expect(guessArtistGameSnapshot).toMatchSnapshot();
   });
 
-  it(`Should render correct song src`, () => {
-    const audioTrack = artistQuestionScreenElement.find(`audio`);
-    expect(audioTrack.prop(`src`)).toEqual(song.src);
-  });
 
   it(`Should render correct answers`, () => {
     const answersArtists = answers.map((answer) => answer.artist);

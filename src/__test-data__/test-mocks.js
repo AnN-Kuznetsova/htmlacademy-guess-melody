@@ -1,4 +1,4 @@
-const ERRORS_COUNT = 3;
+const MAX_ERRORS_COUNT = 3;
 
 const genreQuestion = {
   type: `genre`,
@@ -38,7 +38,7 @@ const artistQuestion = {
 
 
 export {
-  ERRORS_COUNT,
+  MAX_ERRORS_COUNT,
   artistQuestion,
   genreQuestion,
 };

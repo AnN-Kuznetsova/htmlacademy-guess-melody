@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render GuessArtistGame Should match with snapshot 1`] = `
+<section
+  className="game__screen"
+>
+  <h2
+    className="game__title"
+  >
+    Кто исполняет эту песню?
+  </h2>
+  <div
+    className="game__track"
+  >
+    <div
+      className="track"
+    />
+  </div>
+  <form
+    className="game__artist"
+  >
+    <div
+      className="artist"
+    >
+      <input
+        className="artist__input visually-hidden"
+        id="answer-0"
+        name="answer"
+        onChange={[Function]}
+        type="radio"
+        value="answer-0"
+      />
+      <label
+        className="artist__name"
+        htmlFor="answer-0"
+      >
+        <img
+          alt="First"
+          className="artist__picture"
+          src="pic-one"
+        />
+        First
+      </label>
+    </div>
+    <div
+      className="artist"
+    >
+      <input
+        className="artist__input visually-hidden"
+        id="answer-1"
+        name="answer"
+        onChange={[Function]}
+        type="radio"
+        value="answer-1"
+      />
+      <label
+        className="artist__name"
+        htmlFor="answer-1"
+      >
+        <img
+          alt="Second"
+          className="artist__picture"
+          src="pic-two"
+        />
+        Second
+      </label>
+    </div>
+    <div
+      className="artist"
+    >
+      <input
+        className="artist__input visually-hidden"
+        id="answer-2"
+        name="answer"
+        onChange={[Function]}
+        type="radio"
+        value="answer-2"
+      />
+      <label
+        className="artist__name"
+        htmlFor="answer-2"
+      >
+        <img
+          alt="Third"
+          className="artist__picture"
+          src="pic-three"
+        />
+        Third
+      </label>
+    </div>
+  </form>
+</section>
+`;

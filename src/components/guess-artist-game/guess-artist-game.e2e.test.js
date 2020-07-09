@@ -1,7 +1,7 @@
 import React from "react";
-import {shallow} from "enzyme";
-import {ArtistQuestionScreen} from "./artist-question-screen.jsx";
+import {GuessArtistGame} from "./guess-artist-game.jsx";
 import {artistQuestion} from "../../__test-data__/test-mocks.js";
+import {shallow} from "enzyme";
 
 
 const mockEvent = {
@@ -13,19 +13,20 @@ const onAnswer = jest.fn();
 const props = {
   question: artistQuestion,
   onAnswer,
+  renderPlayer: () => {},
 };
 
-const artistQuestionScreenElement = shallow(<ArtistQuestionScreen {...props} />);
+const guessArtistGameElement = shallow(<GuessArtistGame {...props} />);
 
 
-describe(`ArtistQuestionScreen e2e-tests`, () => {
+describe(`GuessArtistGame e2e-tests`, () => {
   it(`Click on user answer should pass to the callback data-object from which this answer was created`, () => {
     const userAnswer = {
       artist: `First`,
       picture: `pic-one`,
     };
 
-    const answerInputs = artistQuestionScreenElement.find(`input.artist__input`);
+    const answerInputs = guessArtistGameElement.find(`input.artist__input`);
     const answerOne = answerInputs.at(0);
     answerOne.simulate(`change`, mockEvent);
 
