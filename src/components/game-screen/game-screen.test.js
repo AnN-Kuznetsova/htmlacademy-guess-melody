@@ -13,6 +13,7 @@ describe(`Render GameScreen`, () => {
     const props = {
       type: GameType.ARTIST,
       children,
+      mistakes: 3,
     };
 
 
@@ -38,6 +39,7 @@ describe(`Render GameScreen`, () => {
     const props = {
       type: GameType.GENRE,
       children,
+      mistakes: 3,
     };
 
 
