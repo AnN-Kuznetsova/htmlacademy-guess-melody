@@ -1,7 +1,7 @@
 import React from "react";
 import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
-import {App} from "./app.jsx";
+import {AppComponent} from "./app.jsx";
 import {MAX_ERRORS_COUNT, artistQuestion, genreQuestion} from "../../__test-data__/test-mocks.js";
 import {Provider} from "react-redux";
 
@@ -33,7 +33,7 @@ describe(`Render App`, () => {
 
     const treeSnapshot = renderer.create(
         <Provider store={store}>
-          <App {...props} />
+          <AppComponent {...props} />
         </Provider>
     ).toJSON();
 
@@ -50,7 +50,7 @@ describe(`Render App`, () => {
 
     const treeSnapshot = renderer.create(
         <Provider store={store}>
-          <App {...props} />
+          <AppComponent {...props} />
         </Provider>, nodeMock
     ).toJSON();
 
@@ -67,7 +67,7 @@ describe(`Render App`, () => {
 
     const treeSnapshot = renderer.create(
         <Provider store={store}>
-          <App {...props} />
+          <AppComponent {...props} />
         </Provider>, nodeMock
     ).toJSON();
 

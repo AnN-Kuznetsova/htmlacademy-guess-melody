@@ -5,7 +5,7 @@ import {Mistakes} from "../mistakes/mistakes.jsx";
 import {connect} from "react-redux";
 
 
-const GameScreen = (props) => {
+const GameScreenComponent = (props) => {
   const {type, children, mistakes} = props;
 
   return (
@@ -31,7 +31,7 @@ const GameScreen = (props) => {
 };
 
 
-GameScreen.propTypes = {
+GameScreenComponent.propTypes = {
   type: PropTypes.oneOf(Object.values(GameType)).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
@@ -45,10 +45,10 @@ const mapStateToProps = (state) => ({
   mistakes: state.mistakes,
 });
 
-const ConnectedGameScreen = connect(mapStateToProps)(GameScreen);
+const GameScreen = connect(mapStateToProps)(GameScreenComponent);
 
 
 export {
+  GameScreenComponent,
   GameScreen,
-  ConnectedGameScreen,
 };

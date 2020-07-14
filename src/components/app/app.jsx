@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 import {ActionCreator} from "../../reducers/reducer.js";
-import {ConnectedGameScreen} from "../game-screen/game-screen.jsx";
+import {GameScreen} from "../game-screen/game-screen.jsx";
 import {GameType} from "../../const.js";
 import {GuessArtistGame} from "../guess-artist-game/guess-artist-game.jsx";
 import {GuessGenreGame} from "../guess-genre-game/guess-genre-game.jsx";
@@ -15,7 +15,7 @@ const GuessArtistGameWithPlayer = withAudioPlayer(GuessArtistGame);
 const GuessGenreGameWithPlayer = withAudioPlayer(GuessGenreGame);
 
 
-class App extends PureComponent {
+class AppComponent extends PureComponent {
   _renderGame() {
     const {
       maxErrorsCount,
@@ -39,21 +39,21 @@ class App extends PureComponent {
       switch (question.type) {
         case GameType.ARTIST:
           return (
-            <ConnectedGameScreen type={question.type}>
+            <GameScreen type={question.type}>
               <GuessArtistGameWithPlayer
                 question={question}
                 onAnswer={onUserAnswer}
               />
-            </ConnectedGameScreen>
+            </GameScreen>
           );
         case GameType.GENRE:
           return (
-            <ConnectedGameScreen type={question.type}>
+            <GameScreen type={question.type}>
               <GuessGenreGameWithPlayer
                 question={question}
                 onAnswer={onUserAnswer}
               />
-            </ConnectedGameScreen>
+            </GameScreen>
           );
         default:
           return null;
@@ -91,7 +91,7 @@ class App extends PureComponent {
 }
 
 
-App.propTypes = {
+AppComponent.propTypes = {
   maxErrorsCount: PropTypes.number.isRequired,
   questions: PropTypes.arrayOf(PropTypes.object).isRequired,
   step: PropTypes.number.isRequired,
@@ -116,10 +116,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
+const App = connect(mapStateToProps, mapDispatchToProps)(AppComponent);
 
 
 export {
+  AppComponent,
   App,
-  ConnectedApp,
 };
