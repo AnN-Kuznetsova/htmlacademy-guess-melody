@@ -11,7 +11,7 @@ export const withAudioPlayer = (Component) => {
       };
     }
 
-    _handlePlayButtonClick(id) {
+    handlePlayButtonClick(id) {
       const {activePlayerId} = this.state;
 
       this.setState({
@@ -19,14 +19,14 @@ export const withAudioPlayer = (Component) => {
       });
     }
 
-    _renderPlayer(src, id) {
+    renderPlayer(src, id) {
       const {activePlayerId} = this.state;
 
       return (
         <AudioPlayer
           src={src}
           isPlaying={id === activePlayerId}
-          onPlayButtonClick={this._handlePlayButtonClick.bind(this, id)}
+          onPlayButtonClick={this.handlePlayButtonClick.bind(this, id)}
         />
       );
 
@@ -35,7 +35,7 @@ export const withAudioPlayer = (Component) => {
     render() {
       return <Component
         {...this.props}
-        renderPlayer={this._renderPlayer.bind(this)}
+        renderPlayer={this.renderPlayer.bind(this)}
       />;
     }
   }
