@@ -1,5 +1,5 @@
 import React from "react";
-import {shallow} from "enzyme";
+import {shallow, mount} from "enzyme";
 import {GuessGenreGame} from "./guess-genre-game.jsx";
 import {genreQuestion} from "../../__test-data__/test-mocks.js";
 
@@ -39,7 +39,7 @@ describe(`GenreQuestionScreen e2e-tests`, () => {
     props.userAnswers = userAnswer;
     props.onAnswer = onAnswer;
 
-    const genreQuestionScreenElement = shallow(<GuessGenreGame {...props} />);
+    const genreQuestionScreenElement = mount(<GuessGenreGame {...props} />);
 
     const formElement = genreQuestionScreenElement.find(`form.game__tracks`);
     const inputTwo = formElement.find(`input.game__input`).at(1);

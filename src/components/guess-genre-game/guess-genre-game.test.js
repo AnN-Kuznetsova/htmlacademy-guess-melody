@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {shallow} from "enzyme";
+import {mount} from "enzyme";
 import {GuessGenreGame} from "./guess-genre-game.jsx";
 import {genreQuestion} from "../../__test-data__/test-mocks.js";
 
@@ -21,7 +21,7 @@ const nodeMock = {
   }
 };
 
-const guessGenreGameElement = shallow(<GuessGenreGame {...props} />);
+const guessGenreGameElement = mount(<GuessGenreGame {...props} />);
 
 
 describe(`Render GuessGenreGame`, () => {

@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
+import {GenreQuestionItem} from "../genre-question-item/genre-question-item.jsx";
 import {GenreQuestionsPropType} from "../../types.js";
 import {withUserAnswer} from "../../hocs/with-user-answer/with-user-answer.jsx";
 
@@ -19,12 +20,6 @@ const GuessGenreGame = (props) => {
     onAnswer();
   };
 
-  const handleUserAnswerChange = (event) => {
-    const value = event.target.checked;
-    const index = event.target.dataset.answerIndex;
-    onChange(index, value);
-  };
-
   return (
     <section className="game__screen">
       <h2 className="game__title">Выберите {question.genre} треки</h2>
@@ -34,23 +29,14 @@ const GuessGenreGame = (props) => {
       >
         {
           question.answers.map((answer, index) => (
-            <div className="track" key={`${index}-${answer.src}`}>
-              {renderPlayer(answer.src, index)}
-
-              <div className="game__answer">
-                <input
-                  className="game__input visually-hidden"
-                  type="checkbox"
-                  name="answer"
-                  value={`answer-${index}`}
-                  id={`answer-${index}`}
-                  data-answer-index={index}
-                  checked={userAnswers[index]}
-                  onChange={handleUserAnswerChange}
-                />
-                <label className="game__check" htmlFor={`answer-${index}`}>Отметить</label>
-              </div>
-            </div>
+            <GenreQuestionItem
+              key={`${index}-${answer.src}`}
+              answer={answer}
+              id={index}
+              onChange={onChange}
+              renderPlayer={renderPlayer}
+              userAnswer={userAnswers[index]}
+            />
           ))
         }
 
