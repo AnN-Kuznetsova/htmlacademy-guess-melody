@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render withUserAnswer Should match with snapshot 1`] = `
+<div
+  onAnswer={[Function]}
+  onChange={[Function]}
+  question={
+    Object {
+      "answers": Array [
+        Object {
+          "genre": "rock",
+          "src": "https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg",
+        },
+        Object {
+          "genre": "blues",
+          "src": "https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg",
+        },
+        Object {
+          "genre": "jazz",
+          "src": "https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg",
+        },
+        Object {
+          "genre": "rock",
+          "src": "https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg",
+        },
+      ],
+      "genre": "rock",
+      "type": "genre",
+    }
+  }
+  userAnswers={
+    Array [
+      false,
+      false,
+      false,
+      false,
+    ]
+  }
+/>
+`;
