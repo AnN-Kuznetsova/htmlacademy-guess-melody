@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
-import {AudioPlayer} from "../../components/audio-player/audio-player.jsx";
+import {AudioPlayerWithAudio as AudioPlayer} from "../../components/audio-player/audio-player.jsx";
+
 
 export const withActivePlayer = (Component) => {
   class WithActivePlayer extends PureComponent {

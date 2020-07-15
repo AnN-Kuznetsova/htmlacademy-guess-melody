@@ -8,11 +8,11 @@ import {GuessGenreGame} from "../guess-genre-game/guess-genre-game.jsx";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {Welcome} from "../welcome/welcome.jsx";
 import {connect} from "react-redux";
-import {withAudioPlayer} from "../../hocs/with-audio-player/with-audio-player.jsx";
+import {withActivePlayer} from "../../hocs/with-active-player/with-active-player.jsx";
 
 
-const GuessArtistGameWithPlayer = withAudioPlayer(GuessArtistGame);
-const GuessGenreGameWithPlayer = withAudioPlayer(GuessGenreGame);
+const GuessArtistGameWithPlayer = withActivePlayer(GuessArtistGame);
+const GuessGenreGameWithPlayer = withActivePlayer(GuessGenreGame);
 
 
 class AppComponent extends PureComponent {
