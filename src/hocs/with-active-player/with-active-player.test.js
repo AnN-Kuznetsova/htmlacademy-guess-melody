@@ -1,0 +1,23 @@
+import React from "react";
+import renderer from "react-test-renderer";
+import {withActivePlayer} from "./with-active-player.jsx";
+
+
+const MockComponent = (props) => {
+  return (
+    <div {...props} />
+  );
+};
+
+const MockComponentWithActivePlayer = withActivePlayer(MockComponent);
+
+
+describe(`Render withActivePlayer`, () => {
+  it(`Should match with snapshot`, () => {
+    const mockComponentWithActivePlayerrSnapshot = renderer.create(
+        <MockComponentWithActivePlayer />
+    ).toJSON();
+
+    expect(mockComponentWithActivePlayerrSnapshot).toMatchSnapshot();
+  });
+});
