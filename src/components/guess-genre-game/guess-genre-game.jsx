@@ -1,69 +1,64 @@
 import PropTypes from "prop-types";
-import React, {PureComponent} from "react";
+import React from "react";
 
 import {GenreQuestionsPropType} from "../../types.js";
 import {withUserAnswer} from "../../hocs/with-user-answer/with-user-answer.jsx";
 
 
-class GuessGenreGame extends PureComponent {
-  handleSubmit(event) {
+const GuessGenreGame = (props) => {
+  const {
+    question,
+    renderPlayer,
+    userAnswers,
+    onAnswer,
+    onChange,
+  } = props;
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-
-    const {onAnswer} = this.props;
     onAnswer();
-  }
+  };
 
-  handleUserAnswerChange(event) {
-    const {onChange} = this.props;
+  const handleUserAnswerChange = (event) => {
     const value = event.target.checked;
     const index = event.target.dataset.answerIndex;
-
     onChange(index, value);
-  }
+  };
 
-  render() {
-    const {
-      question,
-      renderPlayer,
-      userAnswers,
-    } = this.props;
-    const {answers, genre} = question;
+  return (
+    <section className="game__screen">
+      <h2 className="game__title">Выберите {question.genre} треки</h2>
+      <form
+        className="game__tracks"
+        onSubmit={handleSubmit}
+      >
+        {
+          question.answers.map((answer, index) => (
+            <div className="track" key={`${index}-${answer.src}`}>
+              {renderPlayer(answer.src, index)}
 
-    return (
-      <section className="game__screen">
-        <h2 className="game__title">Выберите {genre} треки</h2>
-        <form
-          className="game__tracks"
-          onSubmit={this.handleSubmit.bind(this)}
-        >
-          {
-            answers.map((answer, index) => (
-              <div className="track" key={`${index}-${answer.src}`}>
-                {renderPlayer(answer.src, index)}
-
-                <div className="game__answer">
-                  <input
-                    className="game__input visually-hidden"
-                    type="checkbox"
-                    name="answer"
-                    value={`answer-${index}`}
-                    id={`answer-${index}`}
-                    data-answer-index={index}
-                    checked={userAnswers[index]}
-                    onChange={this.handleUserAnswerChange.bind(this)}
-                  />
-                  <label className="game__check" htmlFor={`answer-${index}`}>Отметить</label>
-                </div>
+              <div className="game__answer">
+                <input
+                  className="game__input visually-hidden"
+                  type="checkbox"
+                  name="answer"
+                  value={`answer-${index}`}
+                  id={`answer-${index}`}
+                  data-answer-index={index}
+                  checked={userAnswers[index]}
+                  onChange={handleUserAnswerChange}
+                />
+                <label className="game__check" htmlFor={`answer-${index}`}>Отметить</label>
               </div>
-            ))
-          }
+            </div>
+          ))
+        }
 
-          <button className="game__submit button" type="submit">Ответить</button>
-        </form>
-      </section>
-    );
-  }
-}
+        <button className="game__submit button" type="submit">Ответить</button>
+      </form>
+    </section>
+  );
+};
 
 
 GuessGenreGame.propTypes = {
