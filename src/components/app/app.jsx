@@ -1,13 +1,16 @@
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
+import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {connect} from "react-redux";
+
 import {ActionCreator} from "../../reducers/reducer.js";
+import {GameOverScreen} from "../game-over-screen/game-over-screen.jsx";
 import {GameScreen} from "../game-screen/game-screen.jsx";
 import {GameType} from "../../const.js";
 import {GuessArtistGame} from "../guess-artist-game/guess-artist-game.jsx";
 import {GuessGenreGameWithUserAnswer} from "../guess-genre-game/guess-genre-game.jsx";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {Welcome} from "../welcome/welcome.jsx";
-import {connect} from "react-redux";
+import {WinScreen} from "../win-screen/win-screen.jsx";
 import {withActivePlayer} from "../../hocs/with-active-player/with-active-player.jsx";
 
 
@@ -16,9 +19,10 @@ const GuessGenreGameWithPlayer = withActivePlayer(GuessGenreGameWithUserAnswer);
 
 
 class AppComponent extends PureComponent {
-  _renderGame() {
+  renderGame() {
     const {
       maxErrorsCount,
+      mistakes,
       questions,
       step,
       onWelcomeButtonClick,
@@ -26,11 +30,31 @@ class AppComponent extends PureComponent {
     } = this.props;
     const question = questions[step];
 
-    if (step === -1 || step >= questions.length) {
+    const handleReplayButtonClick = () => {};
+
+    if (step === -1) {
       return (
         <Welcome
           maxErrorsCount={maxErrorsCount}
           onWelcomeButtonClick={onWelcomeButtonClick}
+        />
+      );
+    }
+
+    if (mistakes > maxErrorsCount) {
+      return (
+        <GameOverScreen
+          onReplayButtonClick={handleReplayButtonClick}
+        />
+      );
+    }
+
+    if (step >= questions.length) {
+      return (
+        <WinScreen
+          questionsCount={questions.length}
+          mistakesCount={mistakes}
+          onReplayButtonClick={handleReplayButtonClick}
         />
       );
     }
@@ -70,7 +94,7 @@ class AppComponent extends PureComponent {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            {this._renderGame()}
+            {this.renderGame()}
           </Route>
           <Route exact path="/genre-game">
             <GuessGenreGameWithPlayer
@@ -93,6 +117,7 @@ class AppComponent extends PureComponent {
 
 AppComponent.propTypes = {
   maxErrorsCount: PropTypes.number.isRequired,
+  mistakes: PropTypes.number.isRequired,
   questions: PropTypes.arrayOf(PropTypes.object).isRequired,
   step: PropTypes.number.isRequired,
   onWelcomeButtonClick: PropTypes.func.isRequired,
@@ -104,6 +129,7 @@ const mapStateToProps = (state) => ({
   step: state.step,
   maxErrorsCount: state.maxErrorsCount,
   questions: state.questions,
+  mistakes: state.mistakes,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -16,6 +16,7 @@ const nodeMock = {
 
 const props = {
   maxErrorsCount: MAX_ERRORS_COUNT,
+  mistakes: 0,
   questions: [genreQuestion, artistQuestion],
   step: null,
   onWelcomeButtonClick: () => {},
@@ -64,6 +65,41 @@ describe(`Render App`, () => {
     });
 
     props.step = 1;
+
+    const treeSnapshot = renderer.create(
+        <Provider store={store}>
+          <AppComponent {...props} />
+        </Provider>, nodeMock
+    ).toJSON();
+
+    expect(treeSnapshot).toMatchSnapshot();
+  });
+
+
+  it(`Render WinScreen should match with snapshot`, () => {
+    const store = mockStore({
+      mistakes: 3,
+    });
+
+    props.step = 3;
+
+    const treeSnapshot = renderer.create(
+        <Provider store={store}>
+          <AppComponent {...props} />
+        </Provider>, nodeMock
+    ).toJSON();
+
+    expect(treeSnapshot).toMatchSnapshot();
+  });
+
+
+  it(`Render GameOver should match with snapshot`, () => {
+    const store = mockStore({
+      mistakes: 3,
+    });
+
+    props.step = 1;
+    props.mistakes = 4;
 
     const treeSnapshot = renderer.create(
         <Provider store={store}>

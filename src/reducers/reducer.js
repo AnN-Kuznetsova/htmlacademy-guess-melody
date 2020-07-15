@@ -6,7 +6,7 @@ import {questions} from "../mocks/questions.js";
 const initialState = {
   mistakes: 0,
   step: -1,
-  questions,
+  questions: [...questions, ...questions, ...questions],
   maxErrorsCount: MAX_ERRORS_COUNT,
 };
 
@@ -56,21 +56,13 @@ const ActionCreator = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.INCREMENT_STEP:
-      const nextStep = state.step + action.payload;
-
-      if (nextStep >= state.questions.length || state.mistakes > state.maxErrorsCount) {
-        return extend({}, initialState);
-      }
-
       return extend(state, {
-        step: nextStep,
+        step: state.step + action.payload,
       });
 
     case ActionType.INCREMENT_MISTAKES:
-      const mistakes = state.mistakes + action.payload;
-
       return extend(state, {
-        mistakes,
+        mistakes: state.mistakes + action.payload,
       });
 
     default:
