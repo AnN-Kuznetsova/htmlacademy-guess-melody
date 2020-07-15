@@ -4,7 +4,7 @@ import {ActionCreator} from "../../reducers/reducer.js";
 import {GameScreen} from "../game-screen/game-screen.jsx";
 import {GameType} from "../../const.js";
 import {GuessArtistGame} from "../guess-artist-game/guess-artist-game.jsx";
-import {GuessGenreGame} from "../guess-genre-game/guess-genre-game.jsx";
+import {GuessGenreGameWithUserAnswer} from "../guess-genre-game/guess-genre-game.jsx";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {Welcome} from "../welcome/welcome.jsx";
 import {connect} from "react-redux";
@@ -12,7 +12,7 @@ import {withActivePlayer} from "../../hocs/with-active-player/with-active-player
 
 
 const GuessArtistGameWithPlayer = withActivePlayer(GuessArtistGame);
-const GuessGenreGameWithPlayer = withActivePlayer(GuessGenreGame);
+const GuessGenreGameWithPlayer = withActivePlayer(GuessGenreGameWithUserAnswer);
 
 
 class AppComponent extends PureComponent {

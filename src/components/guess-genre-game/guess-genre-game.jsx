@@ -1,40 +1,32 @@
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
+
 import {GenreQuestionsPropType} from "../../types.js";
+import {withUserAnswer} from "../../hocs/with-user-answer/with-user-answer.jsx";
 
 
-export class GuessGenreGame extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      userAnswers: [false, false, false, false],
-    };
-
-    this._handleSubmit = this._handleSubmit.bind(this);
-    this._handleUserAnswerChange = this._handleUserAnswerChange.bind(this);
-  }
-
-  _handleSubmit(event) {
+class GuessGenreGame extends PureComponent {
+  handleSubmit(event) {
     event.preventDefault();
-    const {onAnswer, question} = this.props;
-    onAnswer(question, this.state.userAnswers);
+
+    const {onAnswer} = this.props;
+    onAnswer();
   }
 
-  _handleUserAnswerChange(event) {
+  handleUserAnswerChange(event) {
+    const {onChange} = this.props;
     const value = event.target.checked;
     const index = event.target.dataset.answerIndex;
 
-    this.setState((prevState) => {
-      const userAnswers = prevState.userAnswers.slice();
-      userAnswers[index] = value;
-      return {userAnswers};
-    });
+    onChange(index, value);
   }
 
   render() {
-    const {question, renderPlayer} = this.props;
-    const {userAnswers} = this.state;
+    const {
+      question,
+      renderPlayer,
+      userAnswers,
+    } = this.props;
     const {answers, genre} = question;
 
     return (
@@ -42,7 +34,7 @@ export class GuessGenreGame extends PureComponent {
         <h2 className="game__title">Выберите {genre} треки</h2>
         <form
           className="game__tracks"
-          onSubmit={this._handleSubmit}
+          onSubmit={this.handleSubmit.bind(this)}
         >
           {
             answers.map((answer, index) => (
@@ -58,7 +50,7 @@ export class GuessGenreGame extends PureComponent {
                     id={`answer-${index}`}
                     data-answer-index={index}
                     checked={userAnswers[index]}
-                    onChange={this._handleUserAnswerChange}
+                    onChange={this.handleUserAnswerChange.bind(this)}
                   />
                   <label className="game__check" htmlFor={`answer-${index}`}>Отметить</label>
                 </div>
@@ -76,6 +68,17 @@ export class GuessGenreGame extends PureComponent {
 
 GuessGenreGame.propTypes = {
   question: GenreQuestionsPropType.isRequired,
-  onAnswer: PropTypes.func.isRequired,
   renderPlayer: PropTypes.func.isRequired,
+  userAnswers: PropTypes.arrayOf(PropTypes.bool).isRequired,
+  onAnswer: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
+
+const GuessGenreGameWithUserAnswer = withUserAnswer(GuessGenreGame);
+
+
+export {
+  GuessGenreGame,
+  GuessGenreGameWithUserAnswer,
 };
