@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, {PureComponent} from "react";
+import React from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
 
@@ -18,17 +18,18 @@ const GuessArtistGameWithPlayer = withActivePlayer(GuessArtistGame);
 const GuessGenreGameWithPlayer = withActivePlayer(GuessGenreGameWithUserAnswer);
 
 
-class AppComponent extends PureComponent {
-  renderGame() {
-    const {
-      maxErrorsCount,
-      mistakes,
-      questions,
-      step,
-      onWelcomeButtonClick,
-      onUserAnswer,
-      resetGame,
-    } = this.props;
+const AppComponent = (props) => {
+  const {
+    maxErrorsCount,
+    mistakes,
+    questions,
+    step,
+    onWelcomeButtonClick,
+    onUserAnswer,
+    resetGame,
+  } = props;
+
+  const renderGame = () => {
     const question = questions[step];
 
     if (step === -1) {
@@ -84,34 +85,30 @@ class AppComponent extends PureComponent {
     }
 
     return null;
-  }
+  };
 
-  render() {
-    const {questions} = this.props;
-
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {this.renderGame()}
-          </Route>
-          <Route exact path="/genre-game">
-            <GuessGenreGameWithPlayer
-              question={questions[0]}
-              onAnswer={this._handleAnswer}
-            />
-          </Route>
-          <Route exact path="/artist-game">
-            <GuessArtistGameWithPlayer
-              question={questions[1]}
-              onAnswer={this._handleAnswer}
-            />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-}
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          {renderGame()}
+        </Route>
+        <Route exact path="/genre-game">
+          <GuessGenreGameWithPlayer
+            question={questions[0]}
+            onAnswer={onUserAnswer}
+          />
+        </Route>
+        <Route exact path="/artist-game">
+          <GuessArtistGameWithPlayer
+            question={questions[1]}
+            onAnswer={onUserAnswer}
+          />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 
 AppComponent.propTypes = {
