@@ -6,13 +6,14 @@ import {questions} from "../mocks/questions.js";
 const initialState = {
   mistakes: 0,
   step: -1,
-  questions: [...questions, ...questions, ...questions],
+  questions,
   maxErrorsCount: MAX_ERRORS_COUNT,
 };
 
 const ActionType = {
   INCREMENT_MISTAKES: `INCREMENT_MISTAKES`,
   INCREMENT_STEP: `INCREMENT_STEP`,
+  RESET: `RESET`,
 };
 
 
@@ -50,6 +51,11 @@ const ActionCreator = {
       payload: answerIsCorrect ? 0 : 1,
     };
   },
+
+  resetGame: () => ({
+    type: ActionType.RESET,
+    payload: null,
+  }),
 };
 
 
@@ -63,6 +69,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.INCREMENT_MISTAKES:
       return extend(state, {
         mistakes: state.mistakes + action.payload,
+      });
+
+    case ActionType.RESET:
+      return extend(initialState, {
+        step: 0,
       });
 
     default:

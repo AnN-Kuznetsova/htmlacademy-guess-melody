@@ -21,6 +21,7 @@ const props = {
   step: null,
   onWelcomeButtonClick: () => {},
   onUserAnswer: () => {},
+  resetGame: () => {},
 };
 
 

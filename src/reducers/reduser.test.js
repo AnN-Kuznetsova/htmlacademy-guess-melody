@@ -119,52 +119,52 @@ describe(`Reduser should work correctly`, () => {
   });
 
 
-  it(`Reducer should correctly switch to the initial state`, () => {
+  it(`Reducer should return default`, () => {
     expect(reducer({
       step: 5,
-      mistakes: 3,
+      mistakes: 1,
       questions,
       maxErrorsCount: 3,
     }, {
-      type: ActionType.INCREMENT_MISTAKES,
-      payload: 1,
+      type: ActionType.RESET,
+      payload: null,
     })).toEqual({
-      step: 5,
-      mistakes: 4,
+      step: 0,
+      mistakes: 0,
       questions,
       maxErrorsCount: 3,
     });
 
     expect(reducer({
-      step: questions.length - 1,
-      mistakes: 1,
+      step: 0,
+      mistakes: 0,
       questions,
       maxErrorsCount: 3,
     }, {
-      type: ActionType.INCREMENT_STEP,
-      payload: 1,
-    })).toEqual(initialState);
+      type: ActionType.RESET,
+      payload: null,
+    })).toEqual({
+      step: 0,
+      mistakes: 0,
+      questions,
+      maxErrorsCount: 3,
+    });
 
     expect(reducer({
-      step: questions.length - 1,
-      mistakes: 3,
+      step: -1,
+      mistakes: 0,
       questions,
       maxErrorsCount: 3,
     }, {
-      type: ActionType.INCREMENT_STEP,
-      payload: 1,
-    })).toEqual(initialState);
+      type: ActionType.RESET,
+      payload: null,
+    })).toEqual({
+      step: 0,
+      mistakes: 0,
+      questions,
+      maxErrorsCount: 3,
+    });
   });
-
-  expect(reducer({
-    step: 1,
-    mistakes: 4,
-    questions,
-    maxErrorsCount: 3,
-  }, {
-    type: ActionType.INCREMENT_STEP,
-    payload: 1,
-  })).toEqual(initialState);
 });
 
 
@@ -213,6 +213,15 @@ describe(`Action creators should work correctly`, () => {
       .toEqual({
         type: ActionType.INCREMENT_MISTAKES,
         payload: 1,
+      });
+  });
+
+
+  it(`Action creator for reset game returns action with null payload`, () => {
+    expect(ActionCreator.resetGame())
+      .toEqual({
+        type: ActionType.RESET,
+        payload: null,
       });
   });
 });
