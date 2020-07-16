@@ -40,7 +40,14 @@ const MockComponentWithAudio = withAudio(MockComponent);
 
 describe(`withAudio e2e-tests`, () => {
   it(`Checks that HOC's callback turn on audio (play)`, () => {
-    props.isPlaying = false;
+    let isPlaying = false;
+    const onPlayButtonClick = jest.fn(() => {
+      isPlaying = !isPlaying;
+      mockComponentWithAudioElement.setProps({isPlaying});
+    });
+
+    props.isPlaying = isPlaying;
+    props.onPlayButtonClick = onPlayButtonClick;
     const mockComponentWithAudioElement = mount(<MockComponentWithAudio {...props} />);
 
     const {_audioRef} = mockComponentWithAudioElement.instance();
@@ -50,11 +57,20 @@ describe(`withAudio e2e-tests`, () => {
     mockComponentWithAudioElement.find(`button`).simulate(`click`);
 
     expect(onPlay).toHaveBeenCalledTimes(1);
+    expect(onPlayButtonClick).toHaveBeenCalledTimes(1);
+    expect(mockComponentWithAudioElement.props().isPlaying).toEqual(true);
   });
 
 
   it(`Checks that HOC's callback turn off audio (pause)`, () => {
-    props.isPlaying = true;
+    let isPlaying = true;
+    const onPlayButtonClick = jest.fn(() => {
+      isPlaying = !isPlaying;
+      mockComponentWithAudioElement.setProps({isPlaying});
+    });
+
+    props.isPlaying = isPlaying;
+    props.onPlayButtonClick = onPlayButtonClick;
     const mockComponentWithAudioElement = mount(<MockComponentWithAudio {...props} />);
 
     const {_audioRef} = mockComponentWithAudioElement.instance();
@@ -64,5 +80,7 @@ describe(`withAudio e2e-tests`, () => {
     mockComponentWithAudioElement.find(`button`).simulate(`click`);
 
     expect(onPause).toHaveBeenCalledTimes(1);
+    expect(onPlayButtonClick).toHaveBeenCalledTimes(1);
+    expect(mockComponentWithAudioElement.props().isPlaying).toEqual(false);
   });
 });
