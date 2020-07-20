@@ -11,7 +11,6 @@ const ActionType = {
   LOAD_QUESTIONS: `LOAD_QUESTIONS`,
 };
 
-
 const ActionCreator = {
   loadQuestions: (questions) => ({
     type: ActionType.LOAD_QUESTIONS,
@@ -19,6 +18,14 @@ const ActionCreator = {
   }),
 };
 
+const Operation = {
+  loadQuestions: () => (dispatch, getState, api) => {
+    return api.get(`/questions`)
+      .then((response) => {
+        dispatch(ActionCreator.loadQuestions(response.data));
+      });
+  },
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -36,5 +43,6 @@ const reducer = (state = initialState, action) => {
 export {
   ActionCreator,
   ActionType,
+  Operation,
   reducer,
 };

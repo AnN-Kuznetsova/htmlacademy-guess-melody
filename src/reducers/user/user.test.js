@@ -1,4 +1,7 @@
-import {reducer, ActionType, ActionCreator, AuthorizationStatus} from "./user.js";
+import MockAdapter from "axios-mock-adapter";
+
+import {createAPI} from "../../api.js";
+import {reducer, ActionType, ActionCreator, AuthorizationStatus, Operation} from "./user.js";
 
 
 describe(`User reducer should work correctly`, () => {
@@ -60,5 +63,74 @@ describe(`User action creators should work correctly`, () => {
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: AuthorizationStatus.AUTH,
     });
+  });
+});
+
+
+describe(`User operation work correctly`, () => {
+  it(`Should make a correct API call to /login on positive authentication check`, () => {
+    const api = createAPI(() => {});
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const authVerifier = Operation.checkAuth();
+
+    apiMock
+      .onGet(`/login`)
+      .reply(200);
+
+    return authVerifier(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.REQUIRED_AUTHORIZATION,
+          payload: AuthorizationStatus.AUTH,
+        });
+      });
+  });
+
+
+  it(`Should make a correct API call to /login on negative authentication check`, () => {
+    const api = createAPI(() => {});
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const authVerifier = Operation.checkAuth();
+
+    apiMock
+      .onGet(`/login`)
+      .reply(400, {data: false});
+
+    return authVerifier(dispatch, () => {}, api)
+      .then()
+      .catch(() => {
+        expect(dispatch).toHaveBeenCalledTimes(0);
+      });
+  });
+
+
+  it(`Should make a correct API call to /login with post request`, () => {
+    const api = createAPI(() => {});
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const authData = {
+      login: `login`,
+      password: `password`,
+    };
+    const loginSender = Operation.login(authData);
+
+    apiMock
+      .onPost(`/login`, {
+        email: authData.login,
+        password: authData.password,
+      })
+      .reply(200);
+
+    return loginSender(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.REQUIRED_AUTHORIZATION,
+          payload: AuthorizationStatus.AUTH,
+        });
+      });
   });
 });
