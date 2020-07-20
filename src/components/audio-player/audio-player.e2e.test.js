@@ -1,11 +1,8 @@
-import Adapter from "enzyme-adapter-react-16";
 import React from 'react';
-import {configure, shallow} from 'enzyme';
+import {shallow} from 'enzyme';
 
 import {AudioPlayer} from './audio-player';
 
-
-configure({adapter: new Adapter()});
 
 const onPlayButtonClick = jest.fn();
 

@@ -1,9 +1,11 @@
 import React from "react";
 import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
-import {AppComponent} from "./app.jsx";
-import {MAX_ERRORS_COUNT, artistQuestion, genreQuestion} from "../../__test-data__/test-mocks.js";
 import {Provider} from "react-redux";
+
+import {AppComponent} from "./app.jsx";
+
+import {MAX_ERRORS_COUNT, artistQuestion, genreQuestion} from "../../__test-data__/test-mocks.js";
 
 
 const mockStore = configureStore([]);

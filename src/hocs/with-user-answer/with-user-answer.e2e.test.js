@@ -1,13 +1,10 @@
 import React from "react";
-import {configure, shallow} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import {shallow} from "enzyme";
 
 import {withUserAnswer} from "./with-user-answer";
 
 import {genreQuestion} from "../../__test-data__/test-mocks";
 
-
-configure({adapter: new Adapter()});
 
 const MockComponent = () => <div />;
 

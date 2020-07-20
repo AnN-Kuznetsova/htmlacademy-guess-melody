@@ -1,12 +1,9 @@
-import Adapter from "enzyme-adapter-react-16";
 import PropTypes from "prop-types";
 import React from "react";
-import {configure, mount} from 'enzyme';
+import {mount} from 'enzyme';
 
 import {withAudio} from "./with-audio";
 
-
-configure({adapter: new Adapter()});
 
 window.HTMLMediaElement.prototype.play = () => {};
 window.HTMLMediaElement.prototype.pause = () => {};
