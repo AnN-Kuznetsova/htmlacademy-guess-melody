@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDom from "react-dom";
-import {ConnectedApp} from "./components/app/app.jsx";
+import {App} from "./components/app/app.jsx";
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import {reducer} from "./reducers/reducer.js";
@@ -14,7 +14,7 @@ const store = createStore(
 
 ReactDom.render(
     <Provider store={store}>
-      <ConnectedApp />
+      <App />
     </Provider>,
     document.querySelector(`#root`)
 );

@@ -1,32 +1,38 @@
 import PropTypes from "prop-types";
-import React, {PureComponent} from "react";
+import React from "react";
+import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {connect} from "react-redux";
+
 import {ActionCreator} from "../../reducers/reducer.js";
-import {ConnectedGameScreen} from "../game-screen/game-screen.jsx";
+import {GameOverScreen} from "../game-over-screen/game-over-screen.jsx";
+import {GameScreen} from "../game-screen/game-screen.jsx";
 import {GameType} from "../../const.js";
 import {GuessArtistGame} from "../guess-artist-game/guess-artist-game.jsx";
-import {GuessGenreGame} from "../guess-genre-game/guess-genre-game.jsx";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {GuessGenreGameWithUserAnswer} from "../guess-genre-game/guess-genre-game.jsx";
 import {Welcome} from "../welcome/welcome.jsx";
-import {connect} from "react-redux";
-import {withAudioPlayer} from "../../hocs/with-audio-player/with-audio-player.jsx";
+import {WinScreen} from "../win-screen/win-screen.jsx";
+import {withActivePlayer} from "../../hocs/with-active-player/with-active-player.jsx";
 
 
-const GuessArtistGameWithPlayer = withAudioPlayer(GuessArtistGame);
-const GuessGenreGameWithPlayer = withAudioPlayer(GuessGenreGame);
+const GuessArtistGameWithPlayer = withActivePlayer(GuessArtistGame);
+const GuessGenreGameWithPlayer = withActivePlayer(GuessGenreGameWithUserAnswer);
 
 
-class App extends PureComponent {
-  _renderGame() {
-    const {
-      maxErrorsCount,
-      questions,
-      step,
-      onWelcomeButtonClick,
-      onUserAnswer,
-    } = this.props;
+const AppComponent = (props) => {
+  const {
+    maxErrorsCount,
+    mistakes,
+    questions,
+    step,
+    onWelcomeButtonClick,
+    onUserAnswer,
+    resetGame,
+  } = props;
+
+  const renderGame = () => {
     const question = questions[step];
 
-    if (step === -1 || step >= questions.length) {
+    if (step === -1) {
       return (
         <Welcome
           maxErrorsCount={maxErrorsCount}
@@ -35,25 +41,43 @@ class App extends PureComponent {
       );
     }
 
+    if (mistakes > maxErrorsCount) {
+      return (
+        <GameOverScreen
+          onReplayButtonClick={resetGame}
+        />
+      );
+    }
+
+    if (step >= questions.length) {
+      return (
+        <WinScreen
+          questionsCount={questions.length}
+          mistakesCount={mistakes}
+          onReplayButtonClick={resetGame}
+        />
+      );
+    }
+
     if (question) {
       switch (question.type) {
         case GameType.ARTIST:
           return (
-            <ConnectedGameScreen type={question.type}>
+            <GameScreen type={question.type}>
               <GuessArtistGameWithPlayer
                 question={question}
                 onAnswer={onUserAnswer}
               />
-            </ConnectedGameScreen>
+            </GameScreen>
           );
         case GameType.GENRE:
           return (
-            <ConnectedGameScreen type={question.type}>
+            <GameScreen type={question.type}>
               <GuessGenreGameWithPlayer
                 question={question}
                 onAnswer={onUserAnswer}
               />
-            </ConnectedGameScreen>
+            </GameScreen>
           );
         default:
           return null;
@@ -61,42 +85,40 @@ class App extends PureComponent {
     }
 
     return null;
-  }
+  };
 
-  render() {
-    const {questions} = this.props;
-
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {this._renderGame()}
-          </Route>
-          <Route exact path="/genre-game">
-            <GuessGenreGameWithPlayer
-              question={questions[0]}
-              onAnswer={this._handleAnswer}
-            />
-          </Route>
-          <Route exact path="/artist-game">
-            <GuessArtistGameWithPlayer
-              question={questions[1]}
-              onAnswer={this._handleAnswer}
-            />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-}
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          {renderGame()}
+        </Route>
+        <Route exact path="/genre-game">
+          <GuessGenreGameWithPlayer
+            question={questions[0]}
+            onAnswer={onUserAnswer}
+          />
+        </Route>
+        <Route exact path="/artist-game">
+          <GuessArtistGameWithPlayer
+            question={questions[1]}
+            onAnswer={onUserAnswer}
+          />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 
-App.propTypes = {
+AppComponent.propTypes = {
   maxErrorsCount: PropTypes.number.isRequired,
+  mistakes: PropTypes.number.isRequired,
   questions: PropTypes.arrayOf(PropTypes.object).isRequired,
   step: PropTypes.number.isRequired,
   onWelcomeButtonClick: PropTypes.func.isRequired,
   onUserAnswer: PropTypes.func.isRequired,
+  resetGame: PropTypes.func.isRequired,
 };
 
 
@@ -104,6 +126,7 @@ const mapStateToProps = (state) => ({
   step: state.step,
   maxErrorsCount: state.maxErrorsCount,
   questions: state.questions,
+  mistakes: state.mistakes,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -114,12 +137,15 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.incrementMistake(question, answer));
     dispatch(ActionCreator.incrementStep());
   },
+  resetGame() {
+    dispatch(ActionCreator.resetGame());
+  },
 });
 
-const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
+const App = connect(mapStateToProps, mapDispatchToProps)(AppComponent);
 
 
 export {
+  AppComponent,
   App,
-  ConnectedApp,
 };

@@ -1,14 +1,16 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {shallow} from "enzyme";
+import {mount} from "enzyme";
 import {GuessGenreGame} from "./guess-genre-game.jsx";
 import {genreQuestion} from "../../__test-data__/test-mocks.js";
 
 
 const props = {
   question: genreQuestion,
-  onAnswer: () => {},
   renderPlayer: () => {},
+  userAnswers: [false, false, false, false],
+  onAnswer: () => {},
+  onChange: () => {},
 };
 
 const {genre} = props.question;
@@ -19,15 +21,24 @@ const nodeMock = {
   }
 };
 
-const guessGenreGameElement = shallow(<GuessGenreGame {...props} />);
+const guessGenreGameElement = mount(<GuessGenreGame {...props} />);
 
 
 describe(`Render GuessGenreGame`, () => {
   it(`Should match with snapshot`, () => {
-    const guessGenreGameSnapshot = renderer.create(
+    let guessGenreGameSnapshot = renderer.create(
         <GuessGenreGame {...props} />, nodeMock
     ).toJSON();
+    expect(guessGenreGameSnapshot).toMatchSnapshot();
 
+    guessGenreGameSnapshot = renderer.create(
+        <GuessGenreGame {...props} userAnswers={[false, true, false, false]} />, nodeMock
+    ).toJSON();
+    expect(guessGenreGameSnapshot).toMatchSnapshot();
+
+    guessGenreGameSnapshot = renderer.create(
+        <GuessGenreGame {...props} userAnswers={[true, true, false, true]} />, nodeMock
+    ).toJSON();
     expect(guessGenreGameSnapshot).toMatchSnapshot();
   });
 

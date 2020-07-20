@@ -1,7 +1,7 @@
 import React from "react";
 import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
-import {App} from "./app.jsx";
+import {AppComponent} from "./app.jsx";
 import {MAX_ERRORS_COUNT, artistQuestion, genreQuestion} from "../../__test-data__/test-mocks.js";
 import {Provider} from "react-redux";
 
@@ -16,10 +16,12 @@ const nodeMock = {
 
 const props = {
   maxErrorsCount: MAX_ERRORS_COUNT,
+  mistakes: 0,
   questions: [genreQuestion, artistQuestion],
   step: null,
   onWelcomeButtonClick: () => {},
   onUserAnswer: () => {},
+  resetGame: () => {},
 };
 
 
@@ -33,7 +35,7 @@ describe(`Render App`, () => {
 
     const treeSnapshot = renderer.create(
         <Provider store={store}>
-          <App {...props} />
+          <AppComponent {...props} />
         </Provider>
     ).toJSON();
 
@@ -50,7 +52,7 @@ describe(`Render App`, () => {
 
     const treeSnapshot = renderer.create(
         <Provider store={store}>
-          <App {...props} />
+          <AppComponent {...props} />
         </Provider>, nodeMock
     ).toJSON();
 
@@ -67,7 +69,42 @@ describe(`Render App`, () => {
 
     const treeSnapshot = renderer.create(
         <Provider store={store}>
-          <App {...props} />
+          <AppComponent {...props} />
+        </Provider>, nodeMock
+    ).toJSON();
+
+    expect(treeSnapshot).toMatchSnapshot();
+  });
+
+
+  it(`Render WinScreen should match with snapshot`, () => {
+    const store = mockStore({
+      mistakes: 3,
+    });
+
+    props.step = 3;
+
+    const treeSnapshot = renderer.create(
+        <Provider store={store}>
+          <AppComponent {...props} />
+        </Provider>, nodeMock
+    ).toJSON();
+
+    expect(treeSnapshot).toMatchSnapshot();
+  });
+
+
+  it(`Render GameOver should match with snapshot`, () => {
+    const store = mockStore({
+      mistakes: 3,
+    });
+
+    props.step = 1;
+    props.mistakes = 4;
+
+    const treeSnapshot = renderer.create(
+        <Provider store={store}>
+          <AppComponent {...props} />
         </Provider>, nodeMock
     ).toJSON();
 

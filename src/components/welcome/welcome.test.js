@@ -1,8 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {shallow} from "enzyme";
+
 import {MAX_ERRORS_COUNT} from "../../__test-data__/test-mocks.js";
 import {Welcome} from "./welcome.jsx";
-import {shallow} from "enzyme";
 
 
 const props = {

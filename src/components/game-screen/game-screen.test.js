@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {GameScreen} from "./game-screen.jsx";
+import {GameScreenComponent} from "./game-screen.jsx";
 import {GameType} from "../../const.js";
 import {shallow} from "enzyme";
 
@@ -19,7 +19,7 @@ describe(`Render GameScreen`, () => {
 
     it(`Should match with snapshot`, () => {
       const gameScreenSnapshot = renderer.create(
-          <GameScreen {...props} />
+          <GameScreenComponent {...props} />
       ).toJSON();
 
       expect(gameScreenSnapshot).toMatchSnapshot();
@@ -27,7 +27,7 @@ describe(`Render GameScreen`, () => {
 
 
     it(`Should render correct game-type`, () => {
-      const gameScreenElement = shallow(<GameScreen {...props} />);
+      const gameScreenElement = shallow(<GameScreenComponent {...props} />);
 
       expect(gameScreenElement.prop(`className`))
         .toEqual(expect.stringContaining(`game--${GameType.ARTIST}`));
@@ -45,7 +45,7 @@ describe(`Render GameScreen`, () => {
 
     it(`Should match with snapshot`, () => {
       const gameScreenSnapshot = renderer.create(
-          <GameScreen {...props} />
+          <GameScreenComponent {...props} />
       ).toJSON();
 
       expect(gameScreenSnapshot).toMatchSnapshot();
@@ -53,7 +53,7 @@ describe(`Render GameScreen`, () => {
 
 
     it(`Should render correct game-type`, () => {
-      const gameScreenElement = shallow(<GameScreen {...props} />);
+      const gameScreenElement = shallow(<GameScreenComponent {...props} />);
 
       expect(gameScreenElement.prop(`className`))
         .toEqual(expect.stringContaining(`game--${GameType.GENRE}`));
