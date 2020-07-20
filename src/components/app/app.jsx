@@ -4,18 +4,18 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {ActionCreator} from "../../reducers/game/game.js";
-import {AutorizationStatus} from "../../reducers/user/user.js";
+// import {AutorizationStatus} from "../../reducers/user/user.js";
 import {GameOverScreen} from "../game-over-screen/game-over-screen.jsx";
 import {GameScreen} from "../game-screen/game-screen.jsx";
 import {GameType} from "../../const.js";
 import {GuessArtistGame} from "../guess-artist-game/guess-artist-game.jsx";
 import {GuessGenreGameWithUserAnswer} from "../guess-genre-game/guess-genre-game.jsx";
-import {Operation as UserOperation} from "../../reducer/user/user.js";
+import {Operation as UserOperation} from "../../reducers/user/user.js";
 import {Welcome} from "../welcome/welcome.jsx";
 import {WinScreen} from "../win-screen/win-screen.jsx";
-import {getStep, getMistakes, getMaxErrorsCount} from "../../reducer/game/selectors.js";
-import {getQuestions} from "../../reducer/data/selectors.js";
-import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
+import {getStep, getMistakes, getMaxErrorsCount} from "../../reducers/game/selectors.js";
+import {getQuestions} from "../../reducers/data/selectors.js";
+import {getAuthorizationStatus} from "../../reducers/user/selectors.js";
 import {withActivePlayer} from "../../hocs/with-active-player/with-active-player.jsx";
 
 
@@ -25,8 +25,8 @@ const GuessGenreGameWithPlayer = withActivePlayer(GuessGenreGameWithUserAnswer);
 
 const AppComponent = (props) => {
   const {
-    authorizationStatus,
-    login,
+    // authorizationStatus,
+    // login,
     maxErrorsCount,
     mistakes,
     questions,
@@ -119,8 +119,8 @@ const AppComponent = (props) => {
 
 
 AppComponent.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  login: PropTypes.func.isRequired,
+  // authorizationStatus: PropTypes.string.isRequired,
+  // login: PropTypes.func.isRequired,
   maxErrorsCount: PropTypes.number.isRequired,
   mistakes: PropTypes.number.isRequired,
   questions: PropTypes.arrayOf(PropTypes.object).isRequired,
