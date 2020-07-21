@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import {connect} from "react-redux";
 
-import {GameType} from "../../const";
+import {GameType} from "../../const.js";
 import {Mistakes} from "../mistakes/mistakes.jsx";
 import {getMistakes} from "../../reducers/game/selectors.js";
 

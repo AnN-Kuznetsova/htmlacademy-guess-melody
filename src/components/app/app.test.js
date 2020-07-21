@@ -4,6 +4,7 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 
 import {AppComponent} from "./app.jsx";
+import {NameSpace} from "../../reducers/name-space.js";
 
 import {MAX_ERRORS_COUNT, artistQuestion, genreQuestion} from "../../__test-data__/test-mocks.js";
 
@@ -30,7 +31,9 @@ const props = {
 describe(`Render App`, () => {
   it(`Render Welcome should match with snapshot`, () => {
     const store = mockStore({
-      mistakes: 0,
+      [NameSpace.GAME]: {
+        mistakes: 0,
+      },
     });
 
     props.step = -1;
@@ -47,7 +50,9 @@ describe(`Render App`, () => {
 
   it(`Render GuesGenreGame should match with snapshot`, () => {
     const store = mockStore({
-      mistakes: 3,
+      [NameSpace.GAME]: {
+        mistakes: 3,
+      },
     });
 
     props.step = 0;
@@ -64,7 +69,9 @@ describe(`Render App`, () => {
 
   it(`Render GuesArtistGame should match with snapshot`, () => {
     const store = mockStore({
-      mistakes: 3,
+      [NameSpace.GAME]: {
+        mistakes: 3,
+      },
     });
 
     props.step = 1;
@@ -81,7 +88,9 @@ describe(`Render App`, () => {
 
   it(`Render WinScreen should match with snapshot`, () => {
     const store = mockStore({
-      mistakes: 3,
+      [NameSpace.GAME]: {
+        mistakes: 3,
+      },
     });
 
     props.step = 3;
@@ -98,7 +107,9 @@ describe(`Render App`, () => {
 
   it(`Render GameOver should match with snapshot`, () => {
     const store = mockStore({
-      mistakes: 3,
+      [NameSpace.GAME]: {
+        mistakes: 0,
+      },
     });
 
     props.step = 1;
