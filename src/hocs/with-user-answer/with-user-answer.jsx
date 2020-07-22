@@ -17,6 +17,16 @@ export const withUserAnswer = (Component) => {
       this.handleChange = this.handleChange.bind(this);
     }
 
+    componentDidUpdate(prevProps) {
+      const {question} = this.props;
+
+      if (prevProps.question !== question) {
+        this.setState({
+          answers: new Array(question.answers.length).fill(false),
+        })
+      }
+    }
+
     handleAnswer() {
       const {question, onAnswer} = this.props;
       const {answers} = this.state;
