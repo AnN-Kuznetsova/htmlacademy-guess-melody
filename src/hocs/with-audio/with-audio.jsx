@@ -1,5 +1,5 @@
-import React, {createRef, PureComponent} from "react";
 import PropTypes from "prop-types";
+import React, {createRef, PureComponent} from "react";
 
 
 export const withAudio = (Component) => {
@@ -13,6 +13,7 @@ export const withAudio = (Component) => {
         progress: 0,
         isLoading: true,
         isPlaying: props.isPlaying,
+        step: null,
       };
 
       this.handlePlayButtonClick = this.handlePlayButtonClick.bind(this);
@@ -43,6 +44,15 @@ export const withAudio = (Component) => {
 
     componentDidUpdate() {
       const audio = this._audioRef.current;
+
+      if (this.state.step !== this.props.step) {
+        audio.src = this.props.src;
+        audio.pause();
+        this.setState({
+          step: this.props.step,
+          isPlaying: false,
+        });
+      }
 
       if (this.props.isPlaying) {
         audio.play();
@@ -91,6 +101,7 @@ export const withAudio = (Component) => {
     src: PropTypes.string.isRequired,
     isPlaying: PropTypes.bool.isRequired,
     onPlayButtonClick: PropTypes.func.isRequired,
+    step: PropTypes.number.isRequired,
   };
 
 

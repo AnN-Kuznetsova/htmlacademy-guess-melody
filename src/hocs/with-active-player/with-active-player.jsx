@@ -1,4 +1,6 @@
+import PropTypes from "prop-types";
 import React, {PureComponent} from 'react';
+
 import {AudioPlayerWithAudio as AudioPlayer} from "../../components/audio-player/audio-player.jsx";
 
 
@@ -10,6 +12,14 @@ export const withActivePlayer = (Component) => {
       this.state = {
         activePlayerId: 0,
       };
+    }
+
+    componentDidUpdate(prevProps) {
+      if (prevProps.step !== this.props.step) {
+        this.setState({
+          activePlayerId: 0,
+        });
+      }
     }
 
     handlePlayButtonClick(id) {
@@ -28,6 +38,7 @@ export const withActivePlayer = (Component) => {
           src={src}
           isPlaying={id === activePlayerId}
           onPlayButtonClick={this.handlePlayButtonClick.bind(this, id)}
+          step={this.props.step}
         />
       );
 
@@ -42,7 +53,9 @@ export const withActivePlayer = (Component) => {
   }
 
 
-  WithActivePlayer.propTypes = {};
+  WithActivePlayer.propTypes = {
+    step: PropTypes.number.isRequired,
+  };
 
 
   return WithActivePlayer;

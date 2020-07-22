@@ -3,6 +3,7 @@ import React from "react";
 
 import {GenreQuestionItem} from "../genre-question-item/genre-question-item.jsx";
 import {GenreQuestionsPropType} from "../../types.js";
+import {withActivePlayer} from "../../hocs/with-active-player/with-active-player.jsx";
 import {withUserAnswer} from "../../hocs/with-user-answer/with-user-answer.jsx";
 
 
@@ -57,9 +58,10 @@ GuessGenreGame.propTypes = {
 
 
 const GuessGenreGameWithUserAnswer = withUserAnswer(GuessGenreGame);
+const GuessGenreGameWithPlayer = withActivePlayer(GuessGenreGameWithUserAnswer);
 
 
 export {
   GuessGenreGame,
-  GuessGenreGameWithUserAnswer,
+  GuessGenreGameWithPlayer,
 };

@@ -23,7 +23,7 @@ export const withUserAnswer = (Component) => {
       if (prevProps.question !== question) {
         this.setState({
           answers: new Array(question.answers.length).fill(false),
-        })
+        });
       }
     }
 
