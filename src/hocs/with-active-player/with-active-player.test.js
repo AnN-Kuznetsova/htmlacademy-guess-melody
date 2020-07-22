@@ -16,7 +16,7 @@ const MockComponentWithActivePlayer = withActivePlayer(MockComponent);
 describe(`Render withActivePlayer`, () => {
   it(`Should match with snapshot`, () => {
     const mockComponentWithActivePlayerrSnapshot = renderer.create(
-        <MockComponentWithActivePlayer />
+        <MockComponentWithActivePlayer step={0}/>
     ).toJSON();
 
     expect(mockComponentWithActivePlayerrSnapshot).toMatchSnapshot();

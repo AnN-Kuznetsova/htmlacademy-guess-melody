@@ -47,7 +47,6 @@ export const withAudio = (Component) => {
 
       if (this.state.step !== this.props.step) {
         audio.src = this.props.src;
-        audio.pause();
         this.setState({
           step: this.props.step,
           isPlaying: false,

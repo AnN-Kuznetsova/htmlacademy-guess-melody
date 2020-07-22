@@ -30,6 +30,7 @@ const props = {
   src: ``,
   isPlaying: null,
   onPlayButtonClick: () => {},
+  step: 0,
 };
 
 const MockComponentWithAudio = withAudio(MockComponent);
