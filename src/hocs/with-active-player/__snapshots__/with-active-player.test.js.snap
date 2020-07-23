@@ -3,5 +3,6 @@
 exports[`Render withActivePlayer Should match with snapshot 1`] = `
 <div
   renderPlayer={[Function]}
+  step={0}
 />
 `;

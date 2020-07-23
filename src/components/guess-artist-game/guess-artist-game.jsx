@@ -1,9 +1,11 @@
 import PropTypes from "prop-types";
 import React from "react";
+
 import {ArtistQuestionsPropType} from "../../types.js";
+import {withActivePlayer} from "../../hocs/with-active-player/with-active-player.jsx";
 
 
-export const GuessArtistGame = (props) => {
+const GuessArtistGame = (props) => {
   const {question, onAnswer, renderPlayer} = props;
   const {answers, song} = question;
 
@@ -49,4 +51,13 @@ GuessArtistGame.propTypes = {
   question: ArtistQuestionsPropType.isRequired,
   onAnswer: PropTypes.func.isRequired,
   renderPlayer: PropTypes.func.isRequired,
+};
+
+
+const GuessArtistGameWithPlayer = withActivePlayer(GuessArtistGame);
+
+
+export {
+  GuessArtistGame,
+  GuessArtistGameWithPlayer,
 };

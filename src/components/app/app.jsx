@@ -3,23 +3,25 @@ import React from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
 
-import {ActionCreator} from "../../reducers/reducer.js";
+import {ActionCreator} from "../../reducers/game/game.js";
+// import {AutorizationStatus} from "../../reducers/user/user.js";
 import {GameOverScreen} from "../game-over-screen/game-over-screen.jsx";
 import {GameScreen} from "../game-screen/game-screen.jsx";
 import {GameType} from "../../const.js";
-import {GuessArtistGame} from "../guess-artist-game/guess-artist-game.jsx";
-import {GuessGenreGameWithUserAnswer} from "../guess-genre-game/guess-genre-game.jsx";
+import {GuessArtistGameWithPlayer} from "../guess-artist-game/guess-artist-game.jsx";
+import {GuessGenreGameWithPlayer} from "../guess-genre-game/guess-genre-game.jsx";
+import {Operation as UserOperation} from "../../reducers/user/user.js";
 import {Welcome} from "../welcome/welcome.jsx";
 import {WinScreen} from "../win-screen/win-screen.jsx";
-import {withActivePlayer} from "../../hocs/with-active-player/with-active-player.jsx";
-
-
-const GuessArtistGameWithPlayer = withActivePlayer(GuessArtistGame);
-const GuessGenreGameWithPlayer = withActivePlayer(GuessGenreGameWithUserAnswer);
+import {getStep, getMistakes, getMaxErrorsCount} from "../../reducers/game/selectors.js";
+import {getQuestions} from "../../reducers/data/selectors.js";
+import {getAuthorizationStatus} from "../../reducers/user/selectors.js";
 
 
 const AppComponent = (props) => {
   const {
+    // authorizationStatus,
+    // login,
     maxErrorsCount,
     mistakes,
     questions,
@@ -67,6 +69,7 @@ const AppComponent = (props) => {
               <GuessArtistGameWithPlayer
                 question={question}
                 onAnswer={onUserAnswer}
+                step={step}
               />
             </GameScreen>
           );
@@ -76,6 +79,7 @@ const AppComponent = (props) => {
               <GuessGenreGameWithPlayer
                 question={question}
                 onAnswer={onUserAnswer}
+                step={step}
               />
             </GameScreen>
           );
@@ -93,7 +97,7 @@ const AppComponent = (props) => {
         <Route exact path="/">
           {renderGame()}
         </Route>
-        <Route exact path="/genre-game">
+        {/* <Route exact path="/genre-game">
           <GuessGenreGameWithPlayer
             question={questions[0]}
             onAnswer={onUserAnswer}
@@ -104,7 +108,7 @@ const AppComponent = (props) => {
             question={questions[1]}
             onAnswer={onUserAnswer}
           />
-        </Route>
+        </Route> */}
       </Switch>
     </BrowserRouter>
   );
@@ -112,6 +116,8 @@ const AppComponent = (props) => {
 
 
 AppComponent.propTypes = {
+  // authorizationStatus: PropTypes.string.isRequired,
+  // login: PropTypes.func.isRequired,
   maxErrorsCount: PropTypes.number.isRequired,
   mistakes: PropTypes.number.isRequired,
   questions: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -123,13 +129,17 @@ AppComponent.propTypes = {
 
 
 const mapStateToProps = (state) => ({
-  step: state.step,
-  maxErrorsCount: state.maxErrorsCount,
-  questions: state.questions,
-  mistakes: state.mistakes,
+  authorizationStatus: getAuthorizationStatus(state),
+  step: getStep(state),
+  maxErrorsCount: getMaxErrorsCount(state),
+  questions: getQuestions(state),
+  mistakes: getMistakes(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  login(authData) {
+    dispatch(UserOperation.login(authData));
+  },
   onWelcomeButtonClick() {
     dispatch(ActionCreator.incrementStep());
   },
