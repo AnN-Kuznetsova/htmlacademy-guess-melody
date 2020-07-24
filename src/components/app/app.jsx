@@ -4,7 +4,7 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {ActionCreator} from "../../reducers/game/game.js";
-// import {AuthorizationStatus} from "../../reducers/user/user.js";
+import {AuthorizationStatus} from "../../reducers/user/user.js";
 import {AuthScreen} from "../auth-screen/auth-screen.jsx";
 import {GameOverScreen} from "../game-over-screen/game-over-screen.jsx";
 import {GameScreen} from "../game-screen/game-screen.jsx";
@@ -21,8 +21,8 @@ import {getAuthorizationStatus} from "../../reducers/user/selectors.js";
 
 const AppComponent = (props) => {
   const {
-    // authorizationStatus,
-    // login,
+    authorizationStatus,
+    login,
     maxErrorsCount,
     mistakes,
     questions,
@@ -53,13 +53,24 @@ const AppComponent = (props) => {
     }
 
     if (step >= questions.length) {
-      return (
-        <WinScreen
-          questionsCount={questions.length}
-          mistakesCount={mistakes}
-          onReplayButtonClick={resetGame}
-        />
-      );
+      if (authorizationStatus === AuthorizationStatus.AUTH) {
+        return (
+          <WinScreen
+            questionsCount={questions.length}
+            mistakesCount={mistakes}
+            onReplayButtonClick={resetGame}
+          />
+        );
+      } else if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
+        return (
+          <AuthScreen
+            onSubmit={login}
+            onReplayButtonClick={resetGame}
+          />
+        );
+      }
+
+      return null;
     }
 
     if (question) {
@@ -109,13 +120,13 @@ const AppComponent = (props) => {
             question={questions[1]}
             onAnswer={onUserAnswer}
           />
-        </Route> */
-          <Route exact path="/dev-auth">
-            <AuthScreen
-              onSubmit={() => {}}
-              onReplayButtonClick={() => {}}
-            />
-          </Route>}
+        </Route>
+        <Route exact path="/dev-auth">
+          <AuthScreen
+            onSubmit={() => {}}
+            onReplayButtonClick={() => {}}
+          />
+        </Route>*/}
       </Switch>
     </BrowserRouter>
   );
@@ -123,8 +134,8 @@ const AppComponent = (props) => {
 
 
 AppComponent.propTypes = {
-  // authorizationStatus: PropTypes.string.isRequired,
-  // login: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  login: PropTypes.func.isRequired,
   maxErrorsCount: PropTypes.number.isRequired,
   mistakes: PropTypes.number.isRequired,
   questions: PropTypes.arrayOf(PropTypes.object).isRequired,
