@@ -4,7 +4,8 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {ActionCreator} from "../../reducers/game/game.js";
-// import {AutorizationStatus} from "../../reducers/user/user.js";
+// import {AuthorizationStatus} from "../../reducers/user/user.js";
+import {AuthScreen} from "../auth-screen/auth-screen.jsx";
 import {GameOverScreen} from "../game-over-screen/game-over-screen.jsx";
 import {GameScreen} from "../game-screen/game-screen.jsx";
 import {GameType} from "../../const.js";
@@ -108,7 +109,13 @@ const AppComponent = (props) => {
             question={questions[1]}
             onAnswer={onUserAnswer}
           />
-        </Route> */}
+        </Route> */
+          <Route exact path="/dev-auth">
+            <AuthScreen
+              onSubmit={() => {}}
+              onReplayButtonClick={() => {}}
+            />
+          </Route>}
       </Switch>
     </BrowserRouter>
   );
