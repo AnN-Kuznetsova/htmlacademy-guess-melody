@@ -34,7 +34,7 @@ const AppComponent = (props) => {
     resetGame,
   } = props;
 
-  const renderGame = () => {
+  const renderGameScreen = () => {
     const question = questions[step];
 
     if (step === -1) {
@@ -47,29 +47,14 @@ const AppComponent = (props) => {
     }
 
     if (mistakes > maxErrorsCount) {
-      return (
-        <GameOverScreen
-          onReplayButtonClick={resetGame}
-        />
-      );
+      return history.push(AppRoute.LOSE);
     }
 
     if (step >= questions.length) {
       if (authorizationStatus === AuthorizationStatus.AUTH) {
-        return (
-          <WinScreen
-            questionsCount={questions.length}
-            mistakesCount={mistakes}
-            onReplayButtonClick={resetGame}
-          />
-        );
+        return history.push(AppRoute.RESULT);
       } else if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
-        return (
-          <AuthScreen
-            onSubmit={login}
-            onReplayButtonClick={resetGame}
-          />
-        );
+        return history.push(AppRoute.LOGIN);
       }
 
       return null;
@@ -109,7 +94,7 @@ const AppComponent = (props) => {
     <Router history={history}>
       <Switch>
         <Route exact path={AppRoute.ROOT}>
-          {renderGame()}
+          {renderGameScreen()}
         </Route>
         <Route exact path={AppRoute.LOGIN}>
           <AuthScreen
