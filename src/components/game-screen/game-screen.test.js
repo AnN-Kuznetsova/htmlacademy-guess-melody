@@ -1,8 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {shallow} from "enzyme";
+import {Router} from "react-router-dom";
+
 import {GameScreenComponent} from "./game-screen.jsx";
 import {GameType} from "../../const.js";
-import {shallow} from "enzyme";
+import {history} from "../../history.js";
 
 
 const children = <div className="children-component" />;
@@ -14,23 +17,20 @@ describe(`Render GameScreen`, () => {
       type: GameType.ARTIST,
       children,
       mistakes: 3,
+      goToWelcome: () => {},
     };
 
 
     it(`Should match with snapshot`, () => {
       const gameScreenSnapshot = renderer.create(
-          <GameScreenComponent {...props} />
+          <Router history={history} >
+            <GameScreenComponent {...props} >
+              {children}
+            </GameScreenComponent>
+          </Router>
       ).toJSON();
 
       expect(gameScreenSnapshot).toMatchSnapshot();
-    });
-
-
-    it(`Should render correct game-type`, () => {
-      const gameScreenElement = shallow(<GameScreenComponent {...props} />);
-
-      expect(gameScreenElement.prop(`className`))
-        .toEqual(expect.stringContaining(`game--${GameType.ARTIST}`));
     });
   });
 
@@ -40,23 +40,20 @@ describe(`Render GameScreen`, () => {
       type: GameType.GENRE,
       children,
       mistakes: 3,
+      goToWelcome: () => {},
     };
 
 
     it(`Should match with snapshot`, () => {
       const gameScreenSnapshot = renderer.create(
-          <GameScreenComponent {...props} />
+          <Router history={history} >
+            <GameScreenComponent {...props} >
+              {children}
+            </GameScreenComponent>
+          </Router>
       ).toJSON();
 
       expect(gameScreenSnapshot).toMatchSnapshot();
-    });
-
-
-    it(`Should render correct game-type`, () => {
-      const gameScreenElement = shallow(<GameScreenComponent {...props} />);
-
-      expect(gameScreenElement.prop(`className`))
-        .toEqual(expect.stringContaining(`game--${GameType.GENRE}`));
     });
   });
 });
