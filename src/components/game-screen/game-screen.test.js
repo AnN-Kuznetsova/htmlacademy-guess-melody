@@ -1,6 +1,5 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {shallow} from "enzyme";
 import {Router} from "react-router-dom";
 
 import {GameScreenComponent} from "./game-screen.jsx";
