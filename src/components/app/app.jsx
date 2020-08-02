@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {Switch, Route, Router} from "react-router-dom";
+import {Switch, Route, Router, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {ActionCreator} from "../../reducers/game/game.js";
@@ -47,14 +47,14 @@ const AppComponent = (props) => {
     }
 
     if (mistakes > maxErrorsCount) {
-      return history.push(AppRoute.LOSE);
+      return (<Redirect to={AppRoute.LOSE} />);
     }
 
     if (step >= questions.length) {
       if (authorizationStatus === AuthorizationStatus.AUTH) {
-        return history.push(AppRoute.RESULT);
+        return (<Redirect to={AppRoute.RESULT} />);
       } else if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
-        return history.push(AppRoute.LOGIN);
+        return (<Redirect to={AppRoute.LOGIN} />);
       }
 
       return null;
