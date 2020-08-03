@@ -1,22 +1,24 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route, Router, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {ActionCreator} from "../../reducers/game/game.js";
+import {AppRoute, GameType} from "../../const.js";
 import {AuthorizationStatus} from "../../reducers/user/user.js";
 import {AuthScreen} from "../auth-screen/auth-screen.jsx";
 import {GameOverScreen} from "../game-over-screen/game-over-screen.jsx";
 import {GameScreen} from "../game-screen/game-screen.jsx";
-import {GameType} from "../../const.js";
 import {GuessArtistGameWithPlayer} from "../guess-artist-game/guess-artist-game.jsx";
 import {GuessGenreGameWithPlayer} from "../guess-genre-game/guess-genre-game.jsx";
 import {Operation as UserOperation} from "../../reducers/user/user.js";
+import {PrivateRoute} from "../private-route/private-route.jsx";
 import {Welcome} from "../welcome/welcome.jsx";
 import {WinScreen} from "../win-screen/win-screen.jsx";
 import {getStep, getMistakes, getMaxErrorsCount} from "../../reducers/game/selectors.js";
 import {getQuestions} from "../../reducers/data/selectors.js";
 import {getAuthorizationStatus} from "../../reducers/user/selectors.js";
+import {history} from "../../history.js";
 
 
 const AppComponent = (props) => {
@@ -32,7 +34,7 @@ const AppComponent = (props) => {
     resetGame,
   } = props;
 
-  const renderGame = () => {
+  const renderGameScreen = () => {
     const question = questions[step];
 
     if (step === -1) {
@@ -45,29 +47,14 @@ const AppComponent = (props) => {
     }
 
     if (mistakes > maxErrorsCount) {
-      return (
-        <GameOverScreen
-          onReplayButtonClick={resetGame}
-        />
-      );
+      return (<Redirect to={AppRoute.LOSE} />);
     }
 
     if (step >= questions.length) {
       if (authorizationStatus === AuthorizationStatus.AUTH) {
-        return (
-          <WinScreen
-            questionsCount={questions.length}
-            mistakesCount={mistakes}
-            onReplayButtonClick={resetGame}
-          />
-        );
+        return (<Redirect to={AppRoute.RESULT} />);
       } else if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
-        return (
-          <AuthScreen
-            onSubmit={login}
-            onReplayButtonClick={resetGame}
-          />
-        );
+        return (<Redirect to={AppRoute.LOGIN} />);
       }
 
       return null;
@@ -104,31 +91,37 @@ const AppComponent = (props) => {
   };
 
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <Switch>
-        <Route exact path="/">
-          {renderGame()}
+        <Route exact path={AppRoute.ROOT}>
+          {renderGameScreen()}
         </Route>
-        {/* <Route exact path="/genre-game">
-          <GuessGenreGameWithPlayer
-            question={questions[0]}
-            onAnswer={onUserAnswer}
-          />
-        </Route>
-        <Route exact path="/artist-game">
-          <GuessArtistGameWithPlayer
-            question={questions[1]}
-            onAnswer={onUserAnswer}
-          />
-        </Route>
-        <Route exact path="/dev-auth">
+        <Route exact path={AppRoute.LOGIN}>
           <AuthScreen
-            onSubmit={() => {}}
-            onReplayButtonClick={() => {}}
+            onSubmit={login}
+            onReplayButtonClick={resetGame}
           />
-        </Route>*/}
+        </Route>
+        <Route exact path={AppRoute.LOSE}>
+          <GameOverScreen
+            onReplayButtonClick={resetGame}
+          />
+        </Route>
+        <PrivateRoute
+          exact
+          path={AppRoute.RESULT}
+          render={() => {
+            return (
+              <WinScreen
+                questionsCount={questions.length}
+                mistakesCount={mistakes}
+                onReplayButtonClick={resetGame}
+              />
+            );
+          }}
+        />
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 };
 

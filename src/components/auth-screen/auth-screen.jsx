@@ -1,5 +1,8 @@
 import PropTypes from "prop-types";
 import React, {createRef} from "react";
+import {Link} from "react-router-dom";
+
+import {AppRoute} from "../../const.js";
 
 
 export const AuthScreen = (props) => {
@@ -45,9 +48,11 @@ export const AuthScreen = (props) => {
         </p>
         <button className="login__button button" type="submit">Войти</button>
       </form>
-      <button className="replay" type="button"
+      <Link
+        className="replay"
+        to={AppRoute.ROOT}
         onClick={onReplayButtonClick}
-      >Сыграть ещё раз</button>
+      >Сыграть ещё раз</Link>
     </section>
   );
 };

@@ -28,13 +28,13 @@ exports[`Render WinScreen Should match with snapshot 1`] = `
     0
      ошибки
   </p>
-  <button
+  <a
     className="replay"
+    href="/"
     onClick={[Function]}
-    type="button"
   >
     Сыграть ещё раз
-  </button>
+  </a>
 </section>
 `;
 
@@ -66,13 +66,13 @@ exports[`Render WinScreen Should match with snapshot 2`] = `
     1
      ошибки
   </p>
-  <button
+  <a
     className="replay"
+    href="/"
     onClick={[Function]}
-    type="button"
   >
     Сыграть ещё раз
-  </button>
+  </a>
 </section>
 `;
 
@@ -104,12 +104,12 @@ exports[`Render WinScreen Should match with snapshot 3`] = `
     2
      ошибки
   </p>
-  <button
+  <a
     className="replay"
+    href="/"
     onClick={[Function]}
-    type="button"
   >
     Сыграть ещё раз
-  </button>
+  </a>
 </section>
 `;

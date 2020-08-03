@@ -1,4 +1,6 @@
-import {extend} from "../../utils/utils";
+import {AppRoute} from "../../const.js";
+import {extend} from "../../utils/utils.js";
+import {history} from "../../history.js";
 
 
 const AuthorizationStatus = {
@@ -39,6 +41,7 @@ const Operation = {
     })
     .then(() => {
       dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      return history.push(AppRoute.RESULT);
     });
   },
 };

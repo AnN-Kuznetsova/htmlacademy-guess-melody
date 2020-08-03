@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {mount} from "enzyme";
+
 import {GuessGenreGame} from "./guess-genre-game.jsx";
 import {genreQuestion} from "../../__test-data__/test-mocks.js";
 
