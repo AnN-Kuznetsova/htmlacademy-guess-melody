@@ -8,7 +8,7 @@ interface Props {
   questionsCount: number;
   mistakesCount: number;
   onReplayButtonClick: () => void;
-};
+}
 
 
 export const WinScreen: React.FunctionComponent<Props> = (props: Props) => {

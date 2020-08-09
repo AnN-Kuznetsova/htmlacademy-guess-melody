@@ -5,8 +5,8 @@ import {AppRoute} from "../../const";
 
 
 interface Props {
-  onReplayButtonClick: () => void,
-};
+  onReplayButtonClick: () => void;
+}
 
 
 export const GameOverScreen: React.FunctionComponent<Props> = (props: Props) => {

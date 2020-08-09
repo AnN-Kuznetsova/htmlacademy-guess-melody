@@ -6,15 +6,15 @@ import {AudioPlayerWithAudio as AudioPlayer} from "../../components/audio-player
 
 interface Props {
   step: number;
-};
+}
 
 interface State {
   activePlayerId: number;
-};
+}
 
 interface InjectingProps {
   renderPlayer: (src: string, id: number) => React.ReactNode;
-};
+}
 
 
 export const withActivePlayer = (Component) => {

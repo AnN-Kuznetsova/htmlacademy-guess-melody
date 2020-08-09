@@ -12,7 +12,7 @@ interface Props {
   userAnswers: boolean[];
   onAnswer: () => void;
   onChange: () => void;
-};
+}
 
 
 const GuessGenreGame: React.FunctionComponent<Props> = (props: Props) => {

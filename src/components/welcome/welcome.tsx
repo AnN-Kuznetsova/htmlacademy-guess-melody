@@ -4,7 +4,7 @@ import * as React from "react";
 interface Props {
   maxErrorsCount: number;
   onWelcomeButtonClick: () => void;
-};
+}
 
 
 export const Welcome: React.FunctionComponent<Props> = (props: Props) => {

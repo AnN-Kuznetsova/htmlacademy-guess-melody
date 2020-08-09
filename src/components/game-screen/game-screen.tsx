@@ -14,7 +14,7 @@ interface Props {
   children: React.ReactNode | Array<React.ReactNode>;
   mistakes: number;
   goToWelcome: () => void;
-};
+}
 
 
 const GameScreenComponent: React.FunctionComponent<Props> = (props: Props) => {

@@ -7,17 +7,17 @@ import {GenreQuestionType} from "../../types";
 interface Props {
   question: GenreQuestionType;
   onAnswer: (question: GenreQuestionType, answers: Answer) => void;
-};
+}
 
 interface State {
   answers: Answer;
-};
+}
 
 interface InjectedProps {
   userAnswers: Answer;
   onAnswer: () => void;
   onChange: (index: number) => void;
-};
+}
 
 type Answer = boolean[];
 

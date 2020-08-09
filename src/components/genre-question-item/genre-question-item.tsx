@@ -4,12 +4,12 @@ import {AnswerGenreType} from "../../types";
 
 
 interface Props {
-  answer: AnswerGenreType,
+  answer: AnswerGenreType;
   id: number;
   onChange: (id: number, value: boolean) => void;
   renderPlayer: (src: string, id: number) => React.ReactNode;
   userAnswer: boolean;
-};
+}
 
 
 export const GenreQuestionItem: React.FunctionComponent<Props> = (props: Props) => {

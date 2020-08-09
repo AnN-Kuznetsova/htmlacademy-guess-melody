@@ -8,7 +8,7 @@ interface Props {
   question: ArtistQuestionType;
   onAnswer: (question: ArtistQuestionType, answer: AnswerArtistType) => void;
   renderPlayer: (src: string, id: number) => React.ReactNode;
-};
+}
 
 
 const GuessArtistGame: React.FunctionComponent<Props> = (props: Props) => {

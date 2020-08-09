@@ -5,9 +5,9 @@ import {AppRoute} from "../../const";
 
 
 interface Props {
-  onSubmit: ({login, password}: {login: string, password: string}) => void,
-  onReplayButtonClick: () => void,
-};
+  onSubmit: ({login, password}: {login: string; password: string}) => void;
+  onReplayButtonClick: () => void;
+}
 
 
 export const AuthScreen: React.FunctionComponent<Props> = (props: Props) => {

@@ -6,14 +6,14 @@ interface Props {
   isPlaying: boolean;
   onPlayButtonClick: () => void;
   step: number;
-};
+}
 
 interface State {
   progress: number;
   isLoading: boolean;
   isPlaying: boolean;
   step: number;
-};
+}
 
 
 export const withAudio = (Component) => {

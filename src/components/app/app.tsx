@@ -26,28 +26,28 @@ interface Props {
   login: () => void;
   maxErrorsCount: number;
   mistakes: number;
-  questions: Array<ArtistQuestionType | GenreQuestionType>;
+  questions: Question[];
   step: number;
   onWelcomeButtonClick: () => void;
   onUserAnswer: () => void;
   resetGame: () => void;
-};
+}
+
+type Question = ArtistQuestionType | GenreQuestionType;
 
 
-const AppComponent: React.FunctionComponent<Props> = (props: Props) => {
-  const {
-    authorizationStatus,
-    login,
-    maxErrorsCount,
-    mistakes,
-    questions,
-    step,
-    onWelcomeButtonClick,
-    onUserAnswer,
-    resetGame,
-  } = props;
+class AppComponent extends React.PureComponent<Props, {}> {
+  renderGameScreen() {
+    const {
+      authorizationStatus,
+      maxErrorsCount,
+      mistakes,
+      questions,
+      step,
+      onWelcomeButtonClick,
+      onUserAnswer,
+    } = this.props;
 
-  const renderGameScreen = () => {
     const question = questions[step];
 
     if (step === -1) {
@@ -101,42 +101,52 @@ const AppComponent: React.FunctionComponent<Props> = (props: Props) => {
     }
 
     return null;
-  };
+  }
 
-  return (
-    <Router history={history}>
-      <Switch>
-        <Route exact path={AppRoute.ROOT}>
-          {renderGameScreen()}
-        </Route>
-        <Route exact path={AppRoute.LOGIN}>
-          <AuthScreen
-            onSubmit={login}
-            onReplayButtonClick={resetGame}
+  render() {
+    const {
+      login,
+      mistakes,
+      questions,
+      resetGame,
+    } = this.props;
+
+
+    return (
+      <Router history={history}>
+        <Switch>
+          <Route exact path={AppRoute.ROOT}>
+            {this.renderGameScreen()}
+          </Route>
+          <Route exact path={AppRoute.LOGIN}>
+            <AuthScreen
+              onSubmit={login}
+              onReplayButtonClick={resetGame}
+            />
+          </Route>
+          <Route exact path={AppRoute.LOSE}>
+            <GameOverScreen
+              onReplayButtonClick={resetGame}
+            />
+          </Route>
+          <PrivateRoute
+            exact
+            path={AppRoute.RESULT}
+            render={() => {
+              return (
+                <WinScreen
+                  questionsCount={questions.length}
+                  mistakesCount={mistakes}
+                  onReplayButtonClick={resetGame}
+                />
+              );
+            }}
           />
-        </Route>
-        <Route exact path={AppRoute.LOSE}>
-          <GameOverScreen
-            onReplayButtonClick={resetGame}
-          />
-        </Route>
-        <PrivateRoute
-          exact
-          path={AppRoute.RESULT}
-          render={() => {
-            return (
-              <WinScreen
-                questionsCount={questions.length}
-                mistakesCount={mistakes}
-                onReplayButtonClick={resetGame}
-              />
-            );
-          }}
-        />
-      </Switch>
-    </Router>
-  );
-};
+        </Switch>
+      </Router>
+    );
+  }
+}
 
 
 const mapStateToProps = (state) => ({

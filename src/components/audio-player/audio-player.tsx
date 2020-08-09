@@ -8,7 +8,7 @@ interface Props {
   isPlaying: boolean;
   onPlayButtonClick: () => void;
   children: React.ReactNode | React.ReactNode[];
-};
+}
 
 
 const AudioPlayer: React.FunctionComponent<Props> = (props: Props) => {
