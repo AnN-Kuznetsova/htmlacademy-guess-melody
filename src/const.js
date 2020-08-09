@@ -1,10 +1,5 @@
 const MAX_ERRORS_COUNT = 3;
 
-const GameType = {
-  ARTIST: `artist`,
-  GENRE: `genre`,
-};
-
 const AppRoute = {
   LOGIN: `/login`,
   LOSE: `/lose`,
@@ -16,5 +11,4 @@ const AppRoute = {
 export {
   MAX_ERRORS_COUNT,
   AppRoute,
-  GameType,
 };

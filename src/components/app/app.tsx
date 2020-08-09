@@ -1,10 +1,10 @@
-import PropTypes from "prop-types";
 import React from "react";
 import {Switch, Route, Router, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {ActionCreator} from "../../reducers/game/game";
-import {AppRoute, GameType} from "../../const";
+import {AppRoute} from "../../const";
+import {ArtistQuestionType, GenreQuestionType, GameType} from "../../types";
 import {AuthorizationStatus} from "../../reducers/user/user";
 import {AuthScreen} from "../auth-screen/auth-screen";
 import {GameOverScreen} from "../game-over-screen/game-over-screen";
@@ -21,7 +21,20 @@ import {getAuthorizationStatus} from "../../reducers/user/selectors";
 import {history} from "../../history";
 
 
-const AppComponent = (props) => {
+interface Props {
+  authorizationStatus: string;
+  login: () => void;
+  maxErrorsCount: number;
+  mistakes: number;
+  questions: Array<ArtistQuestionType | GenreQuestionType>;
+  step: number;
+  onWelcomeButtonClick: () => void;
+  onUserAnswer: () => void;
+  resetGame: () => void;
+};
+
+
+const AppComponent: React.FunctionComponent<Props> = (props: Props) => {
   const {
     authorizationStatus,
     login,
@@ -123,19 +136,6 @@ const AppComponent = (props) => {
       </Switch>
     </Router>
   );
-};
-
-
-AppComponent.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  login: PropTypes.func.isRequired,
-  maxErrorsCount: PropTypes.number.isRequired,
-  mistakes: PropTypes.number.isRequired,
-  questions: PropTypes.arrayOf(PropTypes.object).isRequired,
-  step: PropTypes.number.isRequired,
-  onWelcomeButtonClick: PropTypes.func.isRequired,
-  onUserAnswer: PropTypes.func.isRequired,
-  resetGame: PropTypes.func.isRequired,
 };
 
 

@@ -1,8 +1,13 @@
-import PropTypes from "prop-types";
 import React from "react";
 
 
-export const Welcome = (props) => {
+interface Props {
+  maxErrorsCount: number;
+  onWelcomeButtonClick: () => void;
+};
+
+
+export const Welcome: React.FunctionComponent<Props> = (props: Props) => {
   const {maxErrorsCount, onWelcomeButtonClick} = props;
 
   const _handleWelcomeButtonClick = (event) => {
@@ -30,10 +35,4 @@ export const Welcome = (props) => {
       <p className="welcome__text">Удачи!</p>
     </section>
   );
-};
-
-
-Welcome.propTypes = {
-  maxErrorsCount: PropTypes.number.isRequired,
-  onWelcomeButtonClick: PropTypes.func.isRequired,
 };

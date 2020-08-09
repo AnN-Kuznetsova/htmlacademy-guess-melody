@@ -1,13 +1,21 @@
-import PropTypes from "prop-types";
 import React from "react";
 
 import {GenreQuestionItem} from "../genre-question-item/genre-question-item";
-import {GenreQuestionsPropType} from "../../types";
+import {GenreQuestionType} from "../../types";
 import {withActivePlayer} from "../../hocs/with-active-player/with-active-player";
 import {withUserAnswer} from "../../hocs/with-user-answer/with-user-answer";
 
 
-const GuessGenreGame = (props) => {
+interface Props {
+  question: GenreQuestionType;
+  renderPlayer: (src: string, id: number) => React.ReactNode;
+  userAnswers: boolean[];
+  onAnswer: () => void;
+  onChange: () => void;
+};
+
+
+const GuessGenreGame: React.FunctionComponent<Props> = (props: Props) => {
   const {
     question,
     renderPlayer,
@@ -45,15 +53,6 @@ const GuessGenreGame = (props) => {
       </form>
     </section>
   );
-};
-
-
-GuessGenreGame.propTypes = {
-  question: GenreQuestionsPropType.isRequired,
-  renderPlayer: PropTypes.func.isRequired,
-  userAnswers: PropTypes.arrayOf(PropTypes.bool).isRequired,
-  onAnswer: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 

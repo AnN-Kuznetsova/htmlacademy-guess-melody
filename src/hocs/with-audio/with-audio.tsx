@@ -1,13 +1,29 @@
-import PropTypes from "prop-types";
-import React, {createRef, PureComponent} from "react";
+import React, {createRef} from "react";
+
+
+interface Props {
+  src: string;
+  isPlaying: boolean;
+  onPlayButtonClick: () => void;
+  step: number;
+};
+
+interface State {
+  progress: number;
+  isLoading: boolean;
+  isPlaying: boolean;
+  step: number;
+};
 
 
 export const withAudio = (Component) => {
-  class WithAudio extends PureComponent {
+  class WithAudio extends React.PureComponent<Props, State> {
+    private audioRef: React.RefObject<HTMLAudioElement>;
+
     constructor(props) {
       super(props);
 
-      this._audioRef = createRef();
+      this.audioRef = createRef();
 
       this.state = {
         progress: 0,
@@ -21,7 +37,7 @@ export const withAudio = (Component) => {
 
     componentDidMount() {
       const {src} = this.props;
-      const audio = this._audioRef.current;
+      const audio = this.audioRef.current;
 
       audio.src = src;
 
@@ -43,7 +59,7 @@ export const withAudio = (Component) => {
     }
 
     componentDidUpdate() {
-      const audio = this._audioRef.current;
+      const audio = this.audioRef.current;
 
       if (this.state.step !== this.props.step) {
         audio.src = this.props.src;
@@ -61,7 +77,7 @@ export const withAudio = (Component) => {
     }
 
     componentWillUnmount() {
-      const audio = this._audioRef.current;
+      const audio = this.audioRef.current;
 
       audio.oncanplaythrough = null;
       audio.onplay = null;
@@ -89,19 +105,11 @@ export const withAudio = (Component) => {
           isPlaying={isPlaying}
           onPlayButtonClick={this.handlePlayButtonClick}
         >
-          <audio ref={this._audioRef} />
+          <audio ref={this.audioRef} />
         </Component>
       );
     }
   }
-
-
-  WithAudio.propTypes = {
-    src: PropTypes.string.isRequired,
-    isPlaying: PropTypes.bool.isRequired,
-    onPlayButtonClick: PropTypes.func.isRequired,
-    step: PropTypes.number.isRequired,
-  };
 
 
   return WithAudio;

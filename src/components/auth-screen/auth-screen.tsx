@@ -1,18 +1,23 @@
-import PropTypes from "prop-types";
 import React, {createRef} from "react";
 import {Link} from "react-router-dom";
 
 import {AppRoute} from "../../const";
 
 
-export const AuthScreen = (props) => {
+interface Props {
+  onSubmit: ({login, password}: {login: string, password: string}) => void,
+  onReplayButtonClick: () => void,
+};
+
+
+export const AuthScreen: React.FunctionComponent<Props> = (props: Props) => {
   const {
     onSubmit,
     onReplayButtonClick,
   } = props;
 
-  const loginRef = createRef();
-  const passwordRef = createRef();
+  const loginRef: React.RefObject<HTMLInputElement> = createRef();
+  const passwordRef: React.RefObject<HTMLInputElement> = createRef();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -55,10 +60,4 @@ export const AuthScreen = (props) => {
       >Сыграть ещё раз</Link>
     </section>
   );
-};
-
-
-AuthScreen.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  onReplayButtonClick: PropTypes.func.isRequired,
 };

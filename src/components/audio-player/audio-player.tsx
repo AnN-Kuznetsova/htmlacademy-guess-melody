@@ -1,10 +1,17 @@
-import PropTypes from "prop-types";
 import React from "react";
 
 import {withAudio} from "../../hocs/with-audio/with-audio";
 
 
-const AudioPlayer = (props) => {
+interface Props {
+  isLoading: boolean;
+  isPlaying: boolean;
+  onPlayButtonClick: () => void;
+  children: React.ReactNode | React.ReactNode[];
+};
+
+
+const AudioPlayer: React.FunctionComponent<Props> = (props: Props) => {
   const {isLoading, isPlaying, onPlayButtonClick, children} = props;
 
   return (
@@ -20,17 +27,6 @@ const AudioPlayer = (props) => {
       </div>
     </React.Fragment>
   );
-};
-
-
-AudioPlayer.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
-  isPlaying: PropTypes.bool.isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
 };
 
 

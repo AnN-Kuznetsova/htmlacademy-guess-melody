@@ -1,8 +1,18 @@
-import PropTypes from "prop-types";
 import React from "react";
 
+import {AnswerGenreType} from "../../types";
 
-export const GenreQuestionItem = (props) => {
+
+interface Props {
+  answer: AnswerGenreType,
+  id: number;
+  onChange: (id: number, value: boolean) => void;
+  renderPlayer: (src: string, id: number) => React.ReactNode;
+  userAnswer: boolean;
+};
+
+
+export const GenreQuestionItem: React.FunctionComponent<Props> = (props: Props) => {
   const {
     answer,
     id,
@@ -38,14 +48,3 @@ export const GenreQuestionItem = (props) => {
   );
 };
 
-
-GenreQuestionItem.propTypes = {
-  answer: PropTypes.shape({
-    src: PropTypes.string,
-    genre: PropTypes.string,
-  }).isRequired,
-  id: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired,
-  renderPlayer: PropTypes.func.isRequired,
-  userAnswer: PropTypes.bool.isRequired,
-};

@@ -1,15 +1,23 @@
-import PropTypes from "prop-types";
 import React from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
 import {ActionCreator} from "../../reducers/game/game";
-import {AppRoute, GameType} from "../../const";
+import {AppRoute} from "../../const";
+import {GameType} from "../../types";
 import {Mistakes} from "../mistakes/mistakes";
 import {getMistakes} from "../../reducers/game/selectors";
 
 
-const GameScreenComponent = (props) => {
+interface Props {
+  type: GameType;
+  children: React.ReactNode | Array<React.ReactNode>;
+  mistakes: number;
+  goToWelcome: () => void;
+};
+
+
+const GameScreenComponent: React.FunctionComponent<Props> = (props: Props) => {
   const {
     type,
     children,
@@ -40,17 +48,6 @@ const GameScreenComponent = (props) => {
       {children}
     </section>
   );
-};
-
-
-GameScreenComponent.propTypes = {
-  type: PropTypes.oneOf(Object.values(GameType)).isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
-  mistakes: PropTypes.number.isRequired,
-  goToWelcome: PropTypes.func.isRequired,
 };
 
 

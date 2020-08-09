@@ -1,4 +1,5 @@
-import {MAX_ERRORS_COUNT, GameType} from "../../const";
+import {MAX_ERRORS_COUNT} from "../../const";
+import {GameType} from "../../types";
 import {extend} from "../../utils/utils";
 
 

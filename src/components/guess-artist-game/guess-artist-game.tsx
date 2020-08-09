@@ -1,11 +1,17 @@
-import PropTypes from "prop-types";
 import React from "react";
 
-import {ArtistQuestionsPropType} from "../../types";
+import {ArtistQuestionType, AnswerArtistType} from "../../types";
 import {withActivePlayer} from "../../hocs/with-active-player/with-active-player";
 
 
-const GuessArtistGame = (props) => {
+interface Props {
+  question: ArtistQuestionType;
+  onAnswer: (question: ArtistQuestionType, answer: AnswerArtistType) => void;
+  renderPlayer: (src: string, id: number) => React.ReactNode;
+};
+
+
+const GuessArtistGame: React.FunctionComponent<Props> = (props: Props) => {
   const {question, onAnswer, renderPlayer} = props;
   const {answers, song} = question;
 
@@ -44,13 +50,6 @@ const GuessArtistGame = (props) => {
       </form>
     </section>
   );
-};
-
-
-GuessArtistGame.propTypes = {
-  question: ArtistQuestionsPropType.isRequired,
-  onAnswer: PropTypes.func.isRequired,
-  renderPlayer: PropTypes.func.isRequired,
 };
 
 
