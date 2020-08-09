@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 import {ArtistQuestionType, AnswerArtistType} from "../../types";
 import {withActivePlayer} from "../../hocs/with-active-player/with-active-player";

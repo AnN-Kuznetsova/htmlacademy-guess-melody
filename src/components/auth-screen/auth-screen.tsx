@@ -1,4 +1,4 @@
-import React, {createRef} from "react";
+import * as React, {createRef} from "react";
 import {Link} from "react-router-dom";
 
 import {AppRoute} from "../../const";

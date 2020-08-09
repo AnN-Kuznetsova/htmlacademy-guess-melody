@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
 import {GuessArtistGame} from "./guess-artist-game";
 import {artistQuestion} from "../../__test-data__/test-mocks";

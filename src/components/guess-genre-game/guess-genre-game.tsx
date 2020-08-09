@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 import {GenreQuestionItem} from "../genre-question-item/genre-question-item";
 import {GenreQuestionType} from "../../types";
