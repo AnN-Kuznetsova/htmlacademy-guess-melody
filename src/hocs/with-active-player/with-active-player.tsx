@@ -4,9 +4,9 @@ import {Subtract} from "utility-types";
 import {AudioPlayerWithAudio as AudioPlayer} from "../../components/audio-player/audio-player";
 
 
-/* WithActivePlayer.propTypes = {
-  step: PropTypes.number.isRequired,
-}; */
+interface Props {
+  step: number;
+};
 
 interface State {
   activePlayerId: number;
@@ -19,7 +19,7 @@ interface InjectingProps {
 
 export const withActivePlayer = (Component) => {
   type P = React.ComponentProps<typeof Component>;
-  type T = Subtract<P, InjectingProps>;
+  type T = Props & Subtract<P, InjectingProps>;
 
   class WithActivePlayer extends React.PureComponent<T, State> {
     constructor(props) {

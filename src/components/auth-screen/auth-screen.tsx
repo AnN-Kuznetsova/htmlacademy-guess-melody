@@ -1,4 +1,4 @@
-import * as React, {createRef} from "react";
+import * as React from "react";
 import {Link} from "react-router-dom";
 
 import {AppRoute} from "../../const";
@@ -16,8 +16,8 @@ export const AuthScreen: React.FunctionComponent<Props> = (props: Props) => {
     onReplayButtonClick,
   } = props;
 
-  const loginRef: React.RefObject<HTMLInputElement> = createRef();
-  const passwordRef: React.RefObject<HTMLInputElement> = createRef();
+  const loginRef: React.RefObject<HTMLInputElement> = React.createRef();
+  const passwordRef: React.RefObject<HTMLInputElement> = React.createRef();
 
   const handleSubmit = (event) => {
     event.preventDefault();

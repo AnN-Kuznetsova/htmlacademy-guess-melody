@@ -1,4 +1,4 @@
-import * as React, {createRef} from "react";
+import * as React from "react";
 
 
 interface Props {
@@ -23,7 +23,7 @@ export const withAudio = (Component) => {
     constructor(props) {
       super(props);
 
-      this.audioRef = createRef();
+      this.audioRef = React.createRef();
 
       this.state = {
         progress: 0,
