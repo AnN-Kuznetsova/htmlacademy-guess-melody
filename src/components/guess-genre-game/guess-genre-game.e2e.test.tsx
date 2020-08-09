@@ -1,15 +1,18 @@
 import * as React from "react";
 import {shallow, mount} from "enzyme";
+
 import {GuessGenreGame} from "./guess-genre-game";
+import {noop} from "../../utils/utils";
+
 import {genreQuestion} from "../../__test-data__/test-mocks";
 
 
 const props = {
   question: genreQuestion,
-  renderPlayer: () => {},
+  renderPlayer: noop,
   userAnswers: [false, false, false, false],
-  onAnswer: () => {},
-  onChange: () => {},
+  onAnswer: noop,
+  onChange: noop,
 };
 
 
@@ -47,7 +50,7 @@ describe(`GenreQuestionScreen e2e-tests`, () => {
       checked: true,
       dataset: {answerIndex: 1},
     }});
-    formElement.simulate(`submit`, {preventDefault() {}});
+    formElement.simulate(`submit`, {noop});
 
     expect(onAnswer).toHaveBeenCalledTimes(1);
     expect(onAnswer.mock.calls[0][0]).toEqual(void 0);

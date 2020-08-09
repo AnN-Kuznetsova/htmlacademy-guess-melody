@@ -1,17 +1,19 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import {mount} from "enzyme";
 
 import {GuessGenreGame} from "./guess-genre-game";
+import {noop} from "../../utils/utils";
+
 import {genreQuestion} from "../../__test-data__/test-mocks";
 
 
 const props = {
   question: genreQuestion,
-  renderPlayer: () => {},
+  renderPlayer: noop,
   userAnswers: [false, false, false, false],
-  onAnswer: () => {},
-  onChange: () => {},
+  onAnswer: noop,
+  onChange: noop,
 };
 
 const {genre} = props.question;

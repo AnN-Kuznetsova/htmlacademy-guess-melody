@@ -1,7 +1,8 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 
 import {GenreQuestionItem} from "./genre-question-item";
+import {noop} from "../../utils/utils";
 
 
 const props = {
@@ -10,8 +11,8 @@ const props = {
     genre: `answer-genre`,
   },
   id: 0,
-  onChange: () => {},
-  renderPlayer: () => {},
+  onChange: noop,
+  renderPlayer: noop,
   userAnswer: false,
 };
 

@@ -1,11 +1,13 @@
 import * as React from "react";
+import {shallow} from "enzyme";
+
 import {MAX_ERRORS_COUNT} from "../../__test-data__/test-mocks";
 import {Welcome} from "./welcome";
-import {shallow} from "enzyme";
+import {noop} from "../../utils/utils";
 
 
 const mockEvent = {
-  preventDefault() {},
+  preventDefault: noop,
   target: {},
 };
 

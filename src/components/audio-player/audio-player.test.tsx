@@ -1,12 +1,14 @@
 import * as React from 'react';
-import renderer from 'react-test-renderer';
+import * as renderer from 'react-test-renderer';
+
 import {AudioPlayer} from './audio-player';
+import {noop} from "../../utils/utils";
 
 
 const props = {
   isLoading: true,
   isPlaying: false,
-  onPlayButtonClick: () => {},
+  onPlayButtonClick: noop,
 };
 
 const nodeMock = {

@@ -1,15 +1,16 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
 
 import {WinScreen} from "./win-screen";
 import {history} from "../../history";
+import {noop} from "../../utils/utils";
 
 
 const props = {
   questionsCount: null,
   mistakesCount: null,
-  onReplayButtonClick: () => {},
+  onReplayButtonClick: noop,
 };
 
 

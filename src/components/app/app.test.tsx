@@ -1,11 +1,12 @@
 import * as React from "react";
+import * as renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
-import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 
 import {AppComponent} from "./app";
 import {AuthorizationStatus} from "../../reducers/user/user";
 import {NameSpace} from "../../reducers/name-space";
+import {noop} from "../../utils/utils";
 
 import {artistQuestion, genreQuestion} from "../../__test-data__/test-mocks";
 
@@ -29,14 +30,14 @@ describe(`Render App`, () => {
 
     const props = {
       authorizationStatus: AuthorizationStatus.NO_AUTH,
-      login: () => {},
+      login: noop,
       maxErrorsCount: 3,
       mistakes: 0,
       questions: [genreQuestion, artistQuestion],
       step: -1,
-      onWelcomeButtonClick: () => {},
-      onUserAnswer: () => {},
-      resetGame: () => {},
+      onWelcomeButtonClick: noop,
+      onUserAnswer: noop,
+      resetGame: noop,
     };
 
     const treeSnapshot = renderer.create(
@@ -59,14 +60,14 @@ describe(`Render App`, () => {
 
     const props = {
       authorizationStatus: AuthorizationStatus.NO_AUTH,
-      login: () => {},
+      login: noop,
       maxErrorsCount: 3,
       mistakes: 0,
       questions: [genreQuestion, artistQuestion],
       step: 0,
-      onWelcomeButtonClick: () => {},
-      onUserAnswer: () => {},
-      resetGame: () => {},
+      onWelcomeButtonClick: noop,
+      onUserAnswer: noop,
+      resetGame: noop,
     };
 
     const treeSnapshot = renderer.create(
@@ -89,14 +90,14 @@ describe(`Render App`, () => {
 
     const props = {
       authorizationStatus: AuthorizationStatus.NO_AUTH,
-      login: () => {},
+      login: noop,
       maxErrorsCount: 3,
       mistakes: 0,
       questions: [genreQuestion, artistQuestion],
       step: 1,
-      onWelcomeButtonClick: () => {},
-      onUserAnswer: () => {},
-      resetGame: () => {},
+      onWelcomeButtonClick: noop,
+      onUserAnswer: noop,
+      resetGame: noop,
     };
 
     const treeSnapshot = renderer.create(
@@ -122,14 +123,14 @@ describe(`Render App`, () => {
 
     const props = {
       authorizationStatus: AuthorizationStatus.NO_AUTH,
-      login: () => {},
+      login: noop,
       maxErrorsCount: 3,
       mistakes: 0,
       questions: [genreQuestion, artistQuestion],
       step: 3,
-      onWelcomeButtonClick: () => {},
-      onUserAnswer: () => {},
-      resetGame: () => {},
+      onWelcomeButtonClick: noop,
+      onUserAnswer: noop,
+      resetGame: noop,
     };
 
     const treeSnapshot = renderer.create(
@@ -152,14 +153,14 @@ describe(`Render App`, () => {
 
     const props = {
       authorizationStatus: AuthorizationStatus.NO_AUTH,
-      login: () => {},
+      login: noop,
       maxErrorsCount: 0,
       mistakes: 5,
       questions: [genreQuestion, artistQuestion],
       step: 1,
-      onWelcomeButtonClick: () => {},
-      onUserAnswer: () => {},
-      resetGame: () => {},
+      onWelcomeButtonClick: noop,
+      onUserAnswer: noop,
+      resetGame: noop,
     };
 
     const treeSnapshot = renderer.create(
@@ -190,14 +191,14 @@ describe(`Render App`, () => {
 
     const props = {
       authorizationStatus: AuthorizationStatus.AUTH,
-      login: () => {},
+      login: noop,
       maxErrorsCount: 3,
       mistakes: 0,
       questions: [genreQuestion, artistQuestion],
       step: 3,
-      onWelcomeButtonClick: () => {},
-      onUserAnswer: () => {},
-      resetGame: () => {},
+      onWelcomeButtonClick: noop,
+      onUserAnswer: noop,
+      resetGame: noop,
     };
 
     const treeSnapshot = renderer.create(

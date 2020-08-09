@@ -1,14 +1,17 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
-import {GuessArtistGame} from "./guess-artist-game";
-import {artistQuestion} from "../../__test-data__/test-mocks";
+import * as renderer from "react-test-renderer";
 import {shallow} from "enzyme";
+
+import {GuessArtistGame} from "./guess-artist-game";
+import {noop} from "../../utils/utils";
+
+import {artistQuestion} from "../../__test-data__/test-mocks";
 
 
 const props = {
   question: artistQuestion,
-  onAnswer: () => {},
-  renderPlayer: () => {},
+  onAnswer: noop,
+  renderPlayer: noop,
 };
 
 const {answers} = props.question;

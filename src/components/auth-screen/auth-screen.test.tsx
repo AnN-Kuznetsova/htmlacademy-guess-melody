@@ -1,14 +1,15 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
 
 import {AuthScreen} from "./auth-screen";
 import {history} from "../../history";
+import {noop} from "../../utils/utils";
 
 
 const props = {
-  onSubmit: () => {},
-  onReplayButtonClick: () => {},
+  onSubmit: noop,
+  onReplayButtonClick: noop,
 };
 
 describe(`Render AuthScreen`, () => {

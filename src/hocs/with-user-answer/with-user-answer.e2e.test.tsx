@@ -4,13 +4,14 @@ import {shallow} from "enzyme";
 import {withUserAnswer} from "./with-user-answer";
 
 import {genreQuestion} from "../../__test-data__/test-mocks";
+import {noop} from "../../utils/utils";
 
 
 const MockComponent = () => <div />;
 
 const props = {
   question: genreQuestion,
-  onAnswer: () => {},
+  onAnswer: noop,
 };
 
 const MockComponentWithUserAnswer = withUserAnswer(MockComponent);

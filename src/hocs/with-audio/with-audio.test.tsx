@@ -1,12 +1,12 @@
-import PropTypes from "prop-types";
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import {mount} from 'enzyme';
 
 import {withAudio} from "./with-audio";
+import {noop} from "../../utils/utils";
 
 
-const MockComponent = (props) => {
+const MockComponent = (props: MockComponentProps) => {
   const {children} = props;
 
   return (
@@ -16,12 +16,9 @@ const MockComponent = (props) => {
   );
 };
 
-MockComponent.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
-};
+interface MockComponentProps {
+  children: React.ReactNode | React.ReactNode[];
+}
 
 const nodeMock = {
   createNodeMock: () => {
@@ -32,7 +29,7 @@ const nodeMock = {
 const props = {
   src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
   isPlaying: false,
-  onPlayButtonClick: () => {},
+  onPlayButtonClick: noop,
   step: 0,
 };
 

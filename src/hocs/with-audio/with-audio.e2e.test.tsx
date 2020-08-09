@@ -1,14 +1,14 @@
-import PropTypes from "prop-types";
 import * as React from "react";
 import {mount} from 'enzyme';
 
 import {withAudio} from "./with-audio";
+import {noop} from "../../utils/utils";
 
 
-window.HTMLMediaElement.prototype.play = () => {};
-window.HTMLMediaElement.prototype.pause = () => {};
+window.HTMLMediaElement.prototype.play = noop;
+window.HTMLMediaElement.prototype.pause = noop;
 
-const MockComponent = (props) => {
+const MockComponent = (props: MockComponentProps) => {
   const {onPlayButtonClick, children} = props;
   return (
     <div>
@@ -18,18 +18,15 @@ const MockComponent = (props) => {
   );
 };
 
-MockComponent.propTypes = {
-  onPlayButtonClick: PropTypes.func.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
-};
+interface MockComponentProps {
+  onPlayButtonClick: () => void;
+  children: React.ReactNode | React.ReactNode[];
+}
 
 const props = {
   src: ``,
   isPlaying: null,
-  onPlayButtonClick: () => {},
+  onPlayButtonClick: noop,
   step: 0,
 };
 
@@ -48,8 +45,8 @@ describe(`withAudio e2e-tests`, () => {
     props.onPlayButtonClick = onPlayButtonClick;
     const mockComponentWithAudioElement = mount(<MockComponentWithAudio {...props} />);
 
-    const {_audioRef} = mockComponentWithAudioElement.instance();
-    const onPlay = jest.spyOn(_audioRef.current, `play`);
+    const {audioRef} = mockComponentWithAudioElement.instance();
+    const onPlay = jest.spyOn(audioRef.current, `play`);
 
     mockComponentWithAudioElement.instance().componentDidMount();
     mockComponentWithAudioElement.find(`button`).simulate(`click`);
@@ -71,8 +68,8 @@ describe(`withAudio e2e-tests`, () => {
     props.onPlayButtonClick = onPlayButtonClick;
     const mockComponentWithAudioElement = mount(<MockComponentWithAudio {...props} />);
 
-    const {_audioRef} = mockComponentWithAudioElement.instance();
-    const onPause = jest.spyOn(_audioRef.current, `pause`);
+    const {audioRef} = mockComponentWithAudioElement.instance();
+    const onPause = jest.spyOn(audioRef.current, `pause`);
 
     mockComponentWithAudioElement.instance().componentDidMount();
     mockComponentWithAudioElement.find(`button`).simulate(`click`);

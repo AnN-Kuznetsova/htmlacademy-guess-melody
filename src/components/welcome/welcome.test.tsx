@@ -1,14 +1,15 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import {shallow} from "enzyme";
 
 import {MAX_ERRORS_COUNT} from "../../__test-data__/test-mocks";
 import {Welcome} from "./welcome";
+import {noop} from "../../utils/utils";
 
 
 const props = {
   maxErrorsCount: MAX_ERRORS_COUNT,
-  onWelcomeButtonClick: () => {},
+  onWelcomeButtonClick: noop,
 };
 
 

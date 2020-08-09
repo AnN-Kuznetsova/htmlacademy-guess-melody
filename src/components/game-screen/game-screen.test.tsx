@@ -1,10 +1,11 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
 
 import {GameScreenComponent} from "./game-screen";
 import {GameType} from "../../const";
 import {history} from "../../history";
+import {noop} from "../../utils/utils";
 
 
 const children = <div className="children-component" />;
@@ -16,7 +17,7 @@ describe(`Render GameScreen`, () => {
       type: GameType.ARTIST,
       children,
       mistakes: 3,
-      goToWelcome: () => {},
+      goToWelcome: noop,
     };
 
 
@@ -39,7 +40,7 @@ describe(`Render GameScreen`, () => {
       type: GameType.GENRE,
       children,
       mistakes: 3,
-      goToWelcome: () => {},
+      goToWelcome: noop,
     };
 
 

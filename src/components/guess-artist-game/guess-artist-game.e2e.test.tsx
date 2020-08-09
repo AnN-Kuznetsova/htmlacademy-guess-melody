@@ -1,11 +1,14 @@
 import * as React from "react";
-import {GuessArtistGame} from "./guess-artist-game";
-import {artistQuestion} from "../../__test-data__/test-mocks";
 import {shallow} from "enzyme";
+
+import {GuessArtistGame} from "./guess-artist-game";
+import {noop} from "../../utils/utils";
+
+import {artistQuestion} from "../../__test-data__/test-mocks";
 
 
 const mockEvent = {
-  preventDefault() {}
+  preventDefault: noop,
 };
 
 const onAnswer = jest.fn();
@@ -13,7 +16,7 @@ const onAnswer = jest.fn();
 const props = {
   question: artistQuestion,
   onAnswer,
-  renderPlayer: () => {},
+  renderPlayer: noop,
 };
 
 const guessArtistGameElement = shallow(<GuessArtistGame {...props} />);
