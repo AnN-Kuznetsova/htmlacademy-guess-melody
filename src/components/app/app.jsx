@@ -3,22 +3,22 @@ import React from "react";
 import {Switch, Route, Router, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 
-import {ActionCreator} from "../../reducers/game/game.js";
-import {AppRoute, GameType} from "../../const.js";
-import {AuthorizationStatus} from "../../reducers/user/user.js";
-import {AuthScreen} from "../auth-screen/auth-screen.jsx";
-import {GameOverScreen} from "../game-over-screen/game-over-screen.jsx";
-import {GameScreen} from "../game-screen/game-screen.jsx";
-import {GuessArtistGameWithPlayer} from "../guess-artist-game/guess-artist-game.jsx";
-import {GuessGenreGameWithPlayer} from "../guess-genre-game/guess-genre-game.jsx";
-import {Operation as UserOperation} from "../../reducers/user/user.js";
-import {PrivateRoute} from "../private-route/private-route.jsx";
-import {Welcome} from "../welcome/welcome.jsx";
-import {WinScreen} from "../win-screen/win-screen.jsx";
-import {getStep, getMistakes, getMaxErrorsCount} from "../../reducers/game/selectors.js";
-import {getQuestions} from "../../reducers/data/selectors.js";
-import {getAuthorizationStatus} from "../../reducers/user/selectors.js";
-import {history} from "../../history.js";
+import {ActionCreator} from "../../reducers/game/game";
+import {AppRoute, GameType} from "../../const";
+import {AuthorizationStatus} from "../../reducers/user/user";
+import {AuthScreen} from "../auth-screen/auth-screen";
+import {GameOverScreen} from "../game-over-screen/game-over-screen";
+import {GameScreen} from "../game-screen/game-screen";
+import {GuessArtistGameWithPlayer} from "../guess-artist-game/guess-artist-game";
+import {GuessGenreGameWithPlayer} from "../guess-genre-game/guess-genre-game";
+import {Operation as UserOperation} from "../../reducers/user/user";
+import {PrivateRoute} from "../private-route/private-route";
+import {Welcome} from "../welcome/welcome";
+import {WinScreen} from "../win-screen/win-screen";
+import {getStep, getMistakes, getMaxErrorsCount} from "../../reducers/game/selectors";
+import {getQuestions} from "../../reducers/data/selectors";
+import {getAuthorizationStatus} from "../../reducers/user/selectors";
+import {history} from "../../history";
 
 
 const AppComponent = (props) => {
