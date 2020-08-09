@@ -1,9 +1,9 @@
 import {combineReducers} from "redux";
 
-import {NameSpace} from "./name-space.js";
-import {reducer as data} from "./data/data.js";
-import {reducer as game} from "./game/game.js";
-import {reducer as user} from "./user/user.js";
+import {NameSpace} from "./name-space";
+import {reducer as data} from "./data/data";
+import {reducer as game} from "./game/game";
+import {reducer as user} from "./user/user";
 
 
 export const reducer = combineReducers({

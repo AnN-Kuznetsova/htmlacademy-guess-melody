@@ -1,7 +1,7 @@
 import React from "react";
 import {shallow, mount} from "enzyme";
-import {GuessGenreGame} from "./guess-genre-game.jsx";
-import {genreQuestion} from "../../__test-data__/test-mocks.js";
+import {GuessGenreGame} from "./guess-genre-game";
+import {genreQuestion} from "../../__test-data__/test-mocks";
 
 
 const props = {

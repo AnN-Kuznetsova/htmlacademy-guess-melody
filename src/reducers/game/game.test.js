@@ -1,6 +1,6 @@
-import {reducer, ActionType, ActionCreator} from "./game.js";
+import {reducer, ActionType, ActionCreator} from "./game";
 
-import {artistQuestion, genreQuestion} from "../../__test-data__/test-mocks.js";
+import {artistQuestion, genreQuestion} from "../../__test-data__/test-mocks";
 
 
 const initialState = {

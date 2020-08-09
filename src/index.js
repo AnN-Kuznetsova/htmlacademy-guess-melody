@@ -5,11 +5,11 @@ import {Provider} from "react-redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {createStore, applyMiddleware} from "redux";
 
-import {App} from "./components/app/app.jsx";
-import {Operation as DataOperation} from "./reducers/data/data.js";
-import {Operation as UserOperation, ActionCreator, AuthorizationStatus} from "./reducers/user/user.js";
-import {createAPI} from "./api.js";
-import {reducer} from "./reducers/reducer.js";
+import {App} from "./components/app/app";
+import {Operation as DataOperation} from "./reducers/data/data";
+import {Operation as UserOperation, ActionCreator, AuthorizationStatus} from "./reducers/user/user";
+import {createAPI} from "./api";
+import {reducer} from "./reducers/reducer";
 
 
 const onUnauthorized = () => {

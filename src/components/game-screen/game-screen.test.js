@@ -2,9 +2,9 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
 
-import {GameScreenComponent} from "./game-screen.jsx";
-import {GameType} from "../../const.js";
-import {history} from "../../history.js";
+import {GameScreenComponent} from "./game-screen";
+import {GameType} from "../../const";
+import {history} from "../../history";
 
 
 const children = <div className="children-component" />;

@@ -2,8 +2,8 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
 
-import {GameOverScreen} from "./game-over-screen.jsx";
-import {history} from "../../history.js";
+import {GameOverScreen} from "./game-over-screen";
+import {history} from "../../history";
 
 
 describe(`Render GameOverScreen`, () => {

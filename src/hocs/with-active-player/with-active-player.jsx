@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, {PureComponent} from 'react';
 
-import {AudioPlayerWithAudio as AudioPlayer} from "../../components/audio-player/audio-player.jsx";
+import {AudioPlayerWithAudio as AudioPlayer} from "../../components/audio-player/audio-player";
 
 
 export const withActivePlayer = (Component) => {

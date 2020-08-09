@@ -1,5 +1,5 @@
-import {MAX_ERRORS_COUNT, GameType} from "../../const.js";
-import {extend} from "../../utils/utils.js";
+import {MAX_ERRORS_COUNT, GameType} from "../../const";
+import {extend} from "../../utils/utils";
 
 
 const initialState = {

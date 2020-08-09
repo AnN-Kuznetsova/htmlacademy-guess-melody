@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
 
 import {AuthScreen} from "./auth-screen";
-import {history} from "../../history.js";
+import {history} from "../../history";
 
 
 const props = {

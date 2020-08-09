@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import {withActivePlayer} from "./with-active-player.jsx";
+import {withActivePlayer} from "./with-active-player";
 
 
 const MockComponent = (props) => {

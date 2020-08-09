@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 
-import {GenreQuestionsPropType} from "../../types.js";
+import {GenreQuestionsPropType} from "../../types";
 
 
 export const withUserAnswer = (Component) => {

@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import {GenreQuestionItem} from "../genre-question-item/genre-question-item.jsx";
-import {GenreQuestionsPropType} from "../../types.js";
-import {withActivePlayer} from "../../hocs/with-active-player/with-active-player.jsx";
-import {withUserAnswer} from "../../hocs/with-user-answer/with-user-answer.jsx";
+import {GenreQuestionItem} from "../genre-question-item/genre-question-item";
+import {GenreQuestionsPropType} from "../../types";
+import {withActivePlayer} from "../../hocs/with-active-player/with-active-player";
+import {withUserAnswer} from "../../hocs/with-user-answer/with-user-answer";
 
 
 const GuessGenreGame = (props) => {

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import {withAudio} from "../../hocs/with-audio/with-audio.jsx";
+import {withAudio} from "../../hocs/with-audio/with-audio";
 
 
 const AudioPlayer = (props) => {

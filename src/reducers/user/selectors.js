@@ -1,4 +1,4 @@
-import {NameSpace} from "../name-space.js";
+import {NameSpace} from "../name-space";
 
 
 const NAME_SPASE = NameSpace.USER;

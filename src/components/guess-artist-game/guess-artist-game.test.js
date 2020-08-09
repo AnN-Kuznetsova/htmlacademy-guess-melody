@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {GuessArtistGame} from "./guess-artist-game.jsx";
-import {artistQuestion} from "../../__test-data__/test-mocks.js";
+import {GuessArtistGame} from "./guess-artist-game";
+import {artistQuestion} from "../../__test-data__/test-mocks";
 import {shallow} from "enzyme";
 
 

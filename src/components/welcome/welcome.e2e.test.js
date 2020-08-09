@@ -1,6 +1,6 @@
 import React from "react";
-import {MAX_ERRORS_COUNT} from "../../__test-data__/test-mocks.js";
-import {Welcome} from "./welcome.jsx";
+import {MAX_ERRORS_COUNT} from "../../__test-data__/test-mocks";
+import {Welcome} from "./welcome";
 import {shallow} from "enzyme";
 
 

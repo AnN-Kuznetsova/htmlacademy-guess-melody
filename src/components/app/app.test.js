@@ -3,11 +3,11 @@ import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 
-import {AppComponent} from "./app.jsx";
-import {AuthorizationStatus} from "../../reducers/user/user.js";
-import {NameSpace} from "../../reducers/name-space.js";
+import {AppComponent} from "./app";
+import {AuthorizationStatus} from "../../reducers/user/user";
+import {NameSpace} from "../../reducers/name-space";
 
-import {artistQuestion, genreQuestion} from "../../__test-data__/test-mocks.js";
+import {artistQuestion, genreQuestion} from "../../__test-data__/test-mocks";
 
 
 const nodeMock = {

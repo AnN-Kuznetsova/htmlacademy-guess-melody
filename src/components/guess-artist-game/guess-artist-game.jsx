@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import {ArtistQuestionsPropType} from "../../types.js";
-import {withActivePlayer} from "../../hocs/with-active-player/with-active-player.jsx";
+import {ArtistQuestionsPropType} from "../../types";
+import {withActivePlayer} from "../../hocs/with-active-player/with-active-player";
 
 
 const GuessArtistGame = (props) => {

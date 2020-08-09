@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import {GameType} from "./const.js";
+import {GameType} from "./const";
 
 
 const GenreQuestionsPropType = PropTypes.shape({
