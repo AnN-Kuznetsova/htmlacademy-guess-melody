@@ -1,7 +1,9 @@
+import {GameType, GenreQuestionType, ArtistQuestionType} from "../types";
+
 const MAX_ERRORS_COUNT = 3;
 
-const genreQuestion = {
-  type: `genre`,
+const genreQuestion: GenreQuestionType = {
+  type: GameType.GENRE,
   genre: `rock`,
   answers: [{
     src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
@@ -18,8 +20,8 @@ const genreQuestion = {
   }],
 };
 
-const artistQuestion = {
-  type: `artist`,
+const artistQuestion: ArtistQuestionType = {
+  type: GameType.ARTIST,
   song: {
     artist: `Third`,
     src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
