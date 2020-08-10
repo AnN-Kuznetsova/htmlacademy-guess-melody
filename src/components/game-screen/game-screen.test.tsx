@@ -3,7 +3,7 @@ import * as renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
 
 import {GameScreenComponent} from "./game-screen";
-import {GameType} from "../../const";
+import {GameType} from "../../types";
 import {history} from "../../history";
 import {noop} from "../../utils/utils";
 

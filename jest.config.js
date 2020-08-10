@@ -13,4 +13,7 @@ module.exports = {
     `json`,
     `node`,
   ],
+  setupFilesAfterEnv: [
+    `./__test-data__/test-setup.ts`
+  ]
 };
