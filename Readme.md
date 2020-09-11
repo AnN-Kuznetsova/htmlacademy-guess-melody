@@ -3,12 +3,12 @@
 * Студент: [Анна Кузнецова](https://up.htmlacademy.ru/react/4/user/993327).
 * Наставник: `Неизвестно`.
 
----
+-----
 
 _Не удаляйте и не изменяйте папки и файлы:_
 _`.editorconfig`, `.gitattributes`, `.gitignore`, `.travis.yml`, `package.json`._
 
----
+-----
 
 ### Памятка
 
